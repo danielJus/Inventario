@@ -17,14 +17,21 @@ export const login_failure = errorMessage => ({
 });
 
 export const login = user => {
+  console.log("LOGIN", user);
   return dispatch => {
     dispatch(login_start());
     axios
       .post("http://localhost:8000/api/v1/users/login", user)
-      .then(user => {
-        dispatch(login_success(user));
+      .then(({ data }) => {
+        dispatch(login_success(data.data.user));
       })
-      .catch(error => dispatch(error));
+      .catch(error =>
+        dispatch(
+          login_failure(
+            error.message ? error.message : "Error iniciando sesión"
+          )
+        )
+      );
   };
 };
 
@@ -53,5 +60,23 @@ export const register = user => {
         dispatch(register_success(user));
       })
       .catch(error => dispatch(error));
+  };
+};
+
+// LOGOUT
+export const logoutAction = () => ({
+  type: AuthTypes.LOGOUT
+});
+
+export const logout = () => {
+  return dispatch => {
+    axios
+      .get("http://localhost:8000/api/v1/users/logout")
+      .then(({ data }) => {
+        if (data.status === "success") dispatch(logoutAction());
+      })
+      .catch(error => {
+        console.error(error);
+      });
   };
 };

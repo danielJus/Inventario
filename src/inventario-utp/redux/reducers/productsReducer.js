@@ -2,7 +2,7 @@ import { ProductTypes } from "../actions/productTypes";
 
 const INITIAL_STATE = {
   loading: null,
-  products: null,
+  products: [],
   product: null,
   errorMessage: null
 };
@@ -14,6 +14,16 @@ export default (state = INITIAL_STATE, action) => {
     case ProductTypes.FETCH_PRODUCTS_SUCCESS:
       return { ...state, loading: false, products: action.payload };
     case ProductTypes.FETCH_PRODUCTS_FAILURE:
+      return { ...state, loading: false, errorMessage: action.payload };
+    case ProductTypes.CREATE_PRODUCT_START:
+      return { ...state, loading: true };
+    case ProductTypes.CREATE_PRODUCT_SUCCESS:
+      return {
+        ...state,
+        loading: false,
+        products: [action.payload.data.data.product, ...state.products]
+      };
+    case ProductTypes.CREATE_PRODUCT_FAILURE:
       return { ...state, loading: false, errorMessage: action.payload };
     case ProductTypes.EDIT_PRODUCT_START:
       return { ...state, loading: true };

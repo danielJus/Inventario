@@ -8,22 +8,38 @@ const useForm = (callback, validate, formFields) => {
   const handleChange = e => {
     const { name, value } = e.target;
 
-    setErrors(validate(name, value, errors));
-    console.log(errors);
-    setValues({
-      ...values,
-      [name]: value
-    });
+    console.log(name, value);
+    const propertiesKeys = name.split(".");
+
+    //setErrors(validate(name, value, errors));
+    //console.log(errors);
+    if (propertiesKeys.length === 1) {
+      setValues({
+        ...values,
+        [name]: value
+      });
+    } else if (propertiesKeys.length === 2) {
+      setValues({
+        ...values,
+        [propertiesKeys[0]]: {
+          ...values[propertiesKeys[0]],
+          [propertiesKeys[1]]: value
+        }
+      });
+    }
   };
 
   const handleSubmit = e => {
     e.preventDefault();
     setIsSubmitting(true);
-    const valid = Object.values(errors).every(value => value === "");
-
+    //const valid = Object.values(errors).every(value => value === "");
+    callback();
+    /*
     if (valid && isSubmitting) {
-      callback();
+      
     }
+
+    */
   };
 
   return {

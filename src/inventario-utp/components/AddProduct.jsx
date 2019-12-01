@@ -1,4 +1,8 @@
-import React, { useState } from "react";
+import React from "react";
+import { useDispatch } from "react-redux";
+import useForm from "../Hooks/useForm";
+import validate from "../utils/validate";
+import { create_product } from "../redux/actions/productActions";
 
 import {
   Button,
@@ -15,33 +19,31 @@ import {
 } from "reactstrap";
 
 const AddProduct = () => {
-  const [productName, setProductName] = useState("");
-  const [status, setStatus] = useState("");
-  const [sedeProducto, setSedeProducto] = useState("");
-  const [description, setDescription] = useState("");
-  const [image, setImage] = useState("");
-  const [responsableName, setResponsableName] = useState("");
-  const [cedula, setCedula] = useState("");
-  const [email, setEmail] = useState("");
-  const [unidad, setUnidad] = useState("");
-  const [sedeResponsable, setSedeResponsable] = useState("");
-
-  const handleSubmit = e => {
-    e.preventDefault();
-  };
-
-  console.log(
-    productName,
-    status,
-    sedeProducto,
-    description,
-    image,
-    responsableName,
-    cedula,
-    email,
-    unidad,
-    sedeResponsable
+  const dispatch = useDispatch();
+  const { handleChange, handleSubmit, values, errors } = useForm(
+    submit,
+    validate,
+    {
+      nombre: "",
+      descripcion: "",
+      imagen: "",
+      precio: 0,
+      estado: "",
+      responsable: {
+        nombre: "",
+        correo: "",
+        unidad: "",
+        sede: "",
+        cedula: ""
+      }
+    }
   );
+
+  function submit() {
+    create_product(values)(dispatch);
+    console.log("submit");
+  }
+
   return (
     <div>
       <Col lg="12" md="12">
@@ -62,8 +64,9 @@ const AddProduct = () => {
                   <Input
                     placeholder="Nombre del producto"
                     type="text"
-                    value={productName}
-                    onChange={e => setProductName(e.target.value)}
+                    name="nombre"
+                    value={values.nombre}
+                    onChange={handleChange}
                   />
                 </InputGroup>
               </FormGroup>
@@ -72,8 +75,9 @@ const AddProduct = () => {
                   <InputGroupAddon addonType="prepend"></InputGroupAddon>
                   <select
                     className="custom-select"
-                    value={status}
-                    onChange={e => setStatus(e.target.value)}
+                    name="estado"
+                    value={values.estado}
+                    onChange={handleChange}
                   >
                     <option value="">Estado del producto</option>
                     <option value="disponible">Disponible</option>
@@ -86,9 +90,9 @@ const AddProduct = () => {
                 <InputGroup className="input-group-alternative">
                   <select
                     className="custom-select"
-                    name="sedes"
-                    value={sedeProducto}
-                    onChange={e => setSedeProducto(e.target.value)}
+                    name="sede"
+                    value={values.sede}
+                    onChange={handleChange}
                   >
                     <option value="">Sede del producto</option>
                     <option value="azuero">Azuero</option>
@@ -102,6 +106,22 @@ const AddProduct = () => {
                 </InputGroup>
               </FormGroup>
               <FormGroup>
+                <InputGroup className="input-group-alternative mb-3">
+                  <InputGroupAddon addonType="prepend">
+                    <InputGroupText>
+                      <i className="ni ni-hat-3" />
+                    </InputGroupText>
+                  </InputGroupAddon>
+                  <Input
+                    placeholder="Nombre del producto"
+                    type="number"
+                    name="precio"
+                    value={values.precio}
+                    onChange={handleChange}
+                  />
+                </InputGroup>
+              </FormGroup>
+              <FormGroup>
                 <label htmlFor="descripcion">Descripción del producto</label>
                 <InputGroup className="input-group-alternative">
                   <textarea
@@ -110,8 +130,8 @@ const AddProduct = () => {
                     id=""
                     cols="30"
                     rows="10"
-                    value={description}
-                    onChange={e => setDescription(e.target.value)}
+                    value={values.descripcion}
+                    onChange={handleChange}
                   ></textarea>
                 </InputGroup>
               </FormGroup>
@@ -121,8 +141,8 @@ const AddProduct = () => {
                   <Input
                     name="imagen"
                     type="file"
-                    value={image}
-                    onChange={e => setImage(e.target.value)}
+                    value={values.imagen}
+                    onChange={handleChange}
                   />
                 </InputGroup>
               </FormGroup>
@@ -133,8 +153,9 @@ const AddProduct = () => {
                   <Input
                     type="text"
                     placeholder="Nombre del responsable"
-                    value={responsableName}
-                    onChange={e => setResponsableName(e.target.value)}
+                    value={values.responsable.nombre}
+                    name="responsable.nombre"
+                    onChange={handleChange}
                   />
                 </InputGroup>
               </FormGroup>
@@ -142,9 +163,10 @@ const AddProduct = () => {
                 <InputGroup className="input-group-alternative">
                   <Input
                     type="text"
+                    name="responsable.cedula"
                     placeholder="Cédula del responsable"
-                    value={cedula}
-                    onChange={e => setCedula(e.target.value)}
+                    value={values.responsable.cedula}
+                    onChange={handleChange}
                   />
                 </InputGroup>
               </FormGroup>
@@ -153,9 +175,10 @@ const AddProduct = () => {
                 <InputGroup className="input-group-alternative">
                   <Input
                     type="email"
+                    name="responsable.correo"
                     placeholder="Correo electrónico"
-                    value={email}
-                    onChange={e => setEmail(e.target.value)}
+                    value={values.responsable.correo}
+                    onChange={handleChange}
                   />
                 </InputGroup>
               </FormGroup>
@@ -164,9 +187,9 @@ const AddProduct = () => {
                 <InputGroup className="input-group-alternative">
                   <select
                     className="custom-select"
-                    name="unidad"
-                    value={unidad}
-                    onChange={e => setUnidad(e.target.value)}
+                    name="responsable.unidad"
+                    value={values.responsable.unidad}
+                    onChange={handleChange}
                   >
                     <option value="">Unidad</option>
                     <option value="facultad">Facultad</option>
@@ -181,9 +204,9 @@ const AddProduct = () => {
                 <InputGroup className="input-group-alternative">
                   <select
                     className="custom-select"
-                    name="sedes"
-                    value={sedeResponsable}
-                    onChange={e => setSedeResponsable(e.target.value)}
+                    name="responsable.sede"
+                    value={values.responsable.sede}
+                    onChange={handleChange}
                   >
                     <option value="">Sede del responsable</option>
                     <option value="azuero">Azuero</option>

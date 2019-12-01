@@ -1,6 +1,30 @@
 import { ProductTypes } from "./productTypes";
 import axios from "axios";
 
+const create_product_start = () => ({
+  type: ProductTypes.CREATE_PRODUCT_START
+});
+
+const create_product_success = product => ({
+  type: ProductTypes.CREATE_PRODUCT_SUCCESS,
+  payload: product
+});
+
+const create_product_failure = errorMessage => ({
+  type: ProductTypes.CREATE_PRODUCT_FAILURE,
+  payload: errorMessage
+});
+
+export const create_product = product => {
+  return dispatch => {
+    dispatch(create_product_start());
+    axios
+      .post("http://localhost:8000/api/v1/products", product)
+      .then(product => dispatch(create_product_success(product)))
+      .catch(error => dispatch(create_product_failure(error)));
+  };
+};
+
 const fetch_products_start = () => ({
   type: ProductTypes.FETCH_PRODUCTS_START
 });

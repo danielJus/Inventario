@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import useForm from "../Hooks/useForm";
-import validate from "../utils/validateLogin";
+import validate from "../utils/validate";
 
 import {
   Button,

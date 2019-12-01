@@ -1,5 +1,6 @@
 import React from "react";
 // reactstrap components
+import { useDispatch } from "react-redux";
 import {
   Button,
   Container,
@@ -15,23 +16,21 @@ import {
   Col
 } from "reactstrap";
 import useForm from "../Hooks/useForm";
-import validateLogin from "../utils/validateLogin";
+import validate from "../utils/validate";
+import { login } from "../redux/actions/authActions";
 
 const Login = props => {
+  const dispatch = useDispatch();
+
   const { handleChange, handleSubmit, values, errors } = useForm(
     submit,
-    validateLogin,
+    validate,
     { email: "", password: "" }
   );
   function submit() {
-    console.log(
-      "email login",
-      values.email,
-      "password",
-      values.password,
-      "errors",
-      errors
-    );
+    //console.log(login);
+    login(values)(dispatch);
+    console.log("SUBMIT");
   }
 
   return (

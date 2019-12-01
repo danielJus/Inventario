@@ -1,4 +1,5 @@
 import React from "react";
+import { useSelector } from "react-redux";
 import { Switch, Route, Redirect } from "react-router-dom";
 import Index from "../components/Index";
 import Login from "../components/Login";
@@ -9,17 +10,27 @@ import Users from "../components/Users";
 import Navigation from "../components/Navigation";
 
 const App = props => {
+  const user = useSelector(({ auth }) => auth.user);
+
   return (
     <div>
       <Navigation />
       <Switch>
-        <Route exact path="/" component={Index} />
-        <Route exact path="/login" component={Login} />
-        <Route exact path="/profile" component={Profile} />
-        <Route exact path="/add-product" component={AddProduct} />
-        <Route exact path="/add-user" component={AddUser} />
-        <Route exact path="/users" component={Users} />
-        <Redirect exact to="/" component={Index} />
+        {user ? (
+          <>
+            <Route exact path="/" component={Index} />
+            <Route exact path="/profile" component={Profile} />
+            <Route exact path="/add-product" component={AddProduct} />
+            <Route exact path="/add-user" component={AddUser} />
+            <Route exact path="/users" component={Users} />
+          </>
+        ) : (
+          <>
+            <Route exact path="/" component={Index} />
+            <Route exact path="/login" component={Login} />
+          </>
+        )}
+        <Redirect to="/" />
       </Switch>
     </div>
   );

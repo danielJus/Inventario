@@ -1,11 +1,12 @@
 import { AuthTypes } from "../actions/authTypes";
 const INITIAL_STATE = {
-  loading: null,
+  loading: false,
   user: null,
-  errorMessage: null
+  errorMessage: ""
 };
 
 export default (state = INITIAL_STATE, action) => {
+  console.log("ACTION", action);
   switch (action.type) {
     case AuthTypes.LOGIN_START:
       return {
@@ -16,7 +17,8 @@ export default (state = INITIAL_STATE, action) => {
       return {
         ...state,
         loading: false,
-        user: action.payload
+        user: action.payload,
+        errorMessage: ""
       };
     case AuthTypes.LOGIN_FAILURE:
       return {
@@ -33,13 +35,20 @@ export default (state = INITIAL_STATE, action) => {
       return {
         ...state,
         loading: false,
-        user: action.payload
+        user: action.payload,
+        errorMessage: ""
       };
     case AuthTypes.REGISTER_FAILURE:
       return {
         ...state,
         loading: false,
         errorMessage: action.payload
+      };
+
+    case AuthTypes.LOGOUT:
+      return {
+        ...state,
+        user: null
       };
     default:
       return state;
