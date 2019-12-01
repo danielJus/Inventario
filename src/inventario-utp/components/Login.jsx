@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 // reactstrap components
 import {
   Button,
@@ -14,14 +14,26 @@ import {
   InputGroup,
   Col
 } from "reactstrap";
+import useForm from "../Hooks/useForm";
+import validateLogin from "../utils/validateLogin";
 
 const Login = props => {
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
-  const handleSubmit = e => {
-    e.preventDefault();
-    console.log(email, password);
-  };
+  const { handleChange, handleSubmit, values, errors } = useForm(
+    submit,
+    validateLogin,
+    { email: "", password: "" }
+  );
+  function submit() {
+    console.log(
+      "email login",
+      values.email,
+      "password",
+      values.password,
+      "errors",
+      errors
+    );
+  }
+
   return (
     <React.Fragment>
       <Container>
@@ -45,10 +57,11 @@ const Login = props => {
                       placeholder="Correo Electrónico"
                       type="email"
                       name="email"
-                      onChange={e => setEmail(e.target.value)}
-                      value={email}
+                      onChange={handleChange}
+                      value={values.email}
                     />
                   </InputGroup>
+                  {errors.email && <label>{errors.email}</label>}
                 </FormGroup>
                 <FormGroup>
                   <InputGroup className="input-group-alternative">
@@ -61,10 +74,11 @@ const Login = props => {
                       placeholder="Contraseña"
                       name="password"
                       type="password"
-                      onChange={e => setPassword(e.target.value)}
-                      value={password}
+                      onChange={handleChange}
+                      value={values.password}
                     />
                   </InputGroup>
+                  {errors.password && <label>{errors.password}</label>}
                 </FormGroup>
                 <div className="custom-control custom-control-alternative custom-checkbox">
                   <input

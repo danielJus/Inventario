@@ -6,10 +6,12 @@ import Profile from "../components/UserProfile";
 import AddProduct from "../components/AddProduct";
 import AddUser from "../components/AddUser";
 import Users from "../components/Users";
+import Navigation from "../components/Navigation";
 
 const App = props => {
   return (
     <div>
+      <Navigation />
       <Switch>
         <Route exact path="/" component={Index} />
         <Route exact path="/login" component={Login} />

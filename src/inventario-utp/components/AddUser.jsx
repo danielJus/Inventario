@@ -1,4 +1,6 @@
 import React, { useState } from "react";
+import useForm from "../Hooks/useForm";
+import validate from "../utils/validateLogin";
 
 import {
   Button,
@@ -14,7 +16,12 @@ import {
   Col
 } from "reactstrap";
 const AddUser = () => {
-  const [nombreUsuario, setNombreUsuario] = useState("");
+  const { values, errors, handleChange, handleSubmit } = useForm(
+    submit,
+    validate,
+    { nombreUsuario: "" }
+  );
+
   const [cedula, setCedula] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -22,9 +29,9 @@ const AddUser = () => {
   const [facultad, setFacultad] = useState("");
   const [sede, setSede] = useState("");
 
-  const handleSubmit = e => {
-    e.preventDefault();
-  };
+  function submit() {
+    console.log("valores", values, "errores", errors);
+  }
 
   return (
     <div>
@@ -46,8 +53,9 @@ const AddUser = () => {
                   <Input
                     placeholder="Nombre"
                     type="text"
-                    value={nombreUsuario}
-                    onChange={e => setNombreUsuario(e.target.value)}
+                    name="nombreUsuario"
+                    value={values.nombreUsuario}
+                    onChange={handleChange}
                   />
                 </InputGroup>
               </FormGroup>
