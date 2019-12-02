@@ -10,7 +10,7 @@ const INITIAL_STATE = {
 export default (state = INITIAL_STATE, action) => {
   switch (action.type) {
     case ProductTypes.FETCH_PRODUCTS_START:
-      return { ...this.state, loading: true };
+      return { ...state, loading: true };
     case ProductTypes.FETCH_PRODUCTS_SUCCESS:
       return { ...state, loading: false, products: action.payload };
     case ProductTypes.FETCH_PRODUCTS_FAILURE:

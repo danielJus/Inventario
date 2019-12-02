@@ -44,7 +44,9 @@ export const fetch_products = () => {
     dispatch(fetch_products_start());
     axios
       .get("http://localhost:8000/api/v1/products")
-      .then(products => dispatch(fetch_products_success(products)))
+      .then(products =>
+        dispatch(fetch_products_success(products.data.data.products))
+      )
       .catch(error => dispatch(fetch_products_failure(error)));
   };
 };

@@ -27,7 +27,7 @@ const AddProduct = () => {
       nombre: "",
       descripcion: "",
       imagen: "",
-      precio: 0,
+      precio: undefined,
       estado: "",
       responsable: {
         nombre: "",
@@ -113,7 +113,7 @@ const AddProduct = () => {
                     </InputGroupText>
                   </InputGroupAddon>
                   <Input
-                    placeholder="Nombre del producto"
+                    placeholder="Precio del producto"
                     type="number"
                     name="precio"
                     value={values.precio}
@@ -193,7 +193,7 @@ const AddProduct = () => {
                   >
                     <option value="">Unidad</option>
                     <option value="facultad">Facultad</option>
-                    <option value="centro_investigacion">
+                    <option value="centro de investigacion">
                       Centro de investigación
                     </option>
                   </select>

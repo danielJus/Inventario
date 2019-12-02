@@ -8,9 +8,13 @@ import AddProduct from "../components/AddProduct";
 import AddUser from "../components/AddUser";
 import Users from "../components/Users";
 import Navigation from "../components/Navigation";
+import { useDispatch } from "react-redux";
+import { fetch_products } from "../redux/actions/productActions";
 
 const App = props => {
   const user = useSelector(({ auth }) => auth.user);
+  const dispatch = useDispatch();
+  fetch_products()(dispatch);
 
   return (
     <div>
