@@ -8,7 +8,7 @@ const useForm = (callback, validate, formFields) => {
   const handleChange = e => {
     const { name, value } = e.target;
 
-    console.log(name, value);
+    //console.log(name, value);
     const propertiesKeys = name.split(".");
 
     //setErrors(validate(name, value, errors));

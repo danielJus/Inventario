@@ -4,7 +4,7 @@ const INITIAL_STATE = {
   loading: null,
   products: [],
   product: null,
-  errorMessage: null
+  errorMessage: ""
 };
 
 export default (state = INITIAL_STATE, action) => {
@@ -12,7 +12,12 @@ export default (state = INITIAL_STATE, action) => {
     case ProductTypes.FETCH_PRODUCTS_START:
       return { ...state, loading: true };
     case ProductTypes.FETCH_PRODUCTS_SUCCESS:
-      return { ...state, loading: false, products: action.payload };
+      return {
+        ...state,
+        loading: false,
+        errorMessage: "",
+        products: action.payload
+      };
     case ProductTypes.FETCH_PRODUCTS_FAILURE:
       return { ...state, loading: false, errorMessage: action.payload };
     case ProductTypes.CREATE_PRODUCT_START:

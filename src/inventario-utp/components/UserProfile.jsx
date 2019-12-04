@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+
 import {
   Button,
   Card,
@@ -14,16 +15,27 @@ import {
   InputGroup,
   Col
 } from "reactstrap";
+import { useDispatch } from "react-redux";
+import useForm from "../Hooks/useForm";
+import validate from "../utils/validate";
 
-import { Modal } from "react-bootstrap";
 export const UserProfile = () => {
-  const [smShow, setSmShow] = useState(false);
-  const [lgShow, setLgShow] = useState(false);
-  const [nombreUsuario, setNombreUsuario] = useState("");
-  const [cedula, setCedula] = useState("");
-  const [email, setEmail] = useState("");
-  const [facultad, setFacultad] = useState("");
-  const [sede, setSede] = useState("");
+  const dispatch = useDispatch();
+  const { handleChange, handleSubmit, values, erors } = useForm(
+    submit,
+    validate,
+    {
+      nombreUsuario: "",
+      cedula: "",
+      emailUsuario: "",
+      facultadUsuario: "",
+      sedeUsuario: ""
+    }
+  );
+
+  function submit() {
+    console.log("submit user profile");
+  }
   return (
     <div>
       <Container className="mt-5" fluid>
@@ -36,12 +48,7 @@ export const UserProfile = () => {
                     <h3 className="mb-0 display-4">Mi cuenta</h3>
                   </Col>
                   <Col className="text-right" xs="4">
-                    <Button
-                      color="danger"
-                      href="#pablo"
-                      onClick={() => setSmShow(true)}
-                      size="sm"
-                    >
+                    <Button color="danger" size="sm">
                       Eliminar mi cuenta
                     </Button>
                   </Col>
@@ -137,12 +144,7 @@ export const UserProfile = () => {
                       </Col>
                       <Col lg="6">
                         <div>
-                          <Button
-                            color="success"
-                            onClick={() => setLgShow(true)}
-                          >
-                            Editar información
-                          </Button>
+                          <Button color="success">Editar información</Button>
                         </div>
                       </Col>
                     </Row>
@@ -217,159 +219,6 @@ export const UserProfile = () => {
           </Col>
         </Row>
       </Container>
-      <Modal
-        size="lg"
-        show={lgShow}
-        onHide={() => setLgShow(false)}
-        aria-labelledby="example-modal-sizes-title-lg"
-      >
-        <Modal.Header closeButton>
-          <Modal.Title id="example-modal-sizes-title-lg">
-            Editar datos
-          </Modal.Title>
-        </Modal.Header>
-        <Modal.Body>
-          <Row>
-            <Col md="6">
-              <FormGroup>
-                <InputGroup className="input-group-alternative mb-3">
-                  <InputGroupAddon addonType="prepend">
-                    <InputGroupText>
-                      <i className="ni ni-hat-3" />
-                    </InputGroupText>
-                  </InputGroupAddon>
-                  <Input
-                    placeholder="Nombre"
-                    type="text"
-                    value={nombreUsuario}
-                    onChange={e => setNombreUsuario(e.target.value)}
-                  />
-                </InputGroup>
-              </FormGroup>
-            </Col>
-            <Col md="6">
-              <FormGroup>
-                <InputGroup className="input-group-alternative mb-3">
-                  <InputGroupAddon addonType="prepend">
-                    <InputGroupText>
-                      <i className="ni ni-hat-3" />
-                    </InputGroupText>
-                  </InputGroupAddon>
-                  <Input
-                    placeholder="Cédula"
-                    type="text"
-                    value={cedula}
-                    onChange={e => setCedula(e.target.value)}
-                  />
-                </InputGroup>
-              </FormGroup>
-            </Col>
-          </Row>
-
-          <Row>
-            <Col md="6">
-              <FormGroup>
-                <InputGroup className="input-group-alternative mb-3">
-                  <InputGroupAddon addonType="prepend">
-                    <InputGroupText>
-                      <i className="ni ni-email-83" />
-                    </InputGroupText>
-                  </InputGroupAddon>
-                  <Input
-                    placeholder="Correo elecótronico"
-                    type="email"
-                    value={email}
-                    onChange={e => setEmail(e.target.value)}
-                  />
-                </InputGroup>
-              </FormGroup>
-            </Col>
-            <Col md="6">
-              <FormGroup>
-                <InputGroup className="input-group-alternative">
-                  <select
-                    className="custom-select"
-                    name="facultad"
-                    value={facultad}
-                    onChange={e => setFacultad(e.target.value)}
-                  >
-                    <option value="">Facultad</option>
-                    <option value="ciencias_tecnologia">
-                      Ciencias y Tecnología
-                    </option>
-                    <option value="civil">Ingeniería Civil</option>
-                    <option value="electrica">Ingeniería Eléctrica</option>
-                    <option value="industrial">Ingeniería Industrial</option>
-                    <option value="mecanica">Ingeniería Mecánica</option>
-                    <option value="sistemas">
-                      Ingeniería de Sistemas Computacionales
-                    </option>
-                  </select>
-                </InputGroup>
-              </FormGroup>
-            </Col>
-          </Row>
-          <Row>
-            <Col md="12">
-              <FormGroup>
-                <InputGroup className="input-group-alternative">
-                  <select
-                    className="custom-select"
-                    name="sedes"
-                    value={sede}
-                    onChange={e => setSede(e.target.value)}
-                  >
-                    <option value="">Sede </option>
-                    <option value="azuero">Azuero</option>
-                    <option value="bocas">Bocas del toro</option>
-                    <option value="central">Central </option>
-                    <option value="chiriqui">Chiriqui</option>
-                    <option value="cocle">Coclé</option>
-                    <option value="panama_oeste">Panamá Oeste</option>
-                    <option value="veraguas">Veraguas</option>
-                  </select>
-                </InputGroup>
-              </FormGroup>
-            </Col>
-          </Row>
-          <Row>
-            <Col>
-              <Button color="success">Guardar cambios</Button>
-              <Button onClick={() => setLgShow(false)} color="secondary">
-                Cancelar
-              </Button>
-            </Col>
-          </Row>
-        </Modal.Body>
-      </Modal>
-
-      <Modal
-        size="sm"
-        show={smShow}
-        onHide={() => setSmShow(false)}
-        aria-labelledby="example-modal-sizes-title-sm"
-      >
-        <Modal.Header closeButton>
-          <Modal.Title className="display-3" id="example-modal-sizes-title-sm">
-            Eliminar cuenta
-          </Modal.Title>
-        </Modal.Header>
-        <Modal.Body>
-          <Row className="mb-5">
-            <Col>
-              Al aceptar se borrara toda su información de la base de datos
-            </Col>
-          </Row>
-          <Row>
-            <Col>
-              <Button color="danger">Borrar cuenta</Button>
-              <Button onClick={() => setSmShow(false)} color="secondary">
-                Cancelar
-              </Button>
-            </Col>
-          </Row>
-        </Modal.Body>
-      </Modal>
     </div>
   );
 };

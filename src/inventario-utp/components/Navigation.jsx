@@ -1,12 +1,28 @@
-import React from "react";
+import React, { useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { Navbar, Nav } from "react-bootstrap";
+import {
+  Collapse,
+  Navbar,
+  NavbarToggler,
+  NavbarBrand,
+  Nav,
+  NavItem,
+  NavLink,
+  UncontrolledDropdown,
+  DropdownToggle,
+  DropdownMenu,
+  DropdownItem
+} from "reactstrap";
 import { LinkContainer } from "react-router-bootstrap";
 import { logout } from "../redux/actions/authActions";
 
 const Navigation = () => {
   const user = useSelector(({ auth: { user } }) => user);
+
   const dispatch = useDispatch();
+
+  const [isOpen, setIsOpen] = useState(false);
+  const toggle = () => setIsOpen(!isOpen);
 
   const handleLogout = () => {
     logout()(dispatch);
@@ -14,38 +30,34 @@ const Navigation = () => {
 
   return (
     <div>
-      <Navbar bg="primary" expand="lg">
-        <Navbar.Text href="#home">
-          <LinkContainer to="/">
-            <Nav.Item>Inventario UTP</Nav.Item>
-          </LinkContainer>
-        </Navbar.Text>
-        <Navbar.Toggle aria-controls="basic-navbar-nav" />
-        <Navbar.Collapse id="basic-navbar-nav">
-          <Nav>
+      <Navbar color="light" light expand="md">
+        <NavbarBrand href="/">Inventario UTP</NavbarBrand>
+        <NavbarToggler onClick={toggle} />
+        <Collapse isOpen={isOpen} navbar>
+          <Nav className="mr-auto" navbar>
             {user ? (
-              <>
+              <React.Fragment>
                 <LinkContainer to="/users">
-                  <Nav.Item>Usuarios</Nav.Item>
+                  <NavItem>Usuarios</NavItem>
                 </LinkContainer>
                 <LinkContainer to="/add-product">
-                  <Nav.Item>Agregar Producto</Nav.Item>
+                  <NavItem>Agregar Producto</NavItem>
                 </LinkContainer>
                 <LinkContainer to="/add-user">
-                  <Nav.Item>Agregar Usuario</Nav.Item>
+                  <NavItem>Agregar Usuario</NavItem>
                 </LinkContainer>
                 <LinkContainer to="/profile">
-                  <Nav.Item>Perfil</Nav.Item>
+                  <NavItem>Perfil</NavItem>
                 </LinkContainer>
-                <Nav.Item onClick={handleLogout}>Logout</Nav.Item>
-              </>
+                <NavItem onClick={handleLogout}>Logout</NavItem>
+              </React.Fragment>
             ) : (
               <LinkContainer to="/login">
-                <Nav.Item>Iniciar Sesión</Nav.Item>
+                <NavItem>Iniciar Sesión</NavItem>
               </LinkContainer>
             )}
           </Nav>
-        </Navbar.Collapse>
+        </Collapse>
       </Navbar>
     </div>
   );

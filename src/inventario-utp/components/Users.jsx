@@ -13,7 +13,7 @@ import {
 const Users = () => {
   return (
     <div>
-      <Container className="mt--7" fluid>
+      <Container className="mt-7" fluid>
         <Row></Row>
         <Row className="mt-5">
           <Col className="mb-5 mb-xl-0" xl="12">
@@ -21,17 +21,7 @@ const Users = () => {
               <CardHeader className="border-0">
                 <Row className="align-items-center">
                   <div className="col">
-                    <h3 className="mb-0">Productos</h3>
-                  </div>
-                  <div className="col text-right">
-                    <Button
-                      color="primary"
-                      href="#pablo"
-                      onClick={e => e.preventDefault()}
-                      size="sm"
-                    >
-                      See all
-                    </Button>
+                    <h3 className="mb-0">Usuarios</h3>
                   </div>
                 </Row>
               </CardHeader>

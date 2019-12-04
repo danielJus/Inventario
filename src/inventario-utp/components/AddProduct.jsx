@@ -27,7 +27,7 @@ const AddProduct = () => {
       nombre: "",
       descripcion: "",
       imagen: "",
-      precio: undefined,
+      precio: 0,
       estado: "",
       responsable: {
         nombre: "",
