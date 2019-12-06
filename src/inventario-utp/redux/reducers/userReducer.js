@@ -10,7 +10,7 @@ const INITIAL_STATE = {
 export default (state = INITIAL_STATE, action) => {
   switch (action.type) {
     case UserTypes.FETCH_USERS_START:
-      return { ...this.state, loading: true };
+      return { ...state, loading: true };
     case UserTypes.FETCH_USERS_SUCCESS:
       return { ...state, loading: false, users: action.payload };
     case UserTypes.FETCH_USERS_FAILURE:

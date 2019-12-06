@@ -1,8 +1,8 @@
-import React, { useState } from "react";
-import { useSelector } from "react-redux";
+import React from "react";
 import { useDispatch } from "react-redux";
 import useForm from "../Hooks/useForm";
 import validate from "../utils/validate";
+import logo from "../img/logo_utp_1_300.png";
 
 import {
   Container,
@@ -12,11 +12,12 @@ import {
   Form,
   FormGroup,
   Label,
-  Input,
-  InputGroup
+  Input
 } from "reactstrap";
 
 const EditProduct = props => {
+  console.log("edit product", props);
+  const dispatch = useDispatch();
   const {
     nombre,
     estado,
@@ -25,7 +26,7 @@ const EditProduct = props => {
     descripcion,
     responsable
   } = props.product;
-  const dispatch = useDispatch();
+  //const dispatch = useDispatch();
   const { handleChange, handleSubmit, values, errors } = useForm(
     submit,
     validate,
@@ -53,14 +54,21 @@ const EditProduct = props => {
       <Container>
         <Form>
           <Row>
-            <Col md="6"></Col>
+            <Col md="6">
+              <img style={{ maxWidth: "30rem" }} src={logo} alt="..." />
+            </Col>
             <Col>
               <h1 className="mb-4">Editar datos del producto</h1>
               <Row>
                 <Col md="6">
                   <FormGroup>
                     <Label for="nombre">Nombre</Label>
-                    <Input type="text" name="nombre" defaultValue={nombre} />
+                    <Input
+                      type="text"
+                      name="nombre"
+                      defaultValue={nombre}
+                      onChange={handleChange}
+                    />
                   </FormGroup>
                 </Col>
                 <Col md="6">
@@ -70,6 +78,7 @@ const EditProduct = props => {
                       className="custom-select"
                       name="estado"
                       defaultValue={estado}
+                      onChange={handleChange}
                     >
                       <option value="">Elija...</option>
                       <option value="disponible">Disponible</option>
@@ -88,7 +97,12 @@ const EditProduct = props => {
                 <Col md="6">
                   <FormGroup>
                     <Label for="sede">Sede</Label>
-                    <select className="custom-select" name="sede">
+                    <select
+                      className="custom-select"
+                      name="sede"
+                      defaultValue={sede}
+                      onChange={handleChange}
+                    >
                       <option value="">Sede del producto</option>
                       <option value="azuero">Azuero</option>
                       <option value="bocas">Bocas del toro</option>
@@ -113,6 +127,7 @@ const EditProduct = props => {
                       cols="30"
                       rows="10"
                       defaultValue={descripcion}
+                      onChange={handleChange}
                     ></textarea>
                   </FormGroup>
                 </Col>
@@ -129,6 +144,7 @@ const EditProduct = props => {
                       type="text"
                       defaultValue={responsable.nombre}
                       name="responsable.nombre"
+                      onChange={handleChange}
                     />
                   </FormGroup>
                 </Col>
@@ -142,6 +158,7 @@ const EditProduct = props => {
                       type="text"
                       name="responsable.cedula"
                       defaultValue={responsable.cedula}
+                      onChange={handleChange}
                     />
                   </FormGroup>
                 </Col>

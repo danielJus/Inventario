@@ -30,26 +30,28 @@ const Navigation = () => {
 
   return (
     <div>
-      <Navbar color="light" light expand="md">
+      <Navbar color="primary" light expand="md">
         <NavbarBrand href="/">Inventario UTP</NavbarBrand>
         <NavbarToggler onClick={toggle} />
         <Collapse isOpen={isOpen} navbar>
-          <Nav className="mr-auto" navbar>
+          <Nav className=" ml-auto d-flex justify-content-end" navbar>
             {user ? (
               <React.Fragment>
                 <LinkContainer to="/users">
-                  <NavItem>Usuarios</NavItem>
+                  <NavItem className="mx-4">Usuarios</NavItem>
                 </LinkContainer>
                 <LinkContainer to="/add-product">
-                  <NavItem>Agregar Producto</NavItem>
+                  <NavItem className="mx-4">Agregar Producto</NavItem>
                 </LinkContainer>
                 <LinkContainer to="/add-user">
-                  <NavItem>Agregar Usuario</NavItem>
+                  <NavItem className="mx-4">Agregar Usuario</NavItem>
                 </LinkContainer>
                 <LinkContainer to="/profile">
-                  <NavItem>Perfil</NavItem>
+                  <NavItem className="mx-4">Perfil</NavItem>
                 </LinkContainer>
-                <NavItem onClick={handleLogout}>Logout</NavItem>
+                <NavItem className="mx-4" onClick={handleLogout}>
+                  Cerrar sesión
+                </NavItem>
               </React.Fragment>
             ) : (
               <LinkContainer to="/login">

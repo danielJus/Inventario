@@ -1,29 +1,9 @@
-import React, { useState, useEffect } from "react";
-import { useSelector } from "react-redux";
-import { useDispatch } from "react-redux";
-import useForm from "../Hooks/useForm";
-import validate from "../utils/validate";
-import {
-  Card,
-  CardHeader,
-  Table,
-  Container,
-  Row,
-  Col,
-  Button
-} from "reactstrap";
-import EditProduct from "./EditProduct";
-import Modal from "react-modal";
+import React from "react";
+
+import { Card, CardHeader, Table, Container, Row, Col } from "reactstrap";
+
+import ProductList from "./ProductList";
 const Index = props => {
-  const products = useSelector(({ products }) => products.products);
-  const [modal, setModal] = useState(false);
-
-  const toggle = () => setModal(!modal);
-
-  useEffect(() => {
-    Modal.setAppElement("body");
-  }, []);
-
   return (
     <React.Fragment>
       <div>
@@ -54,25 +34,7 @@ const Index = props => {
                     </tr>
                   </thead>
                   <tbody>
-                    {products.map((product, i) => (
-                      <tr key={i}>
-                        <td>{product.nombre}</td>
-                        <td>Imagen</td>
-                        <td>{product.estado}</td>
-                        <td>{product.precio}</td>
-                        <td>{product.descripcion}</td>
-                        <td>{product.responsable.nombre}</td>
-                        <td>{product.sede}</td>
-                        <td>
-                          <Button color="primary" onClick={toggle}>
-                            Editar
-                          </Button>
-                        </td>
-                        <Modal isOpen={modal} onRequestClose={toggle}>
-                          <EditProduct product={product} />
-                        </Modal>
-                      </tr>
-                    ))}
+                    <ProductList />
                   </tbody>
                 </Table>
               </Card>

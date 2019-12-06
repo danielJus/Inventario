@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 
 import {
   Button,
@@ -10,16 +10,22 @@ import {
   Input,
   Container,
   Row,
-  InputGroupAddon,
-  InputGroupText,
-  InputGroup,
   Col
 } from "reactstrap";
+import Modal from "react-modal";
+import DeleteProfile from "./DeleteProfile";
 import { useDispatch } from "react-redux";
 import useForm from "../Hooks/useForm";
 import validate from "../utils/validate";
 
 export const UserProfile = () => {
+  const [modal, setModal] = useState(false);
+
+  const toggle = () => setModal(!modal);
+
+  useEffect(() => {
+    Modal.setAppElement("body");
+  }, []);
   const dispatch = useDispatch();
   const { handleChange, handleSubmit, values, erors } = useForm(
     submit,
@@ -48,7 +54,7 @@ export const UserProfile = () => {
                     <h3 className="mb-0 display-4">Mi cuenta</h3>
                   </Col>
                   <Col className="text-right" xs="4">
-                    <Button color="danger" size="sm">
+                    <Button color="danger" size="sm" onClick={toggle}>
                       Eliminar mi cuenta
                     </Button>
                   </Col>
@@ -219,6 +225,9 @@ export const UserProfile = () => {
           </Col>
         </Row>
       </Container>
+      <Modal isOpen={modal} onRequestClose={toggle}>
+        <DeleteProfile />
+      </Modal>
     </div>
   );
 };

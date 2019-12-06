@@ -1,6 +1,7 @@
 import React from "react";
 // reactstrap components
 import { useDispatch } from "react-redux";
+
 import {
   Button,
   Container,
@@ -25,7 +26,7 @@ const Login = props => {
   const { handleChange, handleSubmit, values, errors } = useForm(
     submit,
     validate,
-    { email: "", password: "" }
+    { correo: "", password: "" }
   );
   function submit() {
     //console.log(login);
@@ -55,7 +56,7 @@ const Login = props => {
                     <Input
                       placeholder="Correo Electrónico"
                       type="email"
-                      name="email"
+                      name="correo"
                       onChange={handleChange}
                       value={values.email}
                     />

@@ -1,5 +1,6 @@
 import { AuthTypes } from "./authTypes";
 import axios from "axios";
+import { history } from "../../utils/history";
 
 /////////////////////////LOGIN//////////////
 export const login_start = () => ({
@@ -23,6 +24,7 @@ export const login = user => {
     axios
       .post("http://localhost:8000/api/v1/users/login", user)
       .then(({ data }) => {
+        history.push("/");
         dispatch(login_success(data.data.user));
       })
       .catch(error =>

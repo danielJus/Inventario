@@ -1,14 +1,7 @@
 import React from "react";
 
-import {
-  Button,
-  Card,
-  CardHeader,
-  Table,
-  Container,
-  Row,
-  Col
-} from "reactstrap";
+import { Card, CardHeader, Table, Container, Row, Col } from "reactstrap";
+import UserList from "./UserList";
 
 const Users = () => {
   return (
@@ -33,9 +26,12 @@ const Users = () => {
                     <th scope="col">Correo electrónico</th>
                     <th scope="col">Facultad</th>
                     <th scope="col">Sede</th>
+                    <th scope="col">Acciones</th>
                   </tr>
                 </thead>
-                <tbody></tbody>
+                <tbody>
+                  <UserList />
+                </tbody>
               </Table>
             </Card>
           </Col>
