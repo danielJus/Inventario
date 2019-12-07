@@ -24,7 +24,7 @@ const AddUser = () => {
     submit,
     validate,
     {
-      nombre: "",
+      nombreUsuario: "",
       cedula: "",
       correo: "",
       password: "",
@@ -62,11 +62,14 @@ const AddUser = () => {
                       <Input
                         placeholder="Nombre"
                         type="text"
-                        name="nombre"
-                        value={values.nombre}
+                        name="nombreUsuario"
+                        value={values.nombreUsuario}
                         onChange={handleChange}
                       />
                     </InputGroup>
+                    {errors.nombreUsuario && (
+                      <span>{errors.nombreUsuario}</span>
+                    )}
                   </FormGroup>
                 </Col>
                 <Col>
@@ -85,6 +88,7 @@ const AddUser = () => {
                         onChange={handleChange}
                       />
                     </InputGroup>
+                    {errors.cedula && <span>{errors.cedula}</span>}
                   </FormGroup>
                 </Col>
               </Row>
@@ -105,6 +109,7 @@ const AddUser = () => {
                         onChange={handleChange}
                       />
                     </InputGroup>
+                    {errors.correo && <span>{errors.correo}</span>}
                   </FormGroup>
                 </Col>
                 <Col>
@@ -123,6 +128,7 @@ const AddUser = () => {
                         onChange={handleChange}
                       />
                     </InputGroup>
+                    {errors.password && <span>{errors.password}</span>}
                   </FormGroup>
                 </Col>
               </Row>
@@ -143,6 +149,9 @@ const AddUser = () => {
                         onChange={handleChange}
                       />
                     </InputGroup>
+                    {errors.passwordConfirm && (
+                      <span>{errors.passwordConfirm}</span>
+                    )}
                   </FormGroup>
                 </Col>
                 <Col>
@@ -169,6 +178,7 @@ const AddUser = () => {
                         </option>
                       </select>
                     </InputGroup>
+                    {errors.facultad && <span>{errors.facultad}</span>}
                   </FormGroup>
                 </Col>
               </Row>
@@ -192,6 +202,7 @@ const AddUser = () => {
                         <option value="veraguas">Veraguas</option>
                       </select>
                     </InputGroup>
+                    {errors.sede && <span>{errors.sede}</span>}
                   </FormGroup>
                 </Col>
               </Row>
