@@ -63,11 +63,11 @@ const edit_user_failure = errorMessage => ({
   payload: errorMessage
 });
 
-export const edit_user = user => {
+export const edit_user = (id, user) => {
   return dispatch => {
     dispatch(edit_user_start());
     axios
-      .patch(`http://localhost:8000/api/v1/users/${user.id}`, user.fields)
+      .patch(`http://localhost:8000/api/v1/users/${id}`, user)
       .then(user => {
         dispatch(edit_user_success(user));
       })
@@ -89,11 +89,11 @@ const delete_user_failure = errorMessage => ({
   payload: errorMessage
 });
 
-export const delete_user = user => {
+export const delete_user = id => {
   return dispatch => {
     dispatch(delete_user_start());
     axios
-      .patch(`http://localhost:8000/api/v1/users/${user.id}`, user.fields)
+      .delete(`http://localhost:8000/api/v1/users/${id}`)
       .then(user => {
         dispatch(delete_user_success(user));
       })

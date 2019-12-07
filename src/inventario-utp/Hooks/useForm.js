@@ -1,6 +1,6 @@
 import { useState } from "react";
 
-const useForm = (callback, validate, formFields, deleteValue = "") => {
+const useForm = (callback, validate, formFields) => {
   const [values, setValues] = useState({ ...formFields });
   const [errors, setErrors] = useState({ ...formFields });
   const [isSubmitting, setIsSubmitting] = useState(false);
@@ -9,7 +9,7 @@ const useForm = (callback, validate, formFields, deleteValue = "") => {
     const { name, value } = e.target;
     console.log(name, value);
 
-    //console.log(name, value);
+    console.log(name, value);
     const propertiesKeys = name.split(".");
     //setErrors(validate(name, value, errors,deleteValue));
     //console.log(errors);

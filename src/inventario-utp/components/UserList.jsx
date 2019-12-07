@@ -3,21 +3,31 @@ import { useSelector } from "react-redux";
 import Modal from "react-modal";
 import { Button, Table } from "reactstrap";
 import EditUser from "./EditUser";
+import DeleteUser from "./DeleteUser";
 
 const UserList = () => {
   const users = useSelector(({ user }) => user.users);
   const [user, setUser] = useState("");
   const [modal, setModal] = useState(false);
+  const [deleteModal, setDeleteModal] = useState(false);
 
   const toggle = data => {
     setModal(!modal);
     setUser(data);
   };
 
+  const toggleDeleteModal = data => {
+    setUser(data);
+    setDeleteModal(!deleteModal);
+  };
+
   const close = () => {
     setModal(false);
   };
 
+  const closeDeleteModal = () => {
+    setDeleteModal(false);
+  };
   useEffect(() => {
     Modal.setAppElement("body");
   }, [modal]);
@@ -46,7 +56,9 @@ const UserList = () => {
                 <Button color="primary" onClick={() => toggle(user)}>
                   Editar
                 </Button>
-                <Button color="danger">Eliminar</Button>
+                <Button color="danger" onClick={() => toggleDeleteModal(user)}>
+                  Eliminar
+                </Button>
               </td>
             </tr>
           ))}
@@ -54,6 +66,10 @@ const UserList = () => {
       </Table>
       <Modal isOpen={modal} onRequestClose={close}>
         <EditUser user={user} />
+      </Modal>
+
+      <Modal isOpen={deleteModal} onRequestClose={closeDeleteModal}>
+        <DeleteUser user={user} />
       </Modal>
     </React.Fragment>
   );

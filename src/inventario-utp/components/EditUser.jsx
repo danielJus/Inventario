@@ -17,149 +17,159 @@ import {
   Input
 } from "reactstrap";
 
+import { edit_user } from "../redux/actions/userActions";
+
 const EditUser = props => {
+  const dispatch = useDispatch();
+  const { user } = props;
   const { values, errors, handleChange, handleSubmit } = useForm(
     submit,
     validate,
-    { nombreUsuario: "" }
+    user
   );
 
   function submit() {
-    console.log("submit edit user");
+    edit_user(user._id, values)(dispatch);
+    console.log("submit edit user", user);
   }
 
-  const { nombre, cedula, correo, facultad, sede } = props.user;
+  const { nombre, cedula, correo, facultad, sede } = values;
+
   return (
     <div>
-      <Form role="form">
-        <h3 className="display-4">Editar usuario</h3>
-        <Row>
-          <Col>
-            <FormGroup>
-              <Label>Nombre</Label>
-              <InputGroup className="input-group-alternative mb-3">
-                <InputGroupAddon addonType="prepend">
-                  <InputGroupText>
-                    <i className="ni ni-hat-3" />
-                  </InputGroupText>
-                </InputGroupAddon>
-                <Input
-                  placeholder="Nombre"
-                  type="text"
-                  name="nombreUsuario"
-                  value={nombre}
-                  onChange={handleChange}
-                />
-              </InputGroup>
-            </FormGroup>
-          </Col>
-          <Col>
-            <FormGroup>
-              <Label>Cédula</Label>
-              <InputGroup className="input-group-alternative mb-3">
-                <InputGroupAddon addonType="prepend">
-                  <InputGroupText>
-                    <i className="ni ni-hat-3" />
-                  </InputGroupText>
-                </InputGroupAddon>
-                <Input
-                  placeholder="Cédula"
-                  type="text"
-                  value={cedula}
-                  onChange={handleChange}
-                />
-              </InputGroup>
-            </FormGroup>
-          </Col>
-        </Row>
-        <Row>
-          <Col>
-            <FormGroup>
-              <Label>Correo electrónico</Label>
-              <InputGroup className="input-group-alternative mb-3">
-                <InputGroupAddon addonType="prepend">
-                  <InputGroupText>
-                    <i className="ni ni-email-83" />
-                  </InputGroupText>
-                </InputGroupAddon>
-                <Input
-                  placeholder="Correo elecótronico"
-                  type="email"
-                  value={correo}
-                  onChange={handleChange}
-                />
-              </InputGroup>
-            </FormGroup>
-          </Col>
-          <Col>
-            <FormGroup>
-              <Label>Facultad</Label>
-              <InputGroup className="input-group-alternative">
-                <select
-                  className="custom-select"
-                  name="facultad"
-                  value={facultad}
-                  onChange={handleChange}
-                >
-                  <option value="">Facultad</option>
-                  <option value="ciencias_tecnologia">
-                    Ciencias y Tecnología
-                  </option>
-                  <option value="civil">Ingeniería Civil</option>
-                  <option value="electrica">Ingeniería Eléctrica</option>
-                  <option value="industrial">Ingeniería Industrial</option>
-                  <option value="mecanica">Ingeniería Mecánica</option>
-                  <option value="sistemas">
-                    Ingeniería de Sistemas Computacionales
-                  </option>
-                </select>
-              </InputGroup>
-            </FormGroup>
-          </Col>
-        </Row>
+      <Container>
+        <Form role="form">
+          <h3 className="display-4">Editar usuario</h3>
+          <Row>
+            <Col>
+              <FormGroup>
+                <Label>Nombre</Label>
+                <InputGroup className="input-group-alternative mb-3">
+                  <InputGroupAddon addonType="prepend">
+                    <InputGroupText>
+                      <i className="ni ni-hat-3" />
+                    </InputGroupText>
+                  </InputGroupAddon>
+                  <Input
+                    placeholder="Nombre"
+                    type="text"
+                    name="nombre"
+                    value={nombre}
+                    onChange={handleChange}
+                  />
+                </InputGroup>
+              </FormGroup>
+            </Col>
+            <Col>
+              <FormGroup>
+                <Label>Cédula</Label>
+                <InputGroup className="input-group-alternative mb-3">
+                  <InputGroupAddon addonType="prepend">
+                    <InputGroupText>
+                      <i className="ni ni-hat-3" />
+                    </InputGroupText>
+                  </InputGroupAddon>
+                  <Input
+                    placeholder="Cédula"
+                    type="text"
+                    name="cedula"
+                    value={cedula}
+                    onChange={handleChange}
+                  />
+                </InputGroup>
+              </FormGroup>
+            </Col>
+          </Row>
+          <Row>
+            <Col>
+              <FormGroup>
+                <Label>Correo electrónico</Label>
+                <InputGroup className="input-group-alternative mb-3">
+                  <InputGroupAddon addonType="prepend">
+                    <InputGroupText>
+                      <i className="ni ni-email-83" />
+                    </InputGroupText>
+                  </InputGroupAddon>
+                  <Input
+                    placeholder="Correo elecótronico"
+                    type="email"
+                    name="correo"
+                    value={correo}
+                    onChange={handleChange}
+                  />
+                </InputGroup>
+              </FormGroup>
+            </Col>
+            <Col>
+              <FormGroup>
+                <Label>Facultad</Label>
+                <InputGroup className="input-group-alternative">
+                  <select
+                    className="custom-select"
+                    name="facultad"
+                    value={facultad}
+                    onChange={handleChange}
+                  >
+                    <option value="">Facultad</option>
+                    <option value="ciencias_tecnologia">
+                      Ciencias y Tecnología
+                    </option>
+                    <option value="civil">Ingeniería Civil</option>
+                    <option value="electrica">Ingeniería Eléctrica</option>
+                    <option value="industrial">Ingeniería Industrial</option>
+                    <option value="mecanica">Ingeniería Mecánica</option>
+                    <option value="sistemas">
+                      Ingeniería de Sistemas Computacionales
+                    </option>
+                  </select>
+                </InputGroup>
+              </FormGroup>
+            </Col>
+          </Row>
 
-        <Row>
-          <Col>
-            <FormGroup>
-              <InputGroup className="input-group-alternative">
-                <select
-                  className="custom-select"
-                  name="sedes"
-                  value={sede}
-                  onChange={handleChange}
-                >
-                  <option value="">Sede </option>
-                  <option value="azuero">Azuero</option>
-                  <option value="bocas">Bocas del toro</option>
-                  <option value="central">Central </option>
-                  <option value="chiriqui">Chiriqui</option>
-                  <option value="cocle">Coclé</option>
-                  <option value="panama_oeste">Panamá Oeste</option>
-                  <option value="veraguas">Veraguas</option>
-                </select>
-              </InputGroup>
-            </FormGroup>
-          </Col>
-        </Row>
+          <Row>
+            <Col>
+              <FormGroup>
+                <InputGroup className="input-group-alternative">
+                  <select
+                    className="custom-select"
+                    name="sede"
+                    value={sede}
+                    onChange={handleChange}
+                  >
+                    <option value="">Sede </option>
+                    <option value="azuero">Azuero</option>
+                    <option value="bocas">Bocas del toro</option>
+                    <option value="central">Central </option>
+                    <option value="chiriqui">Chiriqui</option>
+                    <option value="cocle">Coclé</option>
+                    <option value="panama_oeste">Panamá Oeste</option>
+                    <option value="veraguas">Veraguas</option>
+                  </select>
+                </InputGroup>
+              </FormGroup>
+            </Col>
+          </Row>
 
-        <Row>
-          <Col></Col>
-          <Col>
-            <Button
-              className="mt-4"
-              color="success"
-              type="button"
-              onClick={handleSubmit}
-            >
-              Guardar Cambios
-            </Button>
+          <Row>
+            <Col></Col>
+            <Col>
+              <Button
+                className="mt-4"
+                color="success"
+                type="button"
+                onClick={handleSubmit}
+              >
+                Guardar Cambios
+              </Button>
 
-            <Button className="mt-4" color="danger" type="button">
-              Cancelar
-            </Button>
-          </Col>
-        </Row>
-      </Form>
+              <Button className="mt-4" color="danger" type="button">
+                Cancelar
+              </Button>
+            </Col>
+          </Row>
+        </Form>
+      </Container>
     </div>
   );
 };

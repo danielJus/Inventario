@@ -31,7 +31,7 @@ const EditProduct = props => {
   const { nombre, estado, precio, sede, descripcion, responsable } = values;
 
   function submit() {
-    edit_product(values._id, values)(dispatch);
+    edit_product(product._id, values)(dispatch);
     console.log("guardar edit");
   }
   return (
