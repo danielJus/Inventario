@@ -23,17 +23,12 @@ const EditUser = props => {
     validate,
     { nombreUsuario: "" }
   );
-  const [cedula, setCedula] = useState("");
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
-  const [passwordConfirm, setPasswordConfirm] = useState("");
-  const [facultad, setFacultad] = useState("");
-  const [sede, setSede] = useState("");
 
   function submit() {
     console.log("submit edit user");
   }
 
+  const { nombre, cedula, correo, facultad, sede } = props.user;
   return (
     <div>
       <Form role="form">
@@ -52,7 +47,7 @@ const EditUser = props => {
                   placeholder="Nombre"
                   type="text"
                   name="nombreUsuario"
-                  value={values.nombreUsuario}
+                  value={nombre}
                   onChange={handleChange}
                 />
               </InputGroup>
@@ -71,7 +66,7 @@ const EditUser = props => {
                   placeholder="Cédula"
                   type="text"
                   value={cedula}
-                  onChange={e => setCedula(e.target.value)}
+                  onChange={handleChange}
                 />
               </InputGroup>
             </FormGroup>
@@ -90,8 +85,8 @@ const EditUser = props => {
                 <Input
                   placeholder="Correo elecótronico"
                   type="email"
-                  value={email}
-                  onChange={e => setEmail(e.target.value)}
+                  value={correo}
+                  onChange={handleChange}
                 />
               </InputGroup>
             </FormGroup>
@@ -104,7 +99,7 @@ const EditUser = props => {
                   className="custom-select"
                   name="facultad"
                   value={facultad}
-                  onChange={e => setFacultad(e.target.value)}
+                  onChange={handleChange}
                 >
                   <option value="">Facultad</option>
                   <option value="ciencias_tecnologia">
@@ -131,7 +126,7 @@ const EditUser = props => {
                   className="custom-select"
                   name="sedes"
                   value={sede}
-                  onChange={e => setSede(e.target.value)}
+                  onChange={handleChange}
                 >
                   <option value="">Sede </option>
                   <option value="azuero">Azuero</option>
@@ -159,12 +154,7 @@ const EditUser = props => {
               Guardar Cambios
             </Button>
 
-            <Button
-              className="mt-4"
-              color="danger"
-              type="button"
-              onClick={handleSubmit}
-            >
+            <Button className="mt-4" color="danger" type="button">
               Cancelar
             </Button>
           </Col>

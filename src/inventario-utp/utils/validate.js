@@ -1,4 +1,4 @@
-export default function validate(name, value, errors) {
+export default function validate(name, value, errors, deleteValue = "") {
   switch (name) {
     case "email":
       errors.email = value.length < 6 || !value ? "Email is required" : "";

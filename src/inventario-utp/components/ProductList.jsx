@@ -3,12 +3,19 @@ import { useSelector } from "react-redux";
 import Modal from "react-modal";
 import { Button, Table } from "reactstrap";
 import EditProduct from "./EditProduct";
+import DeleteProduct from "./DeleteProduct";
 
 const ProductList = () => {
   const products = useSelector(({ products }) => products.products);
   const [product, setProduct] = useState("");
 
   const [modal, setModal] = useState(false);
+  const [deleteModal, setDeleteModal] = useState(false);
+
+  const toggleDeleteModal = data => {
+    setProduct(data);
+    setDeleteModal(!deleteModal);
+  };
 
   const toggle = data => {
     setProduct(data);
@@ -17,9 +24,9 @@ const ProductList = () => {
   const close = () => {
     setModal(false);
   };
-
-  console.log("producto elegido", product);
-  console.log("modal", modal);
+  const closeDeleteModal = () => {
+    setDeleteModal(false);
+  };
 
   useEffect(() => {
     Modal.setAppElement("body");
@@ -54,7 +61,12 @@ const ProductList = () => {
                 <Button color="primary" onClick={() => toggle(product)}>
                   Ver
                 </Button>
-                <Button color="danger">Eliminar</Button>
+                <Button
+                  color="danger"
+                  onClick={() => toggleDeleteModal(product)}
+                >
+                  Eliminar
+                </Button>
               </td>
             </tr>
           ))}
@@ -63,6 +75,10 @@ const ProductList = () => {
 
       <Modal isOpen={modal} onRequestClose={close}>
         <EditProduct product={product} />
+      </Modal>
+
+      <Modal isOpen={deleteModal} onRequestClose={closeDeleteModal}>
+        <DeleteProduct product={product} />
       </Modal>
     </React.Fragment>
   );

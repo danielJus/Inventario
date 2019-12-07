@@ -14,39 +14,24 @@ import {
   Label,
   Input
 } from "reactstrap";
+import { edit_product } from "../redux/actions/productActions.js";
 
 const EditProduct = props => {
   console.log("edit product", props.product);
   const dispatch = useDispatch();
-  const {
-    nombre,
-    estado,
-    precio,
-    sede,
-    descripcion,
-    responsable
-  } = props.product;
-  //const dispatch = useDispatch();
+
+  const { product } = props;
+
   const { handleChange, handleSubmit, values, errors } = useForm(
     submit,
     validate,
-    {
-      nombre: "",
-      descripcion: "",
-      imagen: "",
-      precio: undefined,
-      estado: "",
-      responsable: {
-        nombre: "",
-        correo: "",
-        unidad: "",
-        sede: "",
-        cedula: ""
-      }
-    }
+    product
   );
 
+  const { nombre, estado, precio, sede, descripcion, responsable } = values;
+
   function submit() {
+    edit_product(values._id, values)(dispatch);
     console.log("guardar edit");
   }
   return (
@@ -66,7 +51,7 @@ const EditProduct = props => {
                     <Input
                       type="text"
                       name="nombre"
-                      defaultValue={nombre}
+                      value={nombre}
                       onChange={handleChange}
                     />
                   </FormGroup>
@@ -230,7 +215,9 @@ const EditProduct = props => {
             <Col md="6"></Col>
 
             <Col md="6">
-              <Button color="success">Guardar cambios</Button>
+              <Button color="success" onClick={handleSubmit}>
+                Guardar cambios
+              </Button>
               <Button color="danger">Cancelar </Button>
             </Col>
           </Row>

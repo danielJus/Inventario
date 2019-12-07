@@ -65,14 +65,11 @@ const edit_product_failure = errorMessage => ({
   payload: errorMessage
 });
 
-export const edit_product = product => {
+export const edit_product = (id, product) => {
   return dispatch => {
     dispatch(edit_product_start());
     axios
-      .patch(
-        `http://localhost:8000/api/v1/products/${product.id}`,
-        product.fields
-      )
+      .patch(`http://localhost:8000/api/v1/products/${id}`, product)
       .then(product => {
         dispatch(edit_product_success(product));
       })
@@ -94,14 +91,11 @@ const delete_product_failure = errorMessage => ({
   payload: errorMessage
 });
 
-export const delete_product = product => {
+export const delete_product = id => {
   return dispatch => {
     dispatch(delete_product_start());
     axios
-      .patch(
-        `http://localhost:8000/api/v1/products/${product.id}`,
-        product.fields
-      )
+      .delete(`http://localhost:8000/api/v1/products/${id}`)
       .then(product => {
         dispatch(delete_product_success(product));
       })

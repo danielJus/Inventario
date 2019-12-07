@@ -18,21 +18,7 @@ const Users = () => {
                   </div>
                 </Row>
               </CardHeader>
-              <Table className="align-items-center table-flush" responsive>
-                <thead className="thead-light">
-                  <tr>
-                    <th scope="col">Nombre</th>
-                    <th scope="col">Cédula</th>
-                    <th scope="col">Correo electrónico</th>
-                    <th scope="col">Facultad</th>
-                    <th scope="col">Sede</th>
-                    <th scope="col">Acciones</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  <UserList />
-                </tbody>
-              </Table>
+              <UserList />
             </Card>
           </Col>
         </Row>
