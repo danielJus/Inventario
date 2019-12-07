@@ -16,7 +16,7 @@ import {
 } from "reactstrap";
 
 const EditProduct = props => {
-  console.log("edit product", props);
+  console.log("edit product", props.product);
   const dispatch = useDispatch();
   const {
     nombre,

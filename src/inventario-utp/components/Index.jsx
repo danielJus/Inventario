@@ -19,24 +19,8 @@ const Index = props => {
                     </div>
                   </Row>
                 </CardHeader>
-                <Table className="align-items-center table-flush" responsive>
-                  <thead className="thead-light">
-                    <tr>
-                      <th scope="col">Nombre</th>
-                      <th scope="col">Imagen</th>
-                      <th scope="col">Estado</th>
 
-                      <th scope="col">Precio</th>
-                      <th scope="col">Descripcion</th>
-                      <th scope="col">Responsable</th>
-                      <th scope="col">Sede</th>
-                      <th scope="col">Acciones</th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    <ProductList />
-                  </tbody>
-                </Table>
+                <ProductList />
               </Card>
             </Col>
           </Row>
