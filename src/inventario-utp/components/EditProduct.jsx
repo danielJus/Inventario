@@ -28,7 +28,15 @@ const EditProduct = props => {
     product
   );
 
-  const { nombre, estado, precio, sede, descripcion, responsable } = values;
+  const {
+    nombre,
+    estado,
+    precio,
+    sede,
+    facultad,
+    descripcion,
+    responsable
+  } = values;
 
   function submit() {
     edit_product(product._id, values)(dispatch);

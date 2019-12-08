@@ -1,27 +1,36 @@
 import { valid_email, valid_string, valid_precio, valid_cedula } from "./regex";
-
+let password = "";
 export default function validate(name, value, errors, deleteValue = "") {
-  let password = "";
   switch (name) {
     case "correo":
       errors.correo =
-        valid_email.test(value) !== true || !value ? "Email is required" : "";
+        valid_email.test(value) !== true || !value
+          ? "Introduzca una direccion de correo electrónico válida"
+          : "";
       break;
     case "password":
       password = value;
+      console.log("password variable", password);
       errors.password =
         value.length < 6 || !value
           ? "Password needs to be longer than 6 characters"
           : "";
       break;
     case "passwordConfirm":
+      console.log("password", password, "confirm", value);
       errors.passwordConfirm =
         value !== password ? "Las contraseñas deben coincidir" : "";
       break;
     case "nombreUsuario":
       errors.nombreUsuario =
-        !valid_string.test(value) || value.length < 3 || !value
-          ? "Nombre invalido"
+        !valid_string.test(value) || value.length < 2 || !value
+          ? "Nombre inválido"
+          : "";
+      break;
+    case "apellidoUsuario":
+      errors.apellidoUsuario =
+        !valid_string.test(value) || value.length < 2 || !value
+          ? "apellido inválido"
           : "";
       break;
     case "cedula":
@@ -36,6 +45,63 @@ export default function validate(name, value, errors, deleteValue = "") {
       break;
     case "sede":
       errors.sede = !value ? "Seleccione una sede" : "";
+      break;
+    case "nombre":
+      errors.nombre =
+        !value || value.length < 3
+          ? "Introduzca un nombre de producto válido"
+          : "";
+      break;
+    case "estado":
+      errors.estado = !value ? "Seleccione el estado del producto" : "";
+      break;
+    case "precio":
+      errors.precio =
+        !valid_precio.test(value) || value < 0
+          ? "Introduzca un precio válido"
+          : "";
+      break;
+    case "descripcion":
+      errors.descripcion =
+        !value || value.length < 6 ? "Introduzca una descripción válida" : "";
+      break;
+    case "cantidad":
+      errors.cantidad =
+        !value || value < 1 ? "No puede haber menos de un producto" : "";
+      break;
+    case "responsable.nombre":
+      errors.responsable.nombre =
+        !value || value.length < 2 || !valid_string.test(value)
+          ? "Introduzca un nombre válido"
+          : "";
+      break;
+    case "responsable.apellido":
+      errors.responsable.apellido =
+        !value || value.length < 2 || !valid_string.test(value)
+          ? "Introduzca un apellido válido"
+          : "";
+      break;
+    case "responsable.cedula":
+      errors.responsable.cedula =
+        !value || valid_cedula(value) !== true
+          ? "Introduzca una cédula válida"
+          : "";
+      break;
+    case "responsable.correo":
+      errors.responsable.correo =
+        valid_email.test(value) !== true || !value
+          ? "Introduzca una direccion de correo electrónico válida"
+          : "";
+      break;
+    case "responsable.unidad":
+      errors.responsable.unidad = !value
+        ? "Seleccione la unidad del responsable"
+        : "";
+      break;
+    case "responsable.sede":
+      errors.responsable.sede = !value
+        ? "Seleccione la sede del responsable"
+        : "";
       break;
     default:
       break;

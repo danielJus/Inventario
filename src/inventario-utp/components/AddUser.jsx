@@ -25,6 +25,7 @@ const AddUser = () => {
     validate,
     {
       nombreUsuario: "",
+      apellidoUsuario: "",
       cedula: "",
       correo: "",
       password: "",
@@ -81,6 +82,29 @@ const AddUser = () => {
                         </InputGroupText>
                       </InputGroupAddon>
                       <Input
+                        placeholder="Apellido"
+                        type="text"
+                        name="apellidoUsuario"
+                        value={values.apellidoUsuario}
+                        onChange={handleChange}
+                      />
+                    </InputGroup>
+                    {errors.apellidoUsuario && (
+                      <span>{errors.apellidoUsuario}</span>
+                    )}
+                  </FormGroup>
+                </Col>
+              </Row>
+              <Row>
+                <Col>
+                  <FormGroup>
+                    <InputGroup className="input-group-alternative mb-3">
+                      <InputGroupAddon addonType="prepend">
+                        <InputGroupText>
+                          <i className="ni ni-hat-3" />
+                        </InputGroupText>
+                      </InputGroupAddon>
+                      <Input
                         placeholder="Cédula"
                         type="text"
                         name="cedula"
@@ -91,8 +115,6 @@ const AddUser = () => {
                     {errors.cedula && <span>{errors.cedula}</span>}
                   </FormGroup>
                 </Col>
-              </Row>
-              <Row>
                 <Col>
                   <FormGroup>
                     <InputGroup className="input-group-alternative mb-3">
@@ -112,6 +134,8 @@ const AddUser = () => {
                     {errors.correo && <span>{errors.correo}</span>}
                   </FormGroup>
                 </Col>
+              </Row>
+              <Row>
                 <Col>
                   <FormGroup>
                     <InputGroup className="input-group-alternative mb-3">
@@ -131,8 +155,6 @@ const AddUser = () => {
                     {errors.password && <span>{errors.password}</span>}
                   </FormGroup>
                 </Col>
-              </Row>
-              <Row>
                 <Col>
                   <FormGroup>
                     <InputGroup className="input-group-alternative mb-3">
@@ -154,6 +176,8 @@ const AddUser = () => {
                     )}
                   </FormGroup>
                 </Col>
+              </Row>
+              <Row>
                 <Col>
                   <FormGroup>
                     <InputGroup className="input-group-alternative">
@@ -181,8 +205,6 @@ const AddUser = () => {
                     {errors.facultad && <span>{errors.facultad}</span>}
                   </FormGroup>
                 </Col>
-              </Row>
-              <Row>
                 <Col>
                   <FormGroup>
                     <InputGroup className="input-group-alternative">

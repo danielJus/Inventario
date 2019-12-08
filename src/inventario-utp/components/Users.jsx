@@ -1,6 +1,6 @@
 import React from "react";
 
-import { Card, CardHeader, Table, Container, Row, Col } from "reactstrap";
+import { Card, CardHeader, Container, Row, Col } from "reactstrap";
 import UserList from "./UserList";
 
 const Users = () => {

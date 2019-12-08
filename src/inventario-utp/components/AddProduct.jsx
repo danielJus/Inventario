@@ -12,6 +12,7 @@ import {
   CardBody,
   FormGroup,
   Form,
+  Label,
   Input,
   InputGroupAddon,
   InputGroupText,
@@ -29,10 +30,14 @@ const AddProduct = () => {
       nombre: "",
       descripcion: "",
       imagen: "",
-      precio: 0,
+      precio: "",
       estado: "",
+      cantidad: "",
+      facultad: "",
+      sede: "",
       responsable: {
         nombre: "",
+        apellido: "",
         correo: "",
         unidad: "",
         sede: "",
@@ -73,6 +78,7 @@ const AddProduct = () => {
                         onChange={handleChange}
                       />
                     </InputGroup>
+                    {errors.nombre && <span>{errors.nombre}</span>}
                   </FormGroup>
                 </Col>
                 <Col>
@@ -90,6 +96,7 @@ const AddProduct = () => {
                         <option value="en_uso">En uso</option>
                       </select>
                     </InputGroup>
+                    {errors.estado && <span>{errors.estado}</span>}
                   </FormGroup>
                 </Col>
               </Row>
@@ -113,24 +120,35 @@ const AddProduct = () => {
                         <option value="veraguas">Veraguas</option>
                       </select>
                     </InputGroup>
+                    {errors.sede && <span>{errors.sede}</span>}
                   </FormGroup>
                 </Col>
+
                 <Col>
                   <FormGroup>
-                    <InputGroup className="input-group-alternative mb-3">
-                      <InputGroupAddon addonType="prepend">
-                        <InputGroupText>
-                          <i className="ni ni-hat-3" />
-                        </InputGroupText>
-                      </InputGroupAddon>
-                      <Input
-                        placeholder="Precio del producto"
-                        type="number"
-                        name="precio"
-                        value={values.precio}
+                    <InputGroup className="input-group-alternative">
+                      <select
+                        className="custom-select"
+                        name="facultad"
+                        value={values.facultad}
                         onChange={handleChange}
-                      />
+                      >
+                        <option value="">Facultad</option>
+                        <option value="ciencias_tecnologia">
+                          Ciencias y Tecnología
+                        </option>
+                        <option value="civil">Ingeniería Civil</option>
+                        <option value="electrica">Ingeniería Eléctrica</option>
+                        <option value="industrial">
+                          Ingeniería Industrial
+                        </option>
+                        <option value="mecanica">Ingeniería Mecánica</option>
+                        <option value="sistemas">
+                          Ingeniería de Sistemas Computacionales
+                        </option>
+                      </select>
                     </InputGroup>
+                    {errors.facultad && <span>{errors.facultad}</span>}
                   </FormGroup>
                 </Col>
               </Row>
@@ -151,20 +169,70 @@ const AddProduct = () => {
                         onChange={handleChange}
                       ></textarea>
                     </InputGroup>
+                    {errors.descripcion && <span>{errors.descripcion}</span>}
                   </FormGroup>
                 </Col>
                 <Col>
-                  <FormGroup>
-                    <label htmlFor="iamgen">Imágen</label>
-                    <InputGroup className="input-group-alternative">
-                      <Input
-                        name="imagen"
-                        type="file"
-                        value={values.imagen}
-                        onChange={handleChange}
-                      />
-                    </InputGroup>
-                  </FormGroup>
+                  <Row>
+                    <Col>
+                      <FormGroup>
+                        <InputGroup className="input-group-alternative mb-3">
+                          <InputGroupAddon addonType="prepend">
+                            <InputGroupText>
+                              <i className="ni ni-hat-3" />
+                            </InputGroupText>
+                          </InputGroupAddon>
+                          <Input
+                            placeholder="Precio del producto"
+                            type="number"
+                            name="precio"
+                            value={values.precio}
+                            onChange={handleChange}
+                          />
+                        </InputGroup>
+                        {errors.precio && <span>{errors.precio}</span>}
+                      </FormGroup>
+                    </Col>
+                  </Row>
+
+                  <Row>
+                    <Col>
+                      <Label>Cantidad</Label>
+                      <FormGroup>
+                        <InputGroup className="input-group-alternative mb-3">
+                          <InputGroupAddon addonType="prepend">
+                            <InputGroupText>
+                              <i className="ni ni-hat-3" />
+                            </InputGroupText>
+                          </InputGroupAddon>
+                          <Input
+                            placeholder="Cantidad de items"
+                            type="number"
+                            name="cantidad"
+                            value={values.cantidad}
+                            onChange={handleChange}
+                          />
+                        </InputGroup>
+                        {errors.cantidad && <span>{errors.cantidad}</span>}
+                      </FormGroup>
+                    </Col>
+                  </Row>
+                  <Row>
+                    <Col>
+                      <FormGroup>
+                        <label htmlFor="iamgen">Imágen</label>
+                        <InputGroup className="input-group-alternative">
+                          <Input
+                            name="imagen"
+                            type="file"
+                            value={values.imagen}
+                            onChange={handleChange}
+                          />
+                        </InputGroup>
+                        {errors.imagen && <span>{errors.imagen}</span>}
+                      </FormGroup>
+                    </Col>
+                  </Row>
                 </Col>
               </Row>
 
@@ -181,6 +249,9 @@ const AddProduct = () => {
                         onChange={handleChange}
                       />
                     </InputGroup>
+                    {errors.responsable.nombre && (
+                      <span>{errors.responsable.nombre}</span>
+                    )}
                   </FormGroup>
                 </Col>
                 <Col>
@@ -188,12 +259,15 @@ const AddProduct = () => {
                     <InputGroup className="input-group-alternative">
                       <Input
                         type="text"
-                        name="responsable.cedula"
-                        placeholder="Cédula del responsable"
-                        value={values.responsable.cedula}
+                        placeholder="Apellido del responsable"
+                        value={values.responsable.apellido}
+                        name="responsable.apellido"
                         onChange={handleChange}
                       />
                     </InputGroup>
+                    {errors.responsable.apellido && (
+                      <span>{errors.responsable.apellido}</span>
+                    )}
                   </FormGroup>
                 </Col>
               </Row>
@@ -209,8 +283,30 @@ const AddProduct = () => {
                         onChange={handleChange}
                       />
                     </InputGroup>
+                    {errors.responsable.correo && (
+                      <span>{errors.responsable.correo}</span>
+                    )}
                   </FormGroup>
                 </Col>
+                <Col>
+                  <FormGroup>
+                    <InputGroup className="input-group-alternative">
+                      <Input
+                        type="text"
+                        name="responsable.cedula"
+                        placeholder="Cédula del responsable"
+                        value={values.responsable.cedula}
+                        onChange={handleChange}
+                      />
+                    </InputGroup>
+                    {errors.responsable.cedula && (
+                      <span>{errors.responsable.cedula}</span>
+                    )}
+                  </FormGroup>
+                </Col>
+              </Row>
+
+              <Row>
                 <Col>
                   <FormGroup>
                     <InputGroup className="input-group-alternative">
@@ -227,11 +323,11 @@ const AddProduct = () => {
                         </option>
                       </select>
                     </InputGroup>
+                    {errors.responsable.unidad && (
+                      <span>{errors.responsable.unidad}</span>
+                    )}
                   </FormGroup>
                 </Col>
-              </Row>
-
-              <Row>
                 <Col>
                   <FormGroup>
                     <InputGroup className="input-group-alternative">
@@ -251,6 +347,9 @@ const AddProduct = () => {
                         <option value="veraguas">Veraguas</option>
                       </select>
                     </InputGroup>
+                    {errors.responsable.sede && (
+                      <span>{errors.responsable.sede}</span>
+                    )}
                   </FormGroup>
                 </Col>
               </Row>
