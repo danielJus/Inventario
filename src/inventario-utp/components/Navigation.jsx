@@ -16,6 +16,7 @@ const Navigation = () => {
 
   const dispatch = useDispatch();
 
+  //console.log("user nav", user.rol);
   const [isOpen, setIsOpen] = useState(false);
   const toggle = () => setIsOpen(!isOpen);
 
@@ -30,7 +31,19 @@ const Navigation = () => {
         <NavbarToggler onClick={toggle} />
         <Collapse isOpen={isOpen} navbar>
           <Nav className=" ml-auto d-flex justify-content-end" navbar>
-            {user ? (
+            {user && user.rol === "coordinador" ? (
+              <React.Fragment>
+                <LinkContainer to="/add-product">
+                  <NavItem className="mx-4">Agregar Producto</NavItem>
+                </LinkContainer>
+                <LinkContainer to="/profile">
+                  <NavItem className="mx-4">Perfil</NavItem>
+                </LinkContainer>
+                <NavItem className="mx-4" onClick={handleLogout}>
+                  Cerrar sesión
+                </NavItem>
+              </React.Fragment>
+            ) : user && user.rol === "director" ? (
               <React.Fragment>
                 <LinkContainer to="/users">
                   <NavItem className="mx-4">Usuarios</NavItem>

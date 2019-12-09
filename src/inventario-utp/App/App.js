@@ -16,25 +16,33 @@ const App = props => {
   const user = useSelector(({ auth }) => auth.user);
   const dispatch = useDispatch();
   fetch_products()(dispatch);
-  fetch_users()(dispatch);
+  if (user && user.rol === "director") {
+    fetch_users()(dispatch);
+  }
 
   return (
     <div>
       <Navigation />
       <Switch>
-        {user ? (
-          <>
+        {user && user.rol === "coordinador" ? (
+          <React.Fragment>
+            <Route exact path="/" component={Index} />
+            <Route exact path="/profile" component={Profile} />
+            <Route exact path="/add-product" component={AddProduct} />
+          </React.Fragment>
+        ) : user && user.rol === "director" ? (
+          <React.Fragment>
             <Route exact path="/" component={Index} />
             <Route exact path="/profile" component={Profile} />
             <Route exact path="/add-product" component={AddProduct} />
             <Route exact path="/add-user" component={AddUser} />
             <Route exact path="/users" component={Users} />
-          </>
+          </React.Fragment>
         ) : (
-          <>
+          <React.Fragment>
             <Route exact path="/" component={Index} />
             <Route exact path="/login" component={Login} />
-          </>
+          </React.Fragment>
         )}
         <Redirect to="/" />
       </Switch>

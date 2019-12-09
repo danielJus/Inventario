@@ -10,7 +10,6 @@ export default function validate(name, value, errors, deleteValue = "") {
       break;
     case "password":
       password = value;
-      console.log("password variable", password);
       errors.password =
         value.length < 6 || !value
           ? "Password needs to be longer than 6 characters"

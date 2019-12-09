@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { useDispatch } from "react-redux";
 import useForm from "../Hooks/useForm";
 import validate from "../utils/validate";
@@ -23,13 +23,14 @@ import {
 
 const AddProduct = () => {
   const dispatch = useDispatch();
+  const [photo, setPhoto] = useState("");
   const { handleChange, handleSubmit, values, errors } = useForm(
     submit,
     validate,
     {
       nombre: "",
       descripcion: "",
-      imagen: "",
+      photo: "",
       precio: "",
       estado: "",
       cantidad: "",
@@ -46,8 +47,17 @@ const AddProduct = () => {
     }
   );
 
+  const handlePhoto = e => {
+    const { files } = e.target;
+    values.photo = files[0];
+    //console.log("values.photo", values.photo);
+  };
+
   function submit() {
+    const fd = new FormData();
+    fd.append("photo", values.photo);
     create_product(values)(dispatch);
+    console.log("values.photo", values.photo);
     console.log("submit");
   }
 
@@ -223,13 +233,14 @@ const AddProduct = () => {
                         <label htmlFor="iamgen">Imágen</label>
                         <InputGroup className="input-group-alternative">
                           <Input
-                            name="imagen"
+                            name="photo"
                             type="file"
+                            accept="image/*"
                             value={values.imagen}
-                            onChange={handleChange}
+                            onChange={handlePhoto}
                           />
                         </InputGroup>
-                        {errors.imagen && <span>{errors.imagen}</span>}
+                        {errors.photo && <span>{errors.photo}</span>}
                       </FormGroup>
                     </Col>
                   </Row>
