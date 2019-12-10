@@ -30,8 +30,8 @@ const AddProduct = () => {
     {
       nombre: "",
       descripcion: "",
-      photo: "",
       precio: "",
+      photo: "",
       estado: "",
       cantidad: "",
       facultad: "",
@@ -50,14 +50,17 @@ const AddProduct = () => {
   const handlePhoto = e => {
     const { files } = e.target;
     values.photo = files[0];
-    //console.log("values.photo", values.photo);
   };
 
   function submit() {
     const fd = new FormData();
-    fd.append("photo", values.photo);
-    create_product(values)(dispatch);
-    console.log("values.photo", values.photo);
+    for (var key in values) {
+      fd.append(key, values[key]);
+    }
+
+    create_product(fd)(dispatch);
+    //console.log("form data", fd.get("photo"));
+    //console.log("form data", fd.get("values"));
     console.log("submit");
   }
 
