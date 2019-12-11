@@ -41,6 +41,7 @@ const ProductList = () => {
             <th scope="col">Estado</th>
 
             <th scope="col">Precio</th>
+            <th scope="col">Cantidad</th>
             <th scope="col">Descripcion</th>
             <th scope="col">Responsable</th>
             <th scope="col">Sede</th>
@@ -54,6 +55,7 @@ const ProductList = () => {
               <td>Imagen</td>
               <td>{product.estado}</td>
               <td>{product.precio}</td>
+              <td>{product.cantidad}</td>
               <td>{product.descripcion}</td>
               <td>{product.responsable.nombre}</td>
               <td>{product.sede}</td>

@@ -5,19 +5,15 @@ import {
   Card,
   CardHeader,
   CardBody,
-  FormGroup,
-  Form,
-  Input,
   Container,
   Row,
   Col
 } from "reactstrap";
 import Modal from "react-modal";
+import ChangePassword from "./ChangePassword";
+import UserInfo from "./UserInfo";
 import DeleteProfile from "./DeleteProfile";
-import { useDispatch } from "react-redux";
-import useForm from "../Hooks/useForm";
-import validate from "../utils/validate";
-
+import { useSelector } from "react-redux";
 export const UserProfile = () => {
   const [modal, setModal] = useState(false);
 
@@ -26,22 +22,9 @@ export const UserProfile = () => {
   useEffect(() => {
     Modal.setAppElement("body");
   }, []);
-  const dispatch = useDispatch();
-  const { handleChange, handleSubmit, values, erors } = useForm(
-    submit,
-    validate,
-    {
-      nombreUsuario: "",
-      cedula: "",
-      emailUsuario: "",
-      facultadUsuario: "",
-      sedeUsuario: ""
-    }
-  );
 
-  function submit() {
-    console.log("submit user profile");
-  }
+  const user = useSelector(({ auth }) => auth.user);
+
   return (
     <div>
       <Container className="mt-5" fluid>
@@ -61,165 +44,10 @@ export const UserProfile = () => {
                 </Row>
               </CardHeader>
               <CardBody>
-                <Form>
-                  <h3 className="mb-4">Información</h3>
-                  <div className="pl-lg-4">
-                    <Row>
-                      <Col lg="6">
-                        <FormGroup>
-                          <label
-                            className="form-control-label"
-                            htmlFor="input-username"
-                          >
-                            Nombre
-                          </label>
-                          <Input
-                            className="form-control-alternative"
-                            defaultValue="lucky.jesse"
-                            id="input-username"
-                            placeholder="Username"
-                            type="text"
-                          />
-                        </FormGroup>
-                      </Col>
-                      <Col lg="6">
-                        <FormGroup>
-                          <label
-                            className="form-control-label"
-                            htmlFor="input-email"
-                          >
-                            Correo electrónico
-                          </label>
-                          <Input
-                            className="form-control-alternative"
-                            id="input-email"
-                            placeholder="jesse@example.com"
-                            type="email"
-                          />
-                        </FormGroup>
-                      </Col>
-                    </Row>
-                    <Row>
-                      <Col lg="6">
-                        <FormGroup>
-                          <label
-                            className="form-control-label"
-                            htmlFor="input-first-name"
-                          >
-                            Cédula
-                          </label>
-                          <Input
-                            className="form-control-alternative"
-                            defaultValue="Lucky"
-                            id="input-first-name"
-                            type="text"
-                          />
-                        </FormGroup>
-                      </Col>
-                      <Col lg="6">
-                        <FormGroup>
-                          <label
-                            className="form-control-label"
-                            htmlFor="input-last-name"
-                          >
-                            Facultad
-                          </label>
-                          <Input
-                            className="form-control-alternative"
-                            defaultValue="Jesse"
-                            placeholder="Last name"
-                            type="text"
-                          />
-                        </FormGroup>
-                      </Col>
-                      <Col lg="6">
-                        <FormGroup>
-                          <label
-                            className="form-control-label"
-                            htmlFor="input-last-name"
-                          >
-                            Sede
-                          </label>
-                          <Input
-                            className="form-control-alternative"
-                            defaultValue="Jesse"
-                            placeholder="Last name"
-                            type="text"
-                          />
-                        </FormGroup>
-                      </Col>
-                      <Col lg="6">
-                        <div>
-                          <Button color="success">Editar información</Button>
-                        </div>
-                      </Col>
-                    </Row>
-                  </div>
-                  <hr className="my-4" />
-                  {/* Address */}
-                  <h3 className=" mb-4 ">Cambiar contraseña</h3>
-                  <div className="pl-lg-4">
-                    <Row>
-                      <Col md="12">
-                        <FormGroup>
-                          <label
-                            className="form-control-label"
-                            htmlFor="input-address"
-                          >
-                            Contraseña actual
-                          </label>
-                          <Input
-                            className="form-control-alternative"
-                            defaultValue="Bld Mihail Kogalniceanu, nr. 8 Bl 1, Sc 1, Ap 09"
-                            id="input-address"
-                            placeholder="Home Address"
-                            type="password"
-                          />
-                        </FormGroup>
-                      </Col>
-                    </Row>
-                    <Row>
-                      <Col lg="6">
-                        <FormGroup>
-                          <label
-                            className="form-control-label"
-                            htmlFor="input-city"
-                          >
-                            Nueva contraseña
-                          </label>
-                          <Input
-                            className="form-control-alternative"
-                            defaultValue="New York"
-                            id="input-city"
-                            placeholder="City"
-                            type="password"
-                          />
-                        </FormGroup>
-                      </Col>
-                      <Col lg="6">
-                        <FormGroup>
-                          <label
-                            className="form-control-label"
-                            htmlFor="input-country"
-                          >
-                            Confirmar contraseña
-                          </label>
-                          <Input
-                            className="form-control-alternative"
-                            defaultValue="United States"
-                            id="input-country"
-                            placeholder="Country"
-                            type="password"
-                          />
-                        </FormGroup>
-                      </Col>
-                      <Col lg="12">
-                        <Button color="primary"> Cambiar contraseña</Button>
-                      </Col>
-                    </Row>
-                  </div>
-                  <hr className="my-4" />
-                </Form>
+                <UserInfo user={user} />
+                <hr className="my-4" />
+                <ChangePassword />
+                <hr className="my-4" />
               </CardBody>
             </Card>
           </Col>

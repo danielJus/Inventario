@@ -37,6 +37,7 @@ const UserList = () => {
         <thead className="thead-light">
           <tr>
             <th scope="col">Nombre</th>
+            <th scope="col">Apellido</th>
             <th scope="col">Cédula</th>
             <th scope="col">Correo electrónico</th>
             <th scope="col">Facultad</th>
@@ -47,7 +48,8 @@ const UserList = () => {
         <tbody>
           {users.map((user, i) => (
             <tr key={user._id}>
-              <td>{user.nombre}</td>
+              <td>{user.nombreUsuario}</td>
+              <td>{user.apellidoUsuario}</td>
               <td>{user.cedula}</td>
               <td>{user.correo}</td>
               <td>{user.facultad}</td>
