@@ -46,8 +46,6 @@ export const UserProfile = () => {
               <CardBody>
                 <UserInfo user={user} />
                 <hr className="my-4" />
-                <ChangePassword />
-                <hr className="my-4" />
               </CardBody>
             </Card>
           </Col>

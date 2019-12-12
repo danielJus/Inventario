@@ -8,6 +8,7 @@ import AddProduct from "../components/AddProduct";
 import AddUser from "../components/AddUser";
 import Users from "../components/Users";
 import Navigation from "../components/Navigation";
+import ForgotPassword from "../components/ForgotPassword";
 import { useDispatch } from "react-redux";
 import { fetch_products } from "../redux/actions/productActions";
 import { fetch_users } from "../redux/actions/userActions";
@@ -42,6 +43,7 @@ const App = props => {
           <React.Fragment>
             <Route exact path="/" component={Index} />
             <Route exact path="/login" component={Login} />
+            <Route exact path="/forgot-password" component={ForgotPassword} />
           </React.Fragment>
         )}
         <Redirect to="/" />

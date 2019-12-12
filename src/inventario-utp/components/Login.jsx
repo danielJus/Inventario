@@ -1,7 +1,7 @@
 import React from "react";
 // reactstrap components
 import { useDispatch } from "react-redux";
-
+import { Link } from "react-router-dom";
 import {
   Button,
   Container,
@@ -90,7 +90,7 @@ const Login = props => {
                     className="custom-control-label"
                     htmlFor=" customCheckLogin"
                   >
-                    <span className="text-muted">Recordarme</span>
+                    <Link to="/forgot-password">Olvidaste tu contraseña?</Link>
                   </label>
                 </div>
                 <div className="text-center">

@@ -82,3 +82,29 @@ export const logout = () => {
       });
   };
 };
+
+export const forgot_password_start = () => ({
+  type: AuthTypes.FORGOT_PASSWORD_START
+});
+
+export const forgot_password_success = status => ({
+  type: AuthTypes.FORGOT_PASSWORD_SUCCESS,
+  payload: status
+});
+
+export const forgot_password_failure = errorMessage => ({
+  type: AuthTypes.FORGOT_PASSWORD_FAILURE,
+  payload: errorMessage
+});
+export const forgot_password = correo => {
+  return dispatch => {
+    axios
+      .post("http://localhost:8000/api/v1/users/forgotPassword", correo)
+      .then(res => {
+        dispatch(forgot_password_success(res.data.status));
+      })
+      .catch(error => {
+        dispatch(forgot_password_failure(error.message));
+      });
+  };
+};
