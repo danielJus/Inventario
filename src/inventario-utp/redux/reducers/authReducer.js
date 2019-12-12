@@ -3,7 +3,8 @@ const INITIAL_STATE = {
   loading: false,
   user: null,
   errorMessage: "",
-  forgot_password: ""
+  forgot_password: "",
+  password_change: ""
 };
 
 export default (state = INITIAL_STATE, action) => {
@@ -54,17 +55,36 @@ export default (state = INITIAL_STATE, action) => {
       return {
         ...state,
         loading: false,
-        forgot_password: true,
+        password_change: true,
         errorMessage: ""
       };
     case AuthTypes.FORGOT_PASSWORD_FAILURE:
       return {
         ...state,
         loading: false,
-        forgot_password: false,
+        password_change: false,
         errorMessage: ""
       };
 
+    case AuthTypes.CHANGE_PASSWORD_START:
+      return {
+        ...state,
+        loading: true
+      };
+    case AuthTypes.CHANGE_PASSWORD_SUCCESS:
+      return {
+        ...state,
+        loading: false,
+        forgot_password: true,
+        errorMessage: ""
+      };
+    case AuthTypes.CHANGE_PASSWORD_FAILURE:
+      return {
+        ...state,
+        loading: false,
+        forgot_password: false,
+        errorMessage: ""
+      };
     case AuthTypes.LOGOUT:
       return {
         ...state,

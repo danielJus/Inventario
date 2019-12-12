@@ -108,3 +108,30 @@ export const forgot_password = correo => {
       });
   };
 };
+
+export const change_password_start = () => ({
+  type: AuthTypes.CHANGE_PASSWORD_START
+});
+
+export const change_password_success = status => ({
+  type: AuthTypes.CHANGE_PASSWORD_SUCCESS,
+  payload: status
+});
+
+export const change_password_failure = errorMessage => ({
+  type: AuthTypes.CHANGE_PASSWORD_FAILURE,
+  payload: errorMessage
+});
+export const change_password = passwords => {
+  return dispatch => {
+    axios
+      .patch("http://localhost:8000/api/v1/users/updateMyPassword", passwords)
+      .then(res => {
+        console.log("response", res);
+        //dispatch(change_password_success());
+      })
+      .catch(error => {
+        dispatch(change_password_failure(error.message));
+      });
+  };
+};

@@ -11,8 +11,23 @@ import {
   Row,
   Col
 } from "reactstrap";
-
+import { useDispatch } from "react-redux";
+import useForm from "../Hooks/useForm";
+import validate from "../utils/validate";
+import { change_password } from "../redux/actions/authActions";
 const ChangePassword = () => {
+  const dispatch = useDispatch();
+
+  const { handleChange, handleSubmit, values, errors } = useForm(
+    submit,
+    validate,
+    { passwordCurrent: "", password: "", passwordConfirm: "" }
+  );
+
+  function submit() {
+    change_password(values)(dispatch);
+  }
+
   return (
     <div>
       <Form>
@@ -21,14 +36,12 @@ const ChangePassword = () => {
           <Row>
             <Col md="12">
               <FormGroup>
-                <label className="form-control-label" htmlFor="input-address">
-                  Contraseña actual
-                </label>
+                <label className="form-control-label">Contraseña actual</label>
                 <Input
                   className="form-control-alternative"
-                  defaultValue="Bld Mihail Kogalniceanu, nr. 8 Bl 1, Sc 1, Ap 09"
-                  id="input-address"
-                  placeholder="Home Address"
+                  placeholder="Contraseña actual"
+                  name="passwordCurrent"
+                  onChange={handleChange}
                   type="password"
                 />
               </FormGroup>
@@ -37,14 +50,12 @@ const ChangePassword = () => {
           <Row>
             <Col lg="6">
               <FormGroup>
-                <label className="form-control-label" htmlFor="input-city">
-                  Nueva contraseña
-                </label>
+                <label className="form-control-label">Nueva contraseña</label>
                 <Input
                   className="form-control-alternative"
-                  defaultValue="New York"
-                  id="input-city"
-                  placeholder="City"
+                  placeholder="Nueva contraseña"
+                  name="password"
+                  onChange={handleChange}
                   type="password"
                 />
               </FormGroup>
@@ -56,15 +67,18 @@ const ChangePassword = () => {
                 </label>
                 <Input
                   className="form-control-alternative"
-                  defaultValue="United States"
-                  id="input-country"
-                  placeholder="Country"
+                  placeholder="Confimar nueva contraseñas"
+                  name="passwordConfirm"
+                  onChange={handleChange}
                   type="password"
                 />
               </FormGroup>
             </Col>
             <Col lg="12">
-              <Button color="primary"> Cambiar contraseña</Button>
+              <Button color="primary" onClick={handleSubmit}>
+                {" "}
+                Cambiar contraseña
+              </Button>
             </Col>
           </Row>
         </div>
