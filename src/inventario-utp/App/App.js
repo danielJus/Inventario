@@ -12,6 +12,7 @@ import ForgotPassword from "../components/ForgotPassword";
 import { useDispatch } from "react-redux";
 import { fetch_products } from "../redux/actions/productActions";
 import { fetch_users } from "../redux/actions/userActions";
+import ResetPassword from "../components/ResetPassword";
 
 const App = props => {
   const user = useSelector(({ auth }) => auth.user);
@@ -27,13 +28,13 @@ const App = props => {
       <Switch>
         {user && user.rol === "coordinador" ? (
           <React.Fragment>
-            <Route exact path="/" component={Index} />
+            <Route exact path="/" render={props => <Index {...props} />} />
             <Route exact path="/profile" component={Profile} />
             <Route exact path="/add-product" component={AddProduct} />
           </React.Fragment>
         ) : user && user.rol === "director" ? (
           <React.Fragment>
-            <Route exact path="/" component={Index} />
+            <Route exact path="/" render={props => <Index {...props} />} />
             <Route exact path="/profile" component={Profile} />
             <Route exact path="/add-product" component={AddProduct} />
             <Route exact path="/add-user" component={AddUser} />
@@ -41,12 +42,17 @@ const App = props => {
           </React.Fragment>
         ) : (
           <React.Fragment>
-            <Route exact path="/" component={Index} />
+            <Route exact path="/" render={props => <Index {...props} />} />
             <Route exact path="/login" component={Login} />
             <Route exact path="/forgot-password" component={ForgotPassword} />
+            <Route
+              exact
+              path="/reset-password/:token"
+              component={ResetPassword}
+            />
           </React.Fragment>
         )}
-        <Redirect to="/" />
+        <Redirect from="*" to="/" />
       </Switch>
     </div>
   );

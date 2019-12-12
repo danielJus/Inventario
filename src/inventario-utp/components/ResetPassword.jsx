@@ -1,7 +1,5 @@
 import React from "react";
-// reactstrap components
-import { useDispatch } from "react-redux";
-import { Link } from "react-router-dom";
+
 import {
   Button,
   Container,
@@ -18,9 +16,8 @@ import {
 } from "reactstrap";
 import useForm from "../Hooks/useForm";
 import validate from "../utils/validate";
-import { login } from "../redux/actions/authActions";
-
-const Login = props => {
+import { useDispatch } from "react-redux";
+const ResetPassword = () => {
   const dispatch = useDispatch();
 
   const { handleChange, handleSubmit, values, errors } = useForm(
@@ -28,11 +25,7 @@ const Login = props => {
     validate,
     { correo: "", password: "" }
   );
-  function submit() {
-    login(values)(dispatch);
-    props.history.push("/");
-  }
-
+  function submit() {}
   return (
     <React.Fragment>
       <Container>
@@ -40,7 +33,7 @@ const Login = props => {
           <Card className="bg-secondary shadow border-0">
             <CardHeader className="bg-transparent pb-5">
               <div className="text-muted text-center mt-2 mb-3">
-                <h2>Iniciar Sesión</h2>
+                <h2>Introduzca su nueva contraseña</h2>
               </div>
             </CardHeader>
             <CardBody className="px-lg-5 py-lg-5">
@@ -53,14 +46,14 @@ const Login = props => {
                       </InputGroupText>
                     </InputGroupAddon>
                     <Input
-                      placeholder="Correo Electrónico"
-                      type="email"
-                      name="correo"
+                      placeholder="Nueva contraseña"
+                      type="password"
+                      name="password"
                       onChange={handleChange}
-                      value={values.email}
+                      value={values.password}
                     />
                   </InputGroup>
-                  {errors.email && <label>{errors.email}</label>}
+                  {errors.password && <label>{errors.password}</label>}
                 </FormGroup>
                 <FormGroup>
                   <InputGroup className="input-group-alternative">
@@ -70,28 +63,17 @@ const Login = props => {
                       </InputGroupText>
                     </InputGroupAddon>
                     <Input
-                      placeholder="Contraseña"
-                      name="password"
+                      placeholder="Confirme su contraseña"
+                      name="passwordConfirm"
                       type="password"
                       onChange={handleChange}
-                      value={values.password}
+                      value={values.passwordConfirm}
                     />
                   </InputGroup>
-                  {errors.password && <label>{errors.password}</label>}
+                  {errors.passwordConfirm && (
+                    <label>{errors.passwordConfirm}</label>
+                  )}
                 </FormGroup>
-                <div className="custom-control custom-control-alternative custom-checkbox">
-                  <input
-                    className="custom-control-input"
-                    id=" customCheckLogin"
-                    type="checkbox"
-                  />
-                  <label
-                    className="custom-control-label"
-                    htmlFor=" customCheckLogin"
-                  >
-                    <Link to="/forgot-password">Olvidaste tu contraseña?</Link>
-                  </label>
-                </div>
                 <div className="text-center">
                   <Button
                     className="my-4"
@@ -99,7 +81,7 @@ const Login = props => {
                     type="button"
                     onClick={handleSubmit}
                   >
-                    Iniciar Sesión
+                    Cambiar contraseña
                   </Button>
                 </div>
               </Form>
@@ -111,4 +93,4 @@ const Login = props => {
   );
 };
 
-export default Login;
+export default ResetPassword;

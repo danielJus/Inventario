@@ -10,10 +10,10 @@ import {
 } from "reactstrap";
 import { LinkContainer } from "react-router-bootstrap";
 import { logout } from "../redux/actions/authActions";
+import { history } from "../utils/history";
 
-const Navigation = () => {
+const Navigation = props => {
   const user = useSelector(({ auth: { user } }) => user);
-
   const dispatch = useDispatch();
 
   //console.log("user nav", user.rol);
@@ -22,6 +22,7 @@ const Navigation = () => {
 
   const handleLogout = () => {
     logout()(dispatch);
+    history.push("/");
   };
 
   return (

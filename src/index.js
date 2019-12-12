@@ -1,6 +1,6 @@
 import React from "react";
 import ReactDOM from "react-dom";
-import { BrowserRouter } from "react-router-dom";
+import { Router } from "react-router-dom";
 import { Provider } from "react-redux";
 import { store, persistor } from "./inventario-utp/redux/store";
 import { PersistGate } from "redux-persist/integration/react";
@@ -8,15 +8,16 @@ import "assets/vendor/nucleo/css/nucleo.css";
 import "assets/vendor/@fortawesome/fontawesome-free/css/all.min.css";
 import "assets/scss/argon-dashboard-react.scss";
 import App from "./inventario-utp/App/App";
+import { history } from "./inventario-utp/utils/history";
 //import AdminLayout from "layouts/Admin.jsx";
 //import AuthLayout from "layouts/Auth.jsx";
 
 ReactDOM.render(
   <Provider store={store}>
     <PersistGate persistor={persistor}>
-      <BrowserRouter>
+      <Router history={history}>
         <App />
-      </BrowserRouter>
+      </Router>
     </PersistGate>
   </Provider>,
   document.getElementById("root")
