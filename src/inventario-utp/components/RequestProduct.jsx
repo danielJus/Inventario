@@ -16,15 +16,37 @@ import {
 import { useDispatch, useSelector } from "react-redux";
 import useForm from "../Hooks/useForm";
 import validate from "../utils/validate";
+import { request_product } from "../redux/actions/productActions";
 
 const RequestProduct = props => {
+  const dispatch = useDispatch();
   const { handleChange, handleSubmit, values, errors } = useForm(
     submit,
     validate,
-    { correo: "", password: "" }
+    {
+      nombreSolicitante: "",
+      apellidoSolicitante: "",
+      cedulaSolicitante: "",
+      correoSolicitante: "",
+      descripcion: ""
+    }
   );
   const user = useSelector(({ auth }) => auth.user);
-  function submit() {}
+  function submit() {
+    const requestFields = {};
+    requestFields.correo = user.correo;
+    requestFields.values = values;
+    if (user) {
+      requestFields.correo = user.correo;
+      requestFields.values = values;
+      request_product(props.product._id, requestFields)(dispatch);
+    }
+
+    if (!user) {
+      requestFields.values = values;
+      request_product(props.product._id, requestFields)(dispatch);
+    }
+  }
   return (
     <div>
       <Container>
@@ -111,7 +133,8 @@ const RequestProduct = props => {
                   <Col>
                     <Label>Descripción</Label>
                     <textarea
-                      name="description"
+                      onChange={handleChange}
+                      name="descripcion"
                       className="form-control"
                       cols="30"
                       rows="10"

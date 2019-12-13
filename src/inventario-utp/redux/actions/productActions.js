@@ -117,11 +117,11 @@ export const delete_product = id => {
   };
 };
 
-export const request_product = id => {
+export const request_product = (id, values) => {
   return dispatch => {
     dispatch(request_product_start());
     axios
-      .request(`http://localhost:8000/api/v1/products/${id}`)
+      .post(`http://localhost:8000/api/v1/products/${id}`, values)
       .then(product => {
         dispatch(request_product_success(product));
       })
