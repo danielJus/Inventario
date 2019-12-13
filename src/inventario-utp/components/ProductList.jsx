@@ -4,13 +4,16 @@ import Modal from "react-modal";
 import { Button, Table } from "reactstrap";
 import EditProduct from "./EditProduct";
 import DeleteProduct from "./DeleteProduct";
+import RequestProduct from "./RequestProduct";
 
 const ProductList = () => {
   const products = useSelector(({ products }) => products.products);
+  const user = useSelector(({ auth }) => auth.user);
   const [product, setProduct] = useState("");
 
   const [modal, setModal] = useState(false);
   const [deleteModal, setDeleteModal] = useState(false);
+  const [requestModal, setRequestModal] = useState(false);
 
   const toggleDeleteModal = data => {
     setProduct(data);
@@ -21,11 +24,19 @@ const ProductList = () => {
     setProduct(data);
     setModal(!modal);
   };
+  const toggleRequestModal = data => {
+    setProduct(data);
+    setRequestModal(!modal);
+  };
   const close = () => {
     setModal(false);
   };
   const closeDeleteModal = () => {
     setDeleteModal(false);
+  };
+
+  const closeRequestModal = () => {
+    setRequestModal(false);
   };
 
   useEffect(() => {
@@ -63,12 +74,23 @@ const ProductList = () => {
                 <Button color="primary" onClick={() => toggle(product)}>
                   Ver
                 </Button>
+
                 <Button
-                  color="danger"
-                  onClick={() => toggleDeleteModal(product)}
+                  color="success"
+                  type="button"
+                  onClick={() => toggleRequestModal(product)}
                 >
-                  Eliminar
+                  Solicitar
                 </Button>
+
+                {user && (
+                  <Button
+                    color="danger"
+                    onClick={() => toggleDeleteModal(product)}
+                  >
+                    Eliminar
+                  </Button>
+                )}
               </td>
             </tr>
           ))}
@@ -81,6 +103,9 @@ const ProductList = () => {
 
       <Modal isOpen={deleteModal} onRequestClose={closeDeleteModal}>
         <DeleteProduct product={product} />
+      </Modal>
+      <Modal isOpen={requestModal} onRequestClose={closeRequestModal}>
+        <RequestProduct product={product} />
       </Modal>
     </React.Fragment>
   );

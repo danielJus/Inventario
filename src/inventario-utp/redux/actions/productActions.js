@@ -91,6 +91,20 @@ const delete_product_failure = errorMessage => ({
   payload: errorMessage
 });
 
+const request_product_start = () => ({
+  type: ProductTypes.REQUEST_PRODUCT_START
+});
+
+const request_product_success = product => ({
+  type: ProductTypes.REQUEST_PRODUCT_SUCCESS,
+  payload: product
+});
+
+const request_product_failure = errorMessage => ({
+  type: ProductTypes.REQUEST_PRODUCT_FAILURE,
+  payload: errorMessage
+});
+
 export const delete_product = id => {
   return dispatch => {
     dispatch(delete_product_start());
@@ -100,5 +114,17 @@ export const delete_product = id => {
         dispatch(delete_product_success(product));
       })
       .catch(error => dispatch(delete_product_failure(error)));
+  };
+};
+
+export const request_product = id => {
+  return dispatch => {
+    dispatch(request_product_start());
+    axios
+      .request(`http://localhost:8000/api/v1/products/${id}`)
+      .then(product => {
+        dispatch(request_product_success(product));
+      })
+      .catch(error => dispatch(request_product_failure(error)));
   };
 };
