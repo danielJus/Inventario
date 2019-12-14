@@ -17,15 +17,22 @@ import {
 import useForm from "../Hooks/useForm";
 import validate from "../utils/validate";
 import { useDispatch } from "react-redux";
+import { reset_password } from "../redux/actions/authActions";
 const ResetPassword = () => {
   const dispatch = useDispatch();
 
   const { handleChange, handleSubmit, values, errors } = useForm(
     submit,
     validate,
-    { correo: "", password: "" }
+    { password: "", passwordConfirm: "", token: "" }
   );
-  function submit() {}
+  function submit() {
+    let passwords = {
+      password: values.password,
+      passwordConfirm: values.passwordConfirm
+    };
+    reset_password(values.token, passwords)(dispatch);
+  }
   return (
     <React.Fragment>
       <Container>
@@ -38,6 +45,23 @@ const ResetPassword = () => {
             </CardHeader>
             <CardBody className="px-lg-5 py-lg-5">
               <Form role="form">
+                <FormGroup className="mb-3">
+                  <InputGroup className="input-group-alternative">
+                    <InputGroupAddon addonType="prepend">
+                      <InputGroupText>
+                        <i className="ni ni-email-83" />
+                      </InputGroupText>
+                    </InputGroupAddon>
+                    <Input
+                      placeholder="Pegue el código aquí"
+                      type="text"
+                      name="token"
+                      onChange={handleChange}
+                      value={values.token}
+                    />
+                  </InputGroup>
+                  {errors.password && <label>{errors.password}</label>}
+                </FormGroup>
                 <FormGroup className="mb-3">
                   <InputGroup className="input-group-alternative">
                     <InputGroupAddon addonType="prepend">

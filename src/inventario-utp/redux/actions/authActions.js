@@ -108,6 +108,35 @@ export const forgot_password = correo => {
   };
 };
 
+export const reset_password_start = () => ({
+  type: AuthTypes.RESET_PASSWORD_START
+});
+
+export const reset_password_success = status => ({
+  type: AuthTypes.RESET_PASSWORD_SUCCESS,
+  payload: status
+});
+
+export const reset_password_failure = errorMessage => ({
+  type: AuthTypes.RESET_PASSWORD_FAILURE,
+  payload: errorMessage
+});
+export const reset_password = (token, passwords) => {
+  return dispatch => {
+    axios
+      .patch(
+        `http://localhost:8000/api/v1/users/resetPassword/${token}`,
+        passwords
+      )
+      .then(res => {
+        dispatch(reset_password_success(res.data.status));
+      })
+      .catch(error => {
+        dispatch(reset_password_failure(error.message));
+      });
+  };
+};
+
 export const change_password_start = () => ({
   type: AuthTypes.CHANGE_PASSWORD_START
 });

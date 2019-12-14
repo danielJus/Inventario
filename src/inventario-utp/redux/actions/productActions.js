@@ -95,9 +95,9 @@ const request_product_start = () => ({
   type: ProductTypes.REQUEST_PRODUCT_START
 });
 
-const request_product_success = product => ({
+const request_product_success = message => ({
   type: ProductTypes.REQUEST_PRODUCT_SUCCESS,
-  payload: product
+  payload: message
 });
 
 const request_product_failure = errorMessage => ({
@@ -122,8 +122,8 @@ export const request_product = (id, values) => {
     dispatch(request_product_start());
     axios
       .post(`http://localhost:8000/api/v1/products/${id}`, values)
-      .then(product => {
-        dispatch(request_product_success(product));
+      .then(res => {
+        dispatch(request_product_success(res.data.message));
       })
       .catch(error => dispatch(request_product_failure(error)));
   };

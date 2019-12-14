@@ -45,11 +45,7 @@ const App = props => {
             <Route exact path="/" render={props => <Index {...props} />} />
             <Route exact path="/login" component={Login} />
             <Route exact path="/forgot-password" component={ForgotPassword} />
-            <Route
-              exact
-              path="/reset-password/:token"
-              component={ResetPassword}
-            />
+            <Route exact path="/reset-password" component={ResetPassword} />
           </React.Fragment>
         )}
         <Redirect from="*" to="/" />
