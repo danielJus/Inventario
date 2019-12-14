@@ -30,7 +30,6 @@ const Login = props => {
   );
   function submit() {
     login(values)(dispatch);
-    props.history.push("/");
   }
 
   return (

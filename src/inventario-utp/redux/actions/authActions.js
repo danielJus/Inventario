@@ -25,6 +25,7 @@ export const login = user => {
       .post("http://localhost:8000/api/v1/users/login", user)
       .then(({ data }) => {
         dispatch(login_success(data.data.user));
+        if (data.data.user) history.push("/");
       })
       .catch(error =>
         dispatch(
