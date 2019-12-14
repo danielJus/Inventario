@@ -33,7 +33,14 @@ const EditUser = props => {
     console.log("submit edit user", user);
   }
 
-  const { nombre, cedula, correo, facultad, sede } = values;
+  const {
+    nombreUsuario,
+    apellidoUsuario,
+    cedula,
+    correo,
+    facultad,
+    sede
+  } = values;
 
   return (
     <div>
@@ -54,12 +61,33 @@ const EditUser = props => {
                     placeholder="Nombre"
                     type="text"
                     name="nombre"
-                    value={nombre}
+                    defaultValue={nombreUsuario}
                     onChange={handleChange}
                   />
                 </InputGroup>
               </FormGroup>
             </Col>
+            <Col>
+              <FormGroup>
+                <Label>Apellido</Label>
+                <InputGroup className="input-group-alternative mb-3">
+                  <InputGroupAddon addonType="prepend">
+                    <InputGroupText>
+                      <i className="ni ni-hat-3" />
+                    </InputGroupText>
+                  </InputGroupAddon>
+                  <Input
+                    placeholder="Apellido"
+                    type="text"
+                    name="apellido"
+                    defaultValue={apellidoUsuario}
+                    onChange={handleChange}
+                  />
+                </InputGroup>
+              </FormGroup>
+            </Col>
+          </Row>
+          <Row>
             <Col>
               <FormGroup>
                 <Label>Cédula</Label>
@@ -73,14 +101,12 @@ const EditUser = props => {
                     placeholder="Cédula"
                     type="text"
                     name="cedula"
-                    value={cedula}
+                    defaultValue={cedula}
                     onChange={handleChange}
                   />
                 </InputGroup>
               </FormGroup>
             </Col>
-          </Row>
-          <Row>
             <Col>
               <FormGroup>
                 <Label>Correo electrónico</Label>
@@ -94,12 +120,15 @@ const EditUser = props => {
                     placeholder="Correo elecótronico"
                     type="email"
                     name="correo"
-                    value={correo}
+                    defaultValue={correo}
                     onChange={handleChange}
                   />
                 </InputGroup>
               </FormGroup>
             </Col>
+          </Row>
+
+          <Row>
             <Col>
               <FormGroup>
                 <Label>Facultad</Label>
@@ -107,7 +136,7 @@ const EditUser = props => {
                   <select
                     className="custom-select"
                     name="facultad"
-                    value={facultad}
+                    defaultValue={facultad}
                     onChange={handleChange}
                   >
                     <option value="">Facultad</option>
@@ -125,16 +154,14 @@ const EditUser = props => {
                 </InputGroup>
               </FormGroup>
             </Col>
-          </Row>
-
-          <Row>
             <Col>
               <FormGroup>
+                <Label>Sede</Label>
                 <InputGroup className="input-group-alternative">
                   <select
                     className="custom-select"
                     name="sede"
-                    value={sede}
+                    defaultValue={sede}
                     onChange={handleChange}
                   >
                     <option value="">Sede </option>

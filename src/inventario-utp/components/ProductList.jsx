@@ -72,7 +72,7 @@ const ProductList = () => {
               <td>{product.sede}</td>
               <td>
                 <Button color="primary" onClick={() => toggle(product)}>
-                  Ver
+                  Editar
                 </Button>
 
                 <Button

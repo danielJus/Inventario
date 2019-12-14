@@ -18,10 +18,14 @@ import { change_password } from "../redux/actions/authActions";
 const ChangePassword = () => {
   const dispatch = useDispatch();
 
-  const { handleChange, handleSubmit, values, errors } = useForm(
+  const { handleChange, handleSubmit, values, errors, isInvalid } = useForm(
     submit,
     validate,
-    { passwordCurrent: "", password: "", passwordConfirm: "" }
+    {
+      passwordCurrent: "",
+      password: "",
+      passwordConfirm: ""
+    }
   );
 
   function submit() {
@@ -44,6 +48,9 @@ const ChangePassword = () => {
                   onChange={handleChange}
                   type="password"
                 />
+                {errors.passwordCurrent && (
+                  <span>{errors.passwordCurrent}</span>
+                )}
               </FormGroup>
             </Col>
           </Row>
@@ -58,6 +65,7 @@ const ChangePassword = () => {
                   onChange={handleChange}
                   type="password"
                 />
+                {errors.password && <span>{errors.password}</span>}
               </FormGroup>
             </Col>
             <Col lg="6">
@@ -72,11 +80,17 @@ const ChangePassword = () => {
                   onChange={handleChange}
                   type="password"
                 />
+                {errors.passwordConfirm && (
+                  <span>{errors.passwordConfirm}</span>
+                )}
               </FormGroup>
             </Col>
             <Col lg="12">
-              <Button color="primary" onClick={handleSubmit}>
-                {" "}
+              <Button
+                disabled={isInvalid}
+                color="primary"
+                onClick={handleSubmit}
+              >
                 Cambiar contraseña
               </Button>
             </Col>

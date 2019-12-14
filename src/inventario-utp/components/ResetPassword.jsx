@@ -21,10 +21,14 @@ import { reset_password } from "../redux/actions/authActions";
 const ResetPassword = () => {
   const dispatch = useDispatch();
 
-  const { handleChange, handleSubmit, values, errors } = useForm(
+  const { handleChange, handleSubmit, values, errors, isInvalid } = useForm(
     submit,
     validate,
-    { password: "", passwordConfirm: "", token: "" }
+    {
+      password: "",
+      passwordConfirm: "",
+      token: ""
+    }
   );
   function submit() {
     let passwords = {
@@ -60,7 +64,7 @@ const ResetPassword = () => {
                       value={values.token}
                     />
                   </InputGroup>
-                  {errors.password && <label>{errors.password}</label>}
+                  {errors.token && <label>{errors.token}</label>}
                 </FormGroup>
                 <FormGroup className="mb-3">
                   <InputGroup className="input-group-alternative">
@@ -77,7 +81,7 @@ const ResetPassword = () => {
                       value={values.password}
                     />
                   </InputGroup>
-                  {errors.password && <label>{errors.password}</label>}
+                  {errors.password && <span>{errors.password}</span>}
                 </FormGroup>
                 <FormGroup>
                   <InputGroup className="input-group-alternative">
@@ -95,11 +99,12 @@ const ResetPassword = () => {
                     />
                   </InputGroup>
                   {errors.passwordConfirm && (
-                    <label>{errors.passwordConfirm}</label>
+                    <span>{errors.passwordConfirm}</span>
                   )}
                 </FormGroup>
                 <div className="text-center">
                   <Button
+                    disabled={isInvalid}
                     className="my-4"
                     color="primary"
                     type="button"

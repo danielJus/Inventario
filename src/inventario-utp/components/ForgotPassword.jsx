@@ -19,7 +19,7 @@ const ForgotPassword = () => {
   const status = useSelector(({ auth }) => auth.forgot_password);
   const dispatch = useDispatch();
   console.log("status", status);
-  const { values, errors, handleChange, handleSubmit } = useForm(
+  const { values, errors, handleChange, handleSubmit, isInvalid } = useForm(
     submit,
     validate,
     {
@@ -38,10 +38,16 @@ const ForgotPassword = () => {
               <FormGroup>
                 <Label>Correo electrónico</Label>
                 <Input name="correo" onChange={handleChange} />
+                {errors.correo && <span>{errors.correo}</span>}
               </FormGroup>
             </Col>
           </Row>
-          <Button type="button" color="primary" onClick={handleSubmit}>
+          <Button
+            disabled={isInvalid}
+            type="button"
+            color="primary"
+            onClick={handleSubmit}
+          >
             Enviar correo
           </Button>
 

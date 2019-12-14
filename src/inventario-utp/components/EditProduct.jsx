@@ -64,6 +64,7 @@ const EditProduct = props => {
                     />
                   </FormGroup>
                 </Col>
+
                 <Col md="6">
                   <FormGroup>
                     <Label for="estado">Estado del producto</Label>
@@ -141,7 +142,25 @@ const EditProduct = props => {
                     />
                   </FormGroup>
                 </Col>
-                <Col md="6">
+
+                <Col>
+                  <FormGroup>
+                    <Label for="responsable.nombre">
+                      Apellido del responsable
+                    </Label>
+
+                    <Input
+                      type="text"
+                      defaultValue={responsable.nombre}
+                      name="responsable.apellido"
+                      onChange={handleChange}
+                    />
+                  </FormGroup>
+                </Col>
+              </Row>
+
+              <Row>
+                <Col>
                   <FormGroup>
                     <Label for="responsable.cedula">
                       Cédula del responsable
@@ -155,10 +174,7 @@ const EditProduct = props => {
                     />
                   </FormGroup>
                 </Col>
-              </Row>
-
-              <Row>
-                <Col md="6">
+                <Col>
                   <FormGroup>
                     <Label for="responsable.correo">
                       Correo electrónico del responsable
@@ -173,7 +189,9 @@ const EditProduct = props => {
                     />
                   </FormGroup>
                 </Col>
-                <Col md="6">
+              </Row>
+              <Row>
+                <Col>
                   <FormGroup>
                     <Label for="responsable.nombre">
                       Unidad del responsable
@@ -193,8 +211,6 @@ const EditProduct = props => {
                     </select>
                   </FormGroup>
                 </Col>
-              </Row>
-              <Row>
                 <Col>
                   <FormGroup>
                     <Label for="responsable.nombre">Sede del responsable</Label>

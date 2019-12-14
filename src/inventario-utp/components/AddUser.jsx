@@ -20,7 +20,7 @@ import {
 } from "reactstrap";
 const AddUser = () => {
   const dispatch = useDispatch();
-  const { values, errors, handleChange, handleSubmit } = useForm(
+  const { values, errors, handleChange, handleSubmit, isInvalid } = useForm(
     submit,
     validate,
     {
@@ -231,6 +231,7 @@ const AddUser = () => {
 
               <div className="text-center">
                 <Button
+                  disabled={isInvalid}
                   className="mt-4"
                   color="primary"
                   type="button"

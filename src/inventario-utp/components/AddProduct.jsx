@@ -23,8 +23,7 @@ import {
 
 const AddProduct = () => {
   const dispatch = useDispatch();
-  //const [photo, setPhoto] = useState("");
-  const { handleChange, handleSubmit, values, errors } = useForm(
+  const { handleChange, handleSubmit, values, errors, isInvalid } = useForm(
     submit,
     validate,
     {
@@ -60,8 +59,7 @@ const AddProduct = () => {
     */
 
     create_product(values)(dispatch);
-    //console.log("form data", fd.get("photo"));
-    //console.log("form data", fd.get("values"));
+
     console.log("submit");
   }
 

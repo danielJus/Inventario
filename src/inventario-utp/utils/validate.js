@@ -12,13 +12,26 @@ export default function validate(name, value, errors, deleteValue = "") {
       password = value;
       errors.password =
         value.length < 6 || !value
-          ? "Password needs to be longer than 6 characters"
+          ? "La contraseña debe ser mayor a 6 caracteres"
           : "";
       break;
     case "passwordConfirm":
       console.log("password", password, "confirm", value);
       errors.passwordConfirm =
         value !== password ? "Las contraseñas deben coincidir" : "";
+      break;
+    case "passwordCurrent":
+      password = value;
+      errors.passwordCurrent =
+        value.length < 6 || !value
+          ? "La contraseña debe ser mayor a 6 caracteres"
+          : "";
+      break;
+    case "token":
+      errors.token =
+        !value || value.length < 64
+          ? "Código inválido revise su correo y copie el código enviado"
+          : "";
       break;
     case "nombreUsuario":
       errors.nombreUsuario =
