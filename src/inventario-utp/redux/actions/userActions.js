@@ -1,5 +1,6 @@
 import { UserTypes } from "./userTypes";
 import axios from "axios";
+import { history } from "../../utils/history";
 
 const create_user_start = () => ({
   type: UserTypes.CREATE_USER_START
@@ -20,7 +21,10 @@ export const create_user = user => {
     dispatch(create_user_start());
     axios
       .post("http://localhost:8000/api/v1/users/signup", user)
-      .then(user => dispatch(create_user_success(user)))
+      .then(user => {
+        dispatch(create_user_success(user.data.newUser));
+        history.push("/users");
+      })
       .catch(error => dispatch(create_user_failure(error)));
   };
 };

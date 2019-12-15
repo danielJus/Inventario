@@ -18,7 +18,8 @@ import {
   Col,
   Row
 } from "reactstrap";
-const AddUser = () => {
+
+const AddUser = props => {
   const dispatch = useDispatch();
   const { values, errors, handleChange, handleSubmit, isInvalid } = useForm(
     submit,
@@ -37,6 +38,7 @@ const AddUser = () => {
 
   function submit() {
     create_user(values)(dispatch);
+
     console.log("valores", values, "errores", errors);
   }
 

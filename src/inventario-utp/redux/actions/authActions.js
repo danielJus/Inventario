@@ -58,8 +58,9 @@ export const register = user => {
     dispatch(register_start());
     axios
       .post("http://localhost:8000/api/v1/users/signup", user)
-      .then(user => {
-        dispatch(register_success(user));
+      .then(res => {
+        dispatch(register_success(res));
+        history.push("/");
       })
       .catch(error => dispatch(error));
   };

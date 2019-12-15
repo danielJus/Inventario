@@ -1,5 +1,6 @@
 import { ProductTypes } from "./productTypes";
 import axios from "axios";
+import { history } from "../../utils/history";
 
 const create_product_start = () => ({
   type: ProductTypes.CREATE_PRODUCT_START
@@ -20,7 +21,10 @@ export const create_product = product => {
     dispatch(create_product_start());
     axios
       .post("http://localhost:8000/api/v1/products", product)
-      .then(product => dispatch(create_product_success(product)))
+      .then(product => {
+        dispatch(create_product_success(product));
+        history.push("/");
+      })
       .catch(error => dispatch(create_product_failure(error)));
   };
 };
