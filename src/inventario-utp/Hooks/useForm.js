@@ -1,9 +1,23 @@
 import { useState, useEffect } from "react";
 
-const useForm = (callback, validate, formFields, deleteValue = "") => {
+const useForm = (
+  callback,
+  validate,
+  formFields,
+  formErrors = null,
+  deleteValue = ""
+) => {
   const [values, setValues] = useState(formFields);
-  const [errors, setErrors] = useState(formFields);
+  const [errors, setErrors] = useState("");
   const [isInvalid, setIsInvalid] = useState(true);
+  //console.log("values", values);
+  useEffect(() => {
+    if (formErrors === null) {
+      setErrors(formFields);
+    } else {
+      setErrors(formErrors);
+    }
+  }, []);
   let inputArray, errorsArray;
   const handleChange = e => {
     const { name, value } = e.target;
@@ -11,9 +25,7 @@ const useForm = (callback, validate, formFields, deleteValue = "") => {
     const propertiesKeys = name.split(".");
     setErrors(validate(name, value, errors, deleteValue));
     //console.log(errors);
-    if (name === "token") {
-      console.log(value.length);
-    }
+
     if (propertiesKeys.length === 1) {
       setValues({
         ...values,

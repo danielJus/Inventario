@@ -23,6 +23,8 @@ import {
 
 const AddProduct = () => {
   const dispatch = useDispatch();
+  const [photo, setPhoto] = useState("");
+
   const { handleChange, handleSubmit, values, errors, isInvalid } = useForm(
     submit,
     validate,
@@ -45,20 +47,21 @@ const AddProduct = () => {
     }
   );
 
+  console.log("values", values.responsable.nombre);
   const handlePhoto = e => {
     const { files } = e.target;
-    values.photo = files[0];
+    //values.photo = files[0];
+    setPhoto(files[0]);
   };
 
   function submit() {
-    /*
     const fd = new FormData();
     for (var key in values) {
       fd.append(key, values[key]);
     }
-    */
 
-    create_product(values)(dispatch);
+    fd.append("photo", photo);
+    create_product(fd)(dispatch);
 
     console.log("submit");
   }
@@ -250,6 +253,7 @@ const AddProduct = () => {
               </Row>
 
               <h3 className="display-4">Datos del responsable</h3>
+
               <Row>
                 <Col>
                   <FormGroup>
@@ -262,7 +266,7 @@ const AddProduct = () => {
                         onChange={handleChange}
                       />
                     </InputGroup>
-                    {errors.responsable.nombre && (
+                    {errors && errors.responsable.nombre && (
                       <span>{errors.responsable.nombre}</span>
                     )}
                   </FormGroup>
@@ -278,7 +282,7 @@ const AddProduct = () => {
                         onChange={handleChange}
                       />
                     </InputGroup>
-                    {errors.responsable.apellido && (
+                    {errors && errors.responsable.apellido && (
                       <span>{errors.responsable.apellido}</span>
                     )}
                   </FormGroup>
@@ -296,7 +300,7 @@ const AddProduct = () => {
                         onChange={handleChange}
                       />
                     </InputGroup>
-                    {errors.responsable.correo && (
+                    {errors && errors.responsable.correo && (
                       <span>{errors.responsable.correo}</span>
                     )}
                   </FormGroup>
@@ -312,7 +316,7 @@ const AddProduct = () => {
                         onChange={handleChange}
                       />
                     </InputGroup>
-                    {errors.responsable.cedula && (
+                    {errors && errors.responsable.cedula && (
                       <span>{errors.responsable.cedula}</span>
                     )}
                   </FormGroup>
@@ -336,7 +340,7 @@ const AddProduct = () => {
                         </option>
                       </select>
                     </InputGroup>
-                    {errors.responsable.unidad && (
+                    {errors && errors.responsable.unidad && (
                       <span>{errors.responsable.unidad}</span>
                     )}
                   </FormGroup>
@@ -360,13 +364,12 @@ const AddProduct = () => {
                         <option value="veraguas">Veraguas</option>
                       </select>
                     </InputGroup>
-                    {errors.responsable.sede && (
+                    {errors && errors.responsable.sede && (
                       <span>{errors.responsable.sede}</span>
                     )}
                   </FormGroup>
                 </Col>
               </Row>
-
               <div className="text-center">
                 <Button
                   className="mt-4"

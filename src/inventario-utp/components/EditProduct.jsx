@@ -22,7 +22,7 @@ const EditProduct = props => {
 
   const { product } = props;
 
-  const { handleChange, handleSubmit, values, errors } = useForm(
+  const { handleChange, handleSubmit, values, errors, isInvalid } = useForm(
     submit,
     validate,
     product
@@ -239,7 +239,11 @@ const EditProduct = props => {
             <Col md="6"></Col>
 
             <Col md="6">
-              <Button color="success" onClick={handleSubmit}>
+              <Button
+                disabled={isInvalid}
+                color="success"
+                onClick={handleSubmit}
+              >
                 Guardar cambios
               </Button>
               <Button color="danger">Cancelar </Button>

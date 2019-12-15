@@ -42,7 +42,7 @@ export default function validate(name, value, errors, deleteValue = "") {
     case "apellidoUsuario":
       errors.apellidoUsuario =
         !valid_string.test(value) || value.length < 2 || !value
-          ? "apellido inválido"
+          ? "Apellido inválido"
           : "";
       break;
     case "cedula":

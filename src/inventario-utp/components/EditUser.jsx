@@ -22,10 +22,20 @@ import { edit_user } from "../redux/actions/userActions";
 const EditUser = props => {
   const dispatch = useDispatch();
   const { user } = props;
-  const { values, errors, handleChange, handleSubmit } = useForm(
+  const { values, errors, handleChange, handleSubmit, isInvalid } = useForm(
     submit,
     validate,
-    user
+    user,
+    {
+      nombreUsuario: "",
+      apellidoUsuario: "",
+      cedula: "",
+      correo: "",
+      password: "",
+      passwordConfirm: "",
+      facultad: "",
+      sede: ""
+    }
   );
 
   function submit() {
@@ -60,11 +70,12 @@ const EditUser = props => {
                   <Input
                     placeholder="Nombre"
                     type="text"
-                    name="nombre"
+                    name="nombreUsuario"
                     defaultValue={nombreUsuario}
                     onChange={handleChange}
                   />
                 </InputGroup>
+                {errors.nombreUsuario && <span>{errors.nombreUsuario}</span>}
               </FormGroup>
             </Col>
             <Col>
@@ -79,11 +90,14 @@ const EditUser = props => {
                   <Input
                     placeholder="Apellido"
                     type="text"
-                    name="apellido"
+                    name="apellidoUsuario"
                     defaultValue={apellidoUsuario}
                     onChange={handleChange}
                   />
                 </InputGroup>
+                {errors.apellidoUsuario && (
+                  <span>{errors.apellidoUsuario}</span>
+                )}
               </FormGroup>
             </Col>
           </Row>
@@ -105,6 +119,7 @@ const EditUser = props => {
                     onChange={handleChange}
                   />
                 </InputGroup>
+                {errors.cedula && <span>{errors.cedula}</span>}
               </FormGroup>
             </Col>
             <Col>
@@ -124,6 +139,7 @@ const EditUser = props => {
                     onChange={handleChange}
                   />
                 </InputGroup>
+                {errors.correo && <span>{errors.correo}</span>}
               </FormGroup>
             </Col>
           </Row>
@@ -152,6 +168,7 @@ const EditUser = props => {
                     </option>
                   </select>
                 </InputGroup>
+                {errors.facultad && <span>{errors.facultad}</span>}
               </FormGroup>
             </Col>
             <Col>
@@ -174,6 +191,7 @@ const EditUser = props => {
                     <option value="veraguas">Veraguas</option>
                   </select>
                 </InputGroup>
+                {errors.sede && <span>{errors.sede}</span>}
               </FormGroup>
             </Col>
           </Row>
@@ -182,6 +200,7 @@ const EditUser = props => {
             <Col></Col>
             <Col>
               <Button
+                disabled={isInvalid}
                 className="mt-4"
                 color="success"
                 type="button"

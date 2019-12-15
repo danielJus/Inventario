@@ -18,10 +18,18 @@ import {
 const EditProfile = () => {
   const user = useSelector(({ auth }) => auth.user);
   const dispatch = useDispatch();
-  const { handleChange, handleSubmit, values, errors } = useForm(
+  const { handleChange, handleSubmit, values, errors, isInvalid } = useForm(
     submit,
     validate,
-    user
+    user,
+    {
+      nombreUsuario: "",
+      apellidoUsuario: "",
+      cedula: "",
+      correo: "",
+      facultad: "",
+      sede: ""
+    }
   );
   console.log("user", user);
   function submit() {
@@ -121,7 +129,12 @@ const EditProfile = () => {
           </Row>
           <Row>
             <Col>
-              <Button type="button" color="success" onClick={handleSubmit}>
+              <Button
+                disabled={isInvalid}
+                type="button"
+                color="success"
+                onClick={handleSubmit}
+              >
                 Guardar cambios
               </Button>
               <Button type="button">Cancelar</Button>
