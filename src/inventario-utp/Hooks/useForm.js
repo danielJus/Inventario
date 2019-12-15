@@ -43,20 +43,62 @@ const useForm = (
   };
 
   useEffect(() => {
-    inputArray = Object.values(values);
-    errorsArray = Object.values(errors);
+    if (!values.responsable) {
+      inputArray = Object.values(values);
+      errorsArray = Object.values(errors);
 
-    if (
-      inputArray.every(val => val !== "") &&
-      errorsArray.every(val => val === "")
-    ) {
-      setIsInvalid(false);
-    } else {
-      setIsInvalid(true);
+      if (
+        inputArray.every(val => val !== "") &&
+        errorsArray.every(val => val === "")
+      ) {
+        setIsInvalid(false);
+      } else {
+        setIsInvalid(true);
+      }
+      //console.log("input array", inputArray);
+      //console.log("errors array", errorsArray);
+    } else if (values.responsable) {
+      let finalArray, finalErrorsArray;
+      let producto = {
+        nombre: values.nombre,
+        descripcion: values.descripcion,
+        precio: values.precio,
+        estado: values.estado,
+        cantidad: values.cantidad,
+        facultad: values.facultad,
+        sede: values.sede
+      };
+      let productoErrors = {
+        nombre: errors.nombre,
+        descripcion: errors.descripcion,
+        precio: errors.precio,
+        estado: errors.estado,
+        cantidad: errors.cantidad,
+        facultad: errors.facultad,
+        sede: errors.sede
+      };
+      let productoArray = Object.values(producto);
+      let responsableArray = Object.values(values.responsable);
+      let responsableErrorsArray;
+      let errorsArray = Object.values(productoErrors);
+      if (errors) responsableErrorsArray = Object.values(errors.responsable);
+      finalArray = productoArray.concat(responsableArray);
+      finalErrorsArray = errorsArray.concat(responsableErrorsArray);
+      console.log("final array", finalArray);
+      console.log("final errors array", finalErrorsArray);
+
+      if (
+        finalArray.every(val => val !== "") &&
+        finalErrorsArray.every(val => val === "")
+      ) {
+        setIsInvalid(false);
+      } else {
+        setIsInvalid(true);
+      }
+      //console.log("res array", responsableArray);
+      //console.log("errrors array", responsableErrorsArray);
     }
-    console.log("input array", inputArray);
-    console.log("errors array", errorsArray);
-  }, [values, errors]);
+  }, [values, values.responsable, errors]);
   const handleSubmit = e => {
     e.preventDefault();
     if (!isInvalid) callback();

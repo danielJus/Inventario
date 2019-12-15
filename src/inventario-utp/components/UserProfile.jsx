@@ -54,7 +54,7 @@ export const UserProfile = () => {
         </Row>
       </Container>
       <Modal isOpen={modal} onRequestClose={toggle}>
-        <DeleteProfile />
+        <DeleteProfile user={user} />
       </Modal>
     </div>
   );

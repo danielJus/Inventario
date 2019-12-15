@@ -16,12 +16,15 @@ import {
 
 const DeleteUser = props => {
   const dispatch = useDispatch();
-  const { _id, nombre } = props.user;
+  let none = null;
+  const { _id, nombreUsuario } = props.user;
 
-  const { handleChange, handleSubmit, values, errors } = useForm(
+  const { handleChange, handleSubmit, values, isInvalid } = useForm(
     submit,
     validate,
-    { nombre: "" }
+    { usuarioBorrar: "" },
+    none,
+    nombreUsuario
   );
   function submit() {
     delete_user(_id)(dispatch);
@@ -31,10 +34,10 @@ const DeleteUser = props => {
     <div>
       <Container>
         <section>
-          <h1>Desea al usuario: "{nombre}" de la base de datos?</h1>
+          <h1>Desea al usuario: "{nombreUsuario}" de la base de datos?</h1>
           <p className="display-4">
             Para poder eliminar este producto de la base de datos introduzca: "
-            {nombre}" y luego presione el botón "eliminar producto"
+            {nombreUsuario}" y luego presione el botón "eliminar producto"
           </p>
         </section>
 
@@ -42,16 +45,24 @@ const DeleteUser = props => {
           <Row>
             <Col>
               <FormGroup>
-                <Label>Nombre del producto</Label>
-                <Input value={values.nombre} onChange={handleChange} />
+                <Label>Nombre del usuario</Label>
+                <Input
+                  name="usuarioBorrar"
+                  value={values.usuarioBorrar}
+                  onChange={handleChange}
+                />
               </FormGroup>
             </Col>
           </Row>
 
           <Row className="mt-5">
             <Col>
-              <Button color="danger" onClick={handleSubmit}>
-                Eliminar producto
+              <Button
+                color="danger"
+                disabled={isInvalid}
+                onClick={handleSubmit}
+              >
+                Eliminar usuario
               </Button>
               <Button color="secondary">Cancelar</Button>
             </Col>

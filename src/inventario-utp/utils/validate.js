@@ -115,6 +115,20 @@ export default function validate(name, value, errors, deleteValue = "") {
         ? "Seleccione la sede del responsable"
         : "";
       break;
+    case "productoBorrar":
+      console.log("deletevalue", deleteValue);
+      errors.productoBorrar =
+        value.toLowerCase() !== deleteValue.toLowerCase() || !value
+          ? "los nombres deben coincidir"
+          : "";
+      break;
+    case "usuarioBorrar":
+      console.log("deletevalue", deleteValue);
+      errors.usuarioBorrar =
+        value.toLowerCase() !== deleteValue.toLowerCase() || !value
+          ? "los nombres deben coincidir"
+          : "";
+      break;
     default:
       break;
   }

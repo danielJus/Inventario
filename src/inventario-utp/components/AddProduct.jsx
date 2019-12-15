@@ -47,7 +47,7 @@ const AddProduct = () => {
     }
   );
 
-  console.log("values", values.responsable.nombre);
+  //console.log("values", values.responsable.nombre);
   const handlePhoto = e => {
     const { files } = e.target;
     //values.photo = files[0];
@@ -372,6 +372,7 @@ const AddProduct = () => {
               </Row>
               <div className="text-center">
                 <Button
+                  disabled={isInvalid}
                   className="mt-4"
                   color="primary"
                   type="button"

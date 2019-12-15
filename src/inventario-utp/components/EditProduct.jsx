@@ -25,7 +25,24 @@ const EditProduct = props => {
   const { handleChange, handleSubmit, values, errors, isInvalid } = useForm(
     submit,
     validate,
-    product
+    product,
+    {
+      nombre: "",
+      descripcion: "",
+      precio: "",
+      estado: "",
+      cantidad: "",
+      facultad: "",
+      sede: "",
+      responsable: {
+        nombre: "",
+        apellido: "",
+        correo: "",
+        unidad: "",
+        sede: "",
+        cedula: ""
+      }
+    }
   );
 
   const {

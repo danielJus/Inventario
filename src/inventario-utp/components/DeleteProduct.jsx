@@ -16,11 +16,13 @@ import { delete_product } from "../redux/actions/productActions";
 const DeleteProduct = props => {
   const { nombre } = props.product;
   const dispatch = useDispatch();
+  let none = null;
 
-  const { handleChange, handleSubmit, values, errors } = useForm(
+  const { handleChange, handleSubmit, values, errors, isInvalid } = useForm(
     submit,
     validate,
-    { nombre: "" },
+    { productoBorrar: "" },
+    none,
     nombre
   );
   function submit() {
@@ -43,14 +45,22 @@ const DeleteProduct = props => {
             <Col>
               <FormGroup>
                 <Label>Nombre del producto</Label>
-                <Input value={values.nombre} onChange={handleChange} />
+                <Input
+                  name="productoBorrar"
+                  value={values.productoBorrar}
+                  onChange={handleChange}
+                />
               </FormGroup>
             </Col>
           </Row>
 
           <Row className="mt-5">
             <Col>
-              <Button color="danger" onClick={handleSubmit}>
+              <Button
+                color="danger"
+                disabled={isInvalid}
+                onClick={handleSubmit}
+              >
                 Eliminar producto
               </Button>
               <Button color="secondary">Cancelar</Button>
