@@ -1,8 +1,7 @@
-import React from "react";
+import React, { useState } from "react";
 import { useDispatch } from "react-redux";
 import useForm from "../Hooks/useForm";
 import validate from "../utils/validate";
-import logo from "../img/logo_utp_1_300.png";
 
 import {
   Container,
@@ -19,7 +18,7 @@ import { edit_product } from "../redux/actions/productActions.js";
 const EditProduct = props => {
   console.log("edit product", props.product);
   const dispatch = useDispatch();
-
+  const [photo, setPhoto] = useState("");
   const { product } = props;
 
   const { handleChange, handleSubmit, values, errors, isInvalid } = useForm(
@@ -55,8 +54,24 @@ const EditProduct = props => {
     responsable
   } = values;
 
+  const handlePhoto = e => {
+    const { files } = e.target;
+    setPhoto(files[0]);
+  };
   function submit() {
-    edit_product(product._id, values)(dispatch);
+    const fd = new FormData();
+    for (var key in values) {
+      if (key === "responsable") {
+        fd.append(key, JSON.stringify(values[key]));
+      } else {
+        fd.append(key, values[key]);
+      }
+    }
+    if (photo) {
+      fd.append("photo", photo);
+    }
+
+    edit_product(product._id, fd)(dispatch);
     console.log("guardar edit");
   }
   return (
@@ -69,6 +84,12 @@ const EditProduct = props => {
                 style={{ maxWidth: "30rem" }}
                 src={require(`../img/products/${product.photo}`)}
                 alt="..."
+              />
+              <Input
+                type="file"
+                name="photo"
+                accept="image/*"
+                onChange={handlePhoto}
               />
             </Col>
             <Col>

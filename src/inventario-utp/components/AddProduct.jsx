@@ -57,11 +57,10 @@ const AddProduct = () => {
   function submit() {
     const fd = new FormData();
     for (var key in values) {
-
-      if(key === "responsable"){
+      if (key === "responsable") {
         fd.append(key, JSON.stringify(values[key]));
-      }else{
-        fd.append(key, values[key])
+      } else {
+        fd.append(key, values[key]);
       }
     }
 
@@ -246,7 +245,6 @@ const AddProduct = () => {
                             name="photo"
                             type="file"
                             accept="image/*"
-                            value={values.imagen}
                             onChange={handlePhoto}
                           />
                         </InputGroup>
