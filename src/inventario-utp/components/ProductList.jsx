@@ -63,7 +63,13 @@ const ProductList = () => {
           {products.map((product, i) => (
             <tr key={i}>
               <td>{product.nombre}</td>
-              <td>Imagen</td>
+              <td>
+                <img
+                  src={require(`../img/products/${product.photo}`)}
+                  alt="..."
+                  style={{ width: "5rem" }}
+                />
+              </td>
               <td>{product.estado}</td>
               <td>{product.precio}</td>
               <td>{product.cantidad}</td>

@@ -65,7 +65,11 @@ const EditProduct = props => {
         <Form>
           <Row>
             <Col md="6">
-              <img style={{ maxWidth: "30rem" }} src={logo} alt="..." />
+              <img
+                style={{ maxWidth: "30rem" }}
+                src={require(`../img/products/${product.photo}`)}
+                alt="..."
+              />
             </Col>
             <Col>
               <h1 className="mb-4">Editar datos del producto</h1>

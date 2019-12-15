@@ -57,7 +57,12 @@ const AddProduct = () => {
   function submit() {
     const fd = new FormData();
     for (var key in values) {
-      fd.append(key, values[key]);
+
+      if(key === "responsable"){
+        fd.append(key, JSON.stringify(values[key]));
+      }else{
+        fd.append(key, values[key])
+      }
     }
 
     fd.append("photo", photo);
@@ -372,7 +377,6 @@ const AddProduct = () => {
               </Row>
               <div className="text-center">
                 <Button
-                  disabled={isInvalid}
                   className="mt-4"
                   color="primary"
                   type="button"
