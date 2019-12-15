@@ -10,6 +10,7 @@ import {
   Button,
   Form,
   FormGroup,
+  InputGroup,
   Label,
   Input
 } from "reactstrap";
@@ -151,7 +152,35 @@ const EditProduct = props => {
                   </FormGroup>
                 </Col>
               </Row>
-
+              <Row>
+                <Col>
+                  <FormGroup>
+                    <InputGroup className="input-group-alternative">
+                      <select
+                        className="custom-select"
+                        name="facultad"
+                        defaultValue={facultad}
+                        onChange={handleChange}
+                      >
+                        <option value="">Facultad</option>
+                        <option value="ciencias_tecnologia">
+                          Ciencias y Tecnología
+                        </option>
+                        <option value="civil">Ingeniería Civil</option>
+                        <option value="electrica">Ingeniería Eléctrica</option>
+                        <option value="industrial">
+                          Ingeniería Industrial
+                        </option>
+                        <option value="mecanica">Ingeniería Mecánica</option>
+                        <option value="sistemas">
+                          Ingeniería de Sistemas Computacionales
+                        </option>
+                      </select>
+                    </InputGroup>
+                    {errors.facultad && <span>{errors.facultad}</span>}
+                  </FormGroup>
+                </Col>
+              </Row>
               <Row>
                 <Col>
                   <FormGroup>

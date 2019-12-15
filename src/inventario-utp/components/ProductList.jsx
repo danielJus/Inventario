@@ -55,6 +55,7 @@ const ProductList = () => {
             <th scope="col">Cantidad</th>
             <th scope="col">Descripcion</th>
             <th scope="col">Responsable</th>
+            <th scope="col">Facultad</th>
             <th scope="col">Sede</th>
             <th scope="col">Acciones</th>
           </tr>
@@ -75,6 +76,7 @@ const ProductList = () => {
               <td>{product.cantidad}</td>
               <td>{product.descripcion}</td>
               <td>{product.responsable.nombre}</td>
+              <td>{product.facultad}</td>
               <td>{product.sede}</td>
               <td>
                 <Button color="primary" onClick={() => toggle(product)}>
