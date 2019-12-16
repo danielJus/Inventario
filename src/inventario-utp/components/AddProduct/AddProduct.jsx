@@ -97,7 +97,9 @@ const AddProduct = () => {
                         onChange={handleChange}
                       />
                     </InputGroup>
-                    {errors.nombre && <span>{errors.nombre}</span>}
+                    {errors.nombre && (
+                      <span className="error">{errors.nombre}</span>
+                    )}
                   </FormGroup>
                 </Col>
                 <Col>
@@ -115,7 +117,9 @@ const AddProduct = () => {
                         <option value="en_uso">En uso</option>
                       </select>
                     </InputGroup>
-                    {errors.estado && <span>{errors.estado}</span>}
+                    {errors.estado && (
+                      <span className="error">{errors.estado}</span>
+                    )}
                   </FormGroup>
                 </Col>
               </Row>
@@ -139,7 +143,9 @@ const AddProduct = () => {
                         <option value="veraguas">Veraguas</option>
                       </select>
                     </InputGroup>
-                    {errors.sede && <span>{errors.sede}</span>}
+                    {errors.sede && (
+                      <span className="error">{errors.sede}</span>
+                    )}
                   </FormGroup>
                 </Col>
 
@@ -167,7 +173,9 @@ const AddProduct = () => {
                         </option>
                       </select>
                     </InputGroup>
-                    {errors.facultad && <span>{errors.facultad}</span>}
+                    {errors.facultad && (
+                      <span className="error">{errors.facultad}</span>
+                    )}
                   </FormGroup>
                 </Col>
               </Row>
@@ -188,7 +196,9 @@ const AddProduct = () => {
                         onChange={handleChange}
                       ></textarea>
                     </InputGroup>
-                    {errors.descripcion && <span>{errors.descripcion}</span>}
+                    {errors.descripcion && (
+                      <span className="error">{errors.descripcion}</span>
+                    )}
                   </FormGroup>
                 </Col>
                 <Col>
@@ -209,7 +219,9 @@ const AddProduct = () => {
                             onChange={handleChange}
                           />
                         </InputGroup>
-                        {errors.precio && <span>{errors.precio}</span>}
+                        {errors.precio && (
+                          <span className="error">{errors.precio}</span>
+                        )}
                       </FormGroup>
                     </Col>
                   </Row>
@@ -232,7 +244,9 @@ const AddProduct = () => {
                             onChange={handleChange}
                           />
                         </InputGroup>
-                        {errors.cantidad && <span>{errors.cantidad}</span>}
+                        {errors.cantidad && (
+                          <span className="error">{errors.cantidad}</span>
+                        )}
                       </FormGroup>
                     </Col>
                   </Row>
@@ -248,7 +262,9 @@ const AddProduct = () => {
                             onChange={handlePhoto}
                           />
                         </InputGroup>
-                        {errors.photo && <span>{errors.photo}</span>}
+                        {errors.photo && (
+                          <span className="error">{errors.photo}</span>
+                        )}
                       </FormGroup>
                     </Col>
                   </Row>
@@ -270,7 +286,7 @@ const AddProduct = () => {
                       />
                     </InputGroup>
                     {errors && errors.responsable.nombre && (
-                      <span>{errors.responsable.nombre}</span>
+                      <span className="error">{errors.responsable.nombre}</span>
                     )}
                   </FormGroup>
                 </Col>
@@ -286,7 +302,9 @@ const AddProduct = () => {
                       />
                     </InputGroup>
                     {errors && errors.responsable.apellido && (
-                      <span>{errors.responsable.apellido}</span>
+                      <span className="error">
+                        {errors.responsable.apellido}
+                      </span>
                     )}
                   </FormGroup>
                 </Col>
@@ -304,7 +322,7 @@ const AddProduct = () => {
                       />
                     </InputGroup>
                     {errors && errors.responsable.correo && (
-                      <span>{errors.responsable.correo}</span>
+                      <span className="error">{errors.responsable.correo}</span>
                     )}
                   </FormGroup>
                 </Col>
@@ -320,7 +338,7 @@ const AddProduct = () => {
                       />
                     </InputGroup>
                     {errors && errors.responsable.cedula && (
-                      <span>{errors.responsable.cedula}</span>
+                      <span className="error">{errors.responsable.cedula}</span>
                     )}
                   </FormGroup>
                 </Col>
@@ -344,7 +362,7 @@ const AddProduct = () => {
                       </select>
                     </InputGroup>
                     {errors && errors.responsable.unidad && (
-                      <span>{errors.responsable.unidad}</span>
+                      <span className="error">{errors.responsable.unidad}</span>
                     )}
                   </FormGroup>
                 </Col>
@@ -368,13 +386,14 @@ const AddProduct = () => {
                       </select>
                     </InputGroup>
                     {errors && errors.responsable.sede && (
-                      <span>{errors.responsable.sede}</span>
+                      <span className="error">{errors.responsable.sede}</span>
                     )}
                   </FormGroup>
                 </Col>
               </Row>
               <div className="text-center">
                 <Button
+                  disabled={isInvalid}
                   className="mt-4"
                   color="primary"
                   type="button"
