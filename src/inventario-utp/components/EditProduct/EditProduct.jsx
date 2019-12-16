@@ -11,6 +11,8 @@ import {
   Form,
   FormGroup,
   InputGroup,
+  InputGroupAddon,
+  InputGroupText,
   Label,
   Input
 } from "reactstrap";
@@ -96,7 +98,7 @@ const EditProduct = props => {
             <Col>
               <h1 className="mb-4">Editar datos del producto</h1>
               <Row>
-                <Col md="6">
+                <Col>
                   <FormGroup>
                     <Label for="nombre">Nombre</Label>
                     <Input
@@ -105,10 +107,11 @@ const EditProduct = props => {
                       value={nombre}
                       onChange={handleChange}
                     />
+                    {errors.nombre && <span>{errors.nombre}</span>}
                   </FormGroup>
                 </Col>
 
-                <Col md="6">
+                <Col>
                   <FormGroup>
                     <Label for="estado">Estado del producto</Label>
                     <select
@@ -121,34 +124,36 @@ const EditProduct = props => {
                       <option value="disponible">Disponible</option>
                       <option value="en_uso">En uso</option>
                     </select>
+                    {errors.estado && <span>{errors.estado}</span>}
                   </FormGroup>
                 </Col>
               </Row>
               <Row>
-                <Col md="6">
+                <Col>
                   <FormGroup>
                     <Label for="precio">Precio</Label>
                     <Input type="number" name="precio" defaultValue={precio} />
+                    {errors.precio && <span>{errors.precio}</span>}
                   </FormGroup>
                 </Col>
-                <Col md="6">
+                <Col>
+                  <Label>Cantidad</Label>
                   <FormGroup>
-                    <Label for="sede">Sede</Label>
-                    <select
-                      className="custom-select"
-                      name="sede"
-                      defaultValue={sede}
-                      onChange={handleChange}
-                    >
-                      <option value="">Sede del producto</option>
-                      <option value="azuero">Azuero</option>
-                      <option value="bocas">Bocas del toro</option>
-                      <option value="central">Central </option>
-                      <option value="chiriqui">Chiriqui</option>
-                      <option value="cocle">Coclé</option>
-                      <option value="panama_oeste">Panamá Oeste</option>
-                      <option value="veraguas">Veraguas</option>
-                    </select>
+                    <InputGroup className="input-group-alternative mb-3">
+                      <InputGroupAddon addonType="prepend">
+                        <InputGroupText>
+                          <i className="ni ni-hat-3" />
+                        </InputGroupText>
+                      </InputGroupAddon>
+                      <Input
+                        placeholder="Cantidad de items"
+                        type="number"
+                        name="cantidad"
+                        value={values.cantidad}
+                        onChange={handleChange}
+                      />
+                    </InputGroup>
+                    {errors.cantidad && <span>{errors.cantidad}</span>}
                   </FormGroup>
                 </Col>
               </Row>
@@ -180,6 +185,27 @@ const EditProduct = props => {
                     {errors.facultad && <span>{errors.facultad}</span>}
                   </FormGroup>
                 </Col>
+                <Col>
+                  <FormGroup>
+                    <Label for="sede">Sede</Label>
+                    <select
+                      className="custom-select"
+                      name="sede"
+                      defaultValue={sede}
+                      onChange={handleChange}
+                    >
+                      <option value="">Sede del producto</option>
+                      <option value="azuero">Azuero</option>
+                      <option value="bocas">Bocas del toro</option>
+                      <option value="central">Central </option>
+                      <option value="chiriqui">Chiriqui</option>
+                      <option value="cocle">Coclé</option>
+                      <option value="panama_oeste">Panamá Oeste</option>
+                      <option value="veraguas">Veraguas</option>
+                    </select>
+                    {errors.sede && <span>{errors.sede}</span>}
+                  </FormGroup>
+                </Col>
               </Row>
               <Row>
                 <Col>
@@ -194,6 +220,7 @@ const EditProduct = props => {
                       defaultValue={descripcion}
                       onChange={handleChange}
                     ></textarea>
+                    {errors.descripcion && <span>{errors.descripcion}</span>}
                   </FormGroup>
                 </Col>
               </Row>
