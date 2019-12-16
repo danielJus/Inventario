@@ -1,7 +1,5 @@
 import React from "react";
-// reactstrap components
-import { useDispatch } from "react-redux";
-import { Link } from "react-router-dom";
+
 import {
   Button,
   Container,
@@ -16,22 +14,29 @@ import {
   InputGroup,
   Col
 } from "reactstrap";
-import useForm from "../Hooks/useForm";
-import validate from "../utils/validate";
-import { login } from "../redux/actions/authActions";
-
-const Login = props => {
+import useForm from "../../Hooks/useForm";
+import validate from "../../utils/validate";
+import { useDispatch } from "react-redux";
+import { reset_password } from "../../redux/actions/authActions";
+const ResetPassword = () => {
   const dispatch = useDispatch();
 
-  const { handleChange, handleSubmit, values, errors } = useForm(
+  const { handleChange, handleSubmit, values, errors, isInvalid } = useForm(
     submit,
     validate,
-    { correo: "", password: "" }
+    {
+      password: "",
+      passwordConfirm: "",
+      token: ""
+    }
   );
   function submit() {
-    login(values)(dispatch);
+    let passwords = {
+      password: values.password,
+      passwordConfirm: values.passwordConfirm
+    };
+    reset_password(values.token, passwords)(dispatch);
   }
-
   return (
     <React.Fragment>
       <Container>
@@ -39,7 +44,7 @@ const Login = props => {
           <Card className="bg-secondary shadow border-0">
             <CardHeader className="bg-transparent pb-5">
               <div className="text-muted text-center mt-2 mb-3">
-                <h2>Iniciar Sesión</h2>
+                <h2>Introduzca su nueva contraseña</h2>
               </div>
             </CardHeader>
             <CardBody className="px-lg-5 py-lg-5">
@@ -52,14 +57,31 @@ const Login = props => {
                       </InputGroupText>
                     </InputGroupAddon>
                     <Input
-                      placeholder="Correo Electrónico"
-                      type="email"
-                      name="correo"
+                      placeholder="Pegue el código aquí"
+                      type="text"
+                      name="token"
                       onChange={handleChange}
-                      value={values.email}
+                      value={values.token}
                     />
                   </InputGroup>
-                  {errors.email && <label>{errors.email}</label>}
+                  {errors.token && <label>{errors.token}</label>}
+                </FormGroup>
+                <FormGroup className="mb-3">
+                  <InputGroup className="input-group-alternative">
+                    <InputGroupAddon addonType="prepend">
+                      <InputGroupText>
+                        <i className="ni ni-email-83" />
+                      </InputGroupText>
+                    </InputGroupAddon>
+                    <Input
+                      placeholder="Nueva contraseña"
+                      type="password"
+                      name="password"
+                      onChange={handleChange}
+                      value={values.password}
+                    />
+                  </InputGroup>
+                  {errors.password && <span>{errors.password}</span>}
                 </FormGroup>
                 <FormGroup>
                   <InputGroup className="input-group-alternative">
@@ -69,36 +91,26 @@ const Login = props => {
                       </InputGroupText>
                     </InputGroupAddon>
                     <Input
-                      placeholder="Contraseña"
-                      name="password"
+                      placeholder="Confirme su contraseña"
+                      name="passwordConfirm"
                       type="password"
                       onChange={handleChange}
-                      value={values.password}
+                      value={values.passwordConfirm}
                     />
                   </InputGroup>
-                  {errors.password && <label>{errors.password}</label>}
+                  {errors.passwordConfirm && (
+                    <span>{errors.passwordConfirm}</span>
+                  )}
                 </FormGroup>
-                <div className="custom-control custom-control-alternative custom-checkbox">
-                  <input
-                    className="custom-control-input"
-                    id=" customCheckLogin"
-                    type="checkbox"
-                  />
-                  <label
-                    className="custom-control-label"
-                    htmlFor=" customCheckLogin"
-                  >
-                    <Link to="/forgot-password">Olvidaste tu contraseña?</Link>
-                  </label>
-                </div>
                 <div className="text-center">
                   <Button
+                    disabled={isInvalid}
                     className="my-4"
                     color="primary"
                     type="button"
                     onClick={handleSubmit}
                   >
-                    Iniciar Sesión
+                    Cambiar contraseña
                   </Button>
                 </div>
               </Form>
@@ -110,4 +122,4 @@ const Login = props => {
   );
 };
 
-export default Login;
+export default ResetPassword;

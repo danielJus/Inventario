@@ -2,7 +2,7 @@ import React from "react";
 
 import { Card, CardHeader, Container, Row, Col } from "reactstrap";
 
-import ProductList from "./ProductList";
+import ProductList from "../ProductList/ProductList";
 const Index = props => {
   return (
     <React.Fragment>

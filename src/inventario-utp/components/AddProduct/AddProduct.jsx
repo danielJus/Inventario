@@ -1,8 +1,8 @@
 import React, { useState } from "react";
 import { useDispatch } from "react-redux";
-import useForm from "../Hooks/useForm";
-import validate from "../utils/validate";
-import { create_product } from "../redux/actions/productActions";
+import useForm from "../../Hooks/useForm";
+import validate from "../../utils/validate";
+import { create_product } from "../../redux/actions/productActions";
 import "./AddProduct.scss";
 
 import {

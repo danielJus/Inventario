@@ -1,7 +1,7 @@
 import React from "react";
 
 import { Card, CardHeader, Container, Row, Col } from "reactstrap";
-import UserList from "./UserList";
+import UserList from "../UserList/UserList";
 
 const Users = () => {
   return (

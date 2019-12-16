@@ -2,9 +2,9 @@ import React, { useState, useEffect } from "react";
 import { useSelector } from "react-redux";
 import Modal from "react-modal";
 import { Button, Table } from "reactstrap";
-import EditProduct from "./EditProduct";
-import DeleteProduct from "./DeleteProduct";
-import RequestProduct from "./RequestProduct";
+import EditProduct from "../EditProduct/EditProduct";
+import DeleteProduct from "../DeleteProduct/DeleteProduct";
+import RequestProduct from "../RequestProduct/RequestProduct";
 
 const ProductList = () => {
   const products = useSelector(({ products }) => products.products);
@@ -66,7 +66,7 @@ const ProductList = () => {
               <td>{product.nombre}</td>
               <td>
                 <img
-                  src={require(`../img/products/${product.photo}`)}
+                  src={require(`../../img/products/${product.photo}`)}
                   alt="..."
                   style={{ width: "5rem" }}
                 />

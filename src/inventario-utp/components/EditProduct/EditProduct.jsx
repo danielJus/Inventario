@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { useDispatch } from "react-redux";
-import useForm from "../Hooks/useForm";
-import validate from "../utils/validate";
+import useForm from "../../Hooks/useForm";
+import validate from "../../utils/validate";
 
 import {
   Container,
@@ -14,7 +14,7 @@ import {
   Label,
   Input
 } from "reactstrap";
-import { edit_product } from "../redux/actions/productActions.js";
+import { edit_product } from "../../redux/actions/productActions.js";
 
 const EditProduct = props => {
   console.log("edit product", props.product);
@@ -83,7 +83,7 @@ const EditProduct = props => {
             <Col md="6">
               <img
                 style={{ maxWidth: "30rem" }}
-                src={require(`../img/products/${product.photo}`)}
+                src={require(`../../img/products/${product.photo}`)}
                 alt="..."
               />
               <Input

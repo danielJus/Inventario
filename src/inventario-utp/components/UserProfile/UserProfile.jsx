@@ -10,9 +10,9 @@ import {
   Col
 } from "reactstrap";
 import Modal from "react-modal";
-import ChangePassword from "./ChangePassword";
-import UserInfo from "./UserInfo";
-import DeleteProfile from "./DeleteProfile";
+import ChangePassword from "../ChangePassword/ChangePassword";
+import UserInfo from "../UserInfo/UserInfo";
+import DeleteProfile from "../DeleteProfile/DeleteProfile";
 import { useSelector } from "react-redux";
 export const UserProfile = () => {
   const [modal, setModal] = useState(false);

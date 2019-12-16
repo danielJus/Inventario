@@ -12,9 +12,9 @@ import {
   Col
 } from "reactstrap";
 import { useDispatch } from "react-redux";
-import useForm from "../Hooks/useForm";
-import validate from "../utils/validate";
-import { change_password } from "../redux/actions/authActions";
+import useForm from "../../Hooks/useForm";
+import validate from "../../utils/validate";
+import { change_password } from "../../redux/actions/authActions";
 const ChangePassword = () => {
   const dispatch = useDispatch();
 

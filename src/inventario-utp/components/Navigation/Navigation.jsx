@@ -9,8 +9,8 @@ import {
   NavItem
 } from "reactstrap";
 import { LinkContainer } from "react-router-bootstrap";
-import { logout } from "../redux/actions/authActions";
-import { history } from "../utils/history";
+import { logout } from "../../redux/actions/authActions";
+import { history } from "../../utils/history";
 
 const Navigation = props => {
   const user = useSelector(({ auth: { user } }) => user);

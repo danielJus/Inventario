@@ -1,7 +1,8 @@
 import React from "react";
 import { useDispatch } from "react-redux";
-import useForm from "../Hooks/useForm";
-import validate from "../utils/validate";
+import useForm from "../../Hooks/useForm";
+import validate from "../../utils/validate";
+import { delete_user } from "../../redux/actions/userActions";
 import {
   Container,
   Row,
@@ -12,31 +13,31 @@ import {
   Label,
   Input
 } from "reactstrap";
-import { delete_product } from "../redux/actions/productActions";
-const DeleteProduct = props => {
-  const { nombre } = props.product;
+
+const DeleteUser = props => {
   const dispatch = useDispatch();
   let none = null;
+  const { _id, nombreUsuario } = props.user;
 
-  const { handleChange, handleSubmit, values, errors, isInvalid } = useForm(
+  const { handleChange, handleSubmit, values, isInvalid } = useForm(
     submit,
     validate,
-    { productoBorrar: "" },
+    { usuarioBorrar: "" },
     none,
-    nombre
+    nombreUsuario
   );
   function submit() {
-    delete_product(props.product._id)(dispatch);
-    console.log("borrar producto");
+    delete_user(_id)(dispatch);
+    console.log("borrar usuario");
   }
   return (
     <div>
       <Container>
         <section>
-          <h1>Desea eliminar el producto: "{nombre}" de la base de datos?</h1>
+          <h1>Desea al usuario: "{nombreUsuario}" de la base de datos?</h1>
           <p className="display-4">
             Para poder eliminar este producto de la base de datos introduzca: "
-            {nombre}" y luego presione el botón "eliminar producto"
+            {nombreUsuario}" y luego presione el botón "eliminar producto"
           </p>
         </section>
 
@@ -44,10 +45,10 @@ const DeleteProduct = props => {
           <Row>
             <Col>
               <FormGroup>
-                <Label>Nombre del producto</Label>
+                <Label>Nombre del usuario</Label>
                 <Input
-                  name="productoBorrar"
-                  value={values.productoBorrar}
+                  name="usuarioBorrar"
+                  value={values.usuarioBorrar}
                   onChange={handleChange}
                 />
               </FormGroup>
@@ -61,7 +62,7 @@ const DeleteProduct = props => {
                 disabled={isInvalid}
                 onClick={handleSubmit}
               >
-                Eliminar producto
+                Eliminar usuario
               </Button>
               <Button color="secondary">Cancelar</Button>
             </Col>
@@ -72,4 +73,4 @@ const DeleteProduct = props => {
   );
 };
 
-export default DeleteProduct;
+export default DeleteUser;

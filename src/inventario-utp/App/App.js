@@ -1,18 +1,18 @@
 import React from "react";
 import { useSelector } from "react-redux";
 import { Switch, Route, Redirect } from "react-router-dom";
-import Index from "../components/Index";
-import Login from "../components/Login";
-import Profile from "../components/UserProfile";
-import AddProduct from "../components/AddProduct";
-import AddUser from "../components/AddUser";
-import Users from "../components/Users";
-import Navigation from "../components/Navigation";
-import ForgotPassword from "../components/ForgotPassword";
+import Index from "../components/Index/Index";
+import Login from "../components/Login/Login";
+import Profile from "../components/UserProfile/UserProfile";
+import AddProduct from "../components/AddProduct/AddProduct";
+import AddUser from "../components/AddUser/AddUser";
+import Users from "../components/Users/Users";
+import Navigation from "../components/Navigation/Navigation";
+import ResetPassword from "../components/ResetPassword/ResetPassword";
+import ForgotPassword from "../components/ForgotPassword/ForgotPassword";
 import { useDispatch } from "react-redux";
 import { fetch_products } from "../redux/actions/productActions";
 import { fetch_users } from "../redux/actions/userActions";
-import ResetPassword from "../components/ResetPassword";
 
 const App = props => {
   const user = useSelector(({ auth }) => auth.user);

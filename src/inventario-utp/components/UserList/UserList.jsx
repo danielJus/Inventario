@@ -2,8 +2,8 @@ import React, { useState, useEffect } from "react";
 import { useSelector } from "react-redux";
 import Modal from "react-modal";
 import { Button, Table } from "reactstrap";
-import EditUser from "./EditUser";
-import DeleteUser from "./DeleteUser";
+import EditUser from "../EditUser/EditUser";
+import DeleteUser from "../DeleteUser/DeleteUser";
 
 const UserList = () => {
   const users = useSelector(({ user }) => user.users);

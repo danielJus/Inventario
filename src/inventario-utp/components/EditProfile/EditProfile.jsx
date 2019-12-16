@@ -1,8 +1,8 @@
 import React from "react";
 import { useDispatch, useSelector } from "react-redux";
-import useForm from "../Hooks/useForm";
-import validate from "../utils/validate";
-import { edit_user } from "../redux/actions/userActions";
+import useForm from "../../Hooks/useForm";
+import validate from "../../utils/validate";
+import { edit_user } from "../../redux/actions/userActions";
 import {
   Button,
   FormGroup,

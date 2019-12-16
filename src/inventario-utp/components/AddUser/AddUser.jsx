@@ -1,7 +1,7 @@
 import React from "react";
-import useForm from "../Hooks/useForm";
-import validate from "../utils/validate";
-import { create_user } from "../redux/actions/userActions";
+import useForm from "../../Hooks/useForm";
+import validate from "../../utils/validate";
+import { create_user } from "../../redux/actions/userActions";
 import { useDispatch } from "react-redux";
 import "./AddUser.scss";
 import {

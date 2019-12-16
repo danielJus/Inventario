@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { useDispatch } from "react-redux";
-import useForm from "../Hooks/useForm";
-import validate from "../utils/validate";
+import useForm from "../../Hooks/useForm";
+import validate from "../../utils/validate";
 
 import {
   Container,
@@ -17,7 +17,7 @@ import {
   Input
 } from "reactstrap";
 
-import { edit_user } from "../redux/actions/userActions";
+import { edit_user } from "../../redux/actions/userActions";
 
 const EditUser = props => {
   const dispatch = useDispatch();

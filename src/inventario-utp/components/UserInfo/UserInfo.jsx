@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 
 import { Button, FormGroup, Form, Input, Row, Col } from "reactstrap";
-import EditProfile from "./EditProfile";
+import EditProfile from "../EditProfile/EditProfile";
 import Modal from "react-modal";
 const UserInfo = props => {
   const {

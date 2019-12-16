@@ -14,9 +14,9 @@ import {
   Container
 } from "reactstrap";
 import { useDispatch, useSelector } from "react-redux";
-import useForm from "../Hooks/useForm";
-import validate from "../utils/validate";
-import { request_product } from "../redux/actions/productActions";
+import useForm from "../../Hooks/useForm";
+import validate from "../../utils/validate";
+import { request_product } from "../../redux/actions/productActions";
 
 const RequestProduct = props => {
   const dispatch = useDispatch();

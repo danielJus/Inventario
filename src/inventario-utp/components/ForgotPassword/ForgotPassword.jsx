@@ -1,5 +1,5 @@
 import React from "react";
-import useForm from "../Hooks/useForm";
+import useForm from "../../Hooks/useForm";
 import { useDispatch } from "react-redux";
 import {
   Button,
@@ -12,9 +12,9 @@ import {
   Container,
   Alert
 } from "reactstrap";
-import validate from "../utils/validate";
+import validate from "../../utils/validate";
 import { useSelector } from "react-redux";
-import { forgot_password } from "../redux/actions/authActions";
+import { forgot_password } from "../../redux/actions/authActions";
 const ForgotPassword = () => {
   const status = useSelector(({ auth }) => auth.forgot_password);
   const dispatch = useDispatch();
