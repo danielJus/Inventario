@@ -79,10 +79,6 @@ const ProductList = () => {
               <td>{product.facultad}</td>
               <td>{product.sede}</td>
               <td>
-                <Button color="primary" onClick={() => toggle(product)}>
-                  Editar
-                </Button>
-
                 <Button
                   color="success"
                   type="button"
@@ -92,12 +88,18 @@ const ProductList = () => {
                 </Button>
 
                 {user && (
-                  <Button
-                    color="danger"
-                    onClick={() => toggleDeleteModal(product)}
-                  >
-                    Eliminar
-                  </Button>
+                  <React.Fragment>
+                    <Button color="primary" onClick={() => toggle(product)}>
+                      Editar
+                    </Button>
+
+                    <Button
+                      color="danger"
+                      onClick={() => toggleDeleteModal(product)}
+                    >
+                      Eliminar
+                    </Button>
+                  </React.Fragment>
                 )}
               </td>
             </tr>

@@ -27,13 +27,13 @@ export const login = user => {
         dispatch(login_success(data.data.user));
         if (data.data.user) history.push("/");
       })
-      .catch(error =>
+      .catch(error => {
         dispatch(
           login_failure(
             error.message ? error.message : "Error iniciando sesión"
           )
-        )
-      );
+        );
+      });
   };
 };
 

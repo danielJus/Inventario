@@ -1,7 +1,7 @@
-import React from "react";
-// reactstrap components
-import { useDispatch } from "react-redux";
+import React, { useState, useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
+
 import {
   Button,
   Container,
@@ -14,23 +14,42 @@ import {
   InputGroupAddon,
   InputGroupText,
   InputGroup,
+  Alert,
   Col
 } from "reactstrap";
-import useForm from "../../Hooks/useForm";
-import validate from "../../utils/validate";
+
 import { login } from "../../redux/actions/authActions";
 import "./Login.scss";
 
 const Login = props => {
   const dispatch = useDispatch();
+  const error = useSelector(({ auth }) => auth.errorMessage);
+  const [user, setUser] = useState({
+    correo: "",
+    password: ""
+  });
 
-  const { handleChange, handleSubmit, values, errors } = useForm(
-    submit,
-    validate,
-    { correo: "", password: "" }
-  );
+  const [alert, setAlert] = useState(false);
+
+  const handleChange = e => {
+    const { name, value } = e.target;
+    setUser({
+      ...user,
+      [name]: value
+    });
+  };
   function submit() {
-    login(values)(dispatch);
+    login(user)(dispatch);
+    showAlerts();
+  }
+
+  function showAlerts() {
+    if (error) {
+      setAlert(true);
+      setTimeout(() => {
+        setAlert(false);
+      }, 3000);
+    }
   }
 
   return (
@@ -57,10 +76,9 @@ const Login = props => {
                       type="email"
                       name="correo"
                       onChange={handleChange}
-                      value={values.email}
+                      value={user.correo || ""}
                     />
                   </InputGroup>
-                  {errors.email && <label>{errors.email}</label>}
                 </FormGroup>
                 <FormGroup>
                   <InputGroup className="input-group-alternative">
@@ -74,7 +92,7 @@ const Login = props => {
                       name="password"
                       type="password"
                       onChange={handleChange}
-                      value={values.password}
+                      value={user.password || ""}
                     />
                   </InputGroup>
                 </FormGroup>
@@ -96,13 +114,19 @@ const Login = props => {
                     className="my-4"
                     color="primary"
                     type="button"
-                    onClick={handleSubmit}
+                    onClick={submit}
                   >
                     Iniciar Sesión
                   </Button>
                 </div>
               </Form>
             </CardBody>
+
+            <Alert className="alert" color="danger" isOpen={alert}>
+              <p className="text-center">
+                Correo electrónico o contraseña incorrectos
+              </p>
+            </Alert>
           </Card>
         </Col>
       </Container>
