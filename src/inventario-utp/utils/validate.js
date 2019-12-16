@@ -129,6 +129,31 @@ export default function validate(name, value, errors, deleteValue = "") {
           ? "los nombres deben coincidir"
           : "";
       break;
+    case "nombreSolicitante":
+      errors.nombreSolicitante =
+        !valid_string.test(value) || value.length < 2 || !value
+          ? "Nombre inválido"
+          : "";
+      break;
+    case "apellidoSolicitante":
+      errors.apellidoSolicitante =
+        !valid_string.test(value) || value.length < 2 || !value
+          ? "apellido inválido"
+          : "";
+      break;
+    case "cedulaSolicitante":
+      errors.cedulaSolicitante =
+        !value || valid_cedula(value) !== true
+          ? "Introduzca una cédula válida"
+          : "";
+      break;
+    case "correoSolicitante":
+      errors.correoSolicitante =
+        valid_email.test(value) !== true || !value
+          ? "Introduzca una direccion de correo electrónico válida"
+          : "";
+      break;
+
     default:
       break;
   }

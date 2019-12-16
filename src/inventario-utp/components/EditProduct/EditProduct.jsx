@@ -17,6 +17,7 @@ import {
   Input
 } from "reactstrap";
 import { edit_product } from "../../redux/actions/productActions.js";
+import "./EditProduct.scss";
 
 const EditProduct = props => {
   console.log("edit product", props.product);
@@ -107,7 +108,9 @@ const EditProduct = props => {
                       value={nombre}
                       onChange={handleChange}
                     />
-                    {errors.nombre && <span>{errors.nombre}</span>}
+                    {errors.nombre && (
+                      <span className="error">{errors.nombre}</span>
+                    )}
                   </FormGroup>
                 </Col>
 
@@ -124,7 +127,9 @@ const EditProduct = props => {
                       <option value="disponible">Disponible</option>
                       <option value="en_uso">En uso</option>
                     </select>
-                    {errors.estado && <span>{errors.estado}</span>}
+                    {errors.estado && (
+                      <span className="error">{errors.estado}</span>
+                    )}
                   </FormGroup>
                 </Col>
               </Row>
@@ -132,8 +137,15 @@ const EditProduct = props => {
                 <Col>
                   <FormGroup>
                     <Label for="precio">Precio</Label>
-                    <Input type="number" name="precio" defaultValue={precio} />
-                    {errors.precio && <span>{errors.precio}</span>}
+                    <Input
+                      type="number"
+                      name="precio"
+                      defaultValue={precio}
+                      onChange={handleChange}
+                    />
+                    {errors.precio && (
+                      <span className="error">{errors.precio}</span>
+                    )}
                   </FormGroup>
                 </Col>
                 <Col>
@@ -153,13 +165,16 @@ const EditProduct = props => {
                         onChange={handleChange}
                       />
                     </InputGroup>
-                    {errors.cantidad && <span>{errors.cantidad}</span>}
+                    {errors.cantidad && (
+                      <span className="error">{errors.cantidad}</span>
+                    )}
                   </FormGroup>
                 </Col>
               </Row>
               <Row>
                 <Col>
                   <FormGroup>
+                    <Label>Facultad</Label>
                     <InputGroup className="input-group-alternative">
                       <select
                         className="custom-select"
@@ -182,7 +197,9 @@ const EditProduct = props => {
                         </option>
                       </select>
                     </InputGroup>
-                    {errors.facultad && <span>{errors.facultad}</span>}
+                    {errors.facultad && (
+                      <span className="error">{errors.facultad}</span>
+                    )}
                   </FormGroup>
                 </Col>
                 <Col>
@@ -203,7 +220,9 @@ const EditProduct = props => {
                       <option value="panama_oeste">Panamá Oeste</option>
                       <option value="veraguas">Veraguas</option>
                     </select>
-                    {errors.sede && <span>{errors.sede}</span>}
+                    {errors.sede && (
+                      <span className="error">{errors.sede}</span>
+                    )}
                   </FormGroup>
                 </Col>
               </Row>
@@ -220,13 +239,15 @@ const EditProduct = props => {
                       defaultValue={descripcion}
                       onChange={handleChange}
                     ></textarea>
-                    {errors.descripcion && <span>{errors.descripcion}</span>}
+                    {errors.descripcion && (
+                      <span className="error">{errors.descripcion}</span>
+                    )}
                   </FormGroup>
                 </Col>
               </Row>
 
               <Row>
-                <Col md="6">
+                <Col>
                   <FormGroup>
                     <Label for="responsable.nombre">
                       Nombre del responsable
@@ -238,21 +259,29 @@ const EditProduct = props => {
                       name="responsable.nombre"
                       onChange={handleChange}
                     />
+                    {errors && errors.responsable.nombre && (
+                      <span className="error">{errors.responsable.nombre}</span>
+                    )}
                   </FormGroup>
                 </Col>
 
                 <Col>
                   <FormGroup>
-                    <Label for="responsable.nombre">
+                    <Label for="responsable.apellido">
                       Apellido del responsable
                     </Label>
 
                     <Input
                       type="text"
-                      defaultValue={responsable.nombre}
+                      defaultValue={responsable.apellido}
                       name="responsable.apellido"
                       onChange={handleChange}
                     />
+                    {errors && errors.responsable.apellido && (
+                      <span className="error">
+                        {errors.responsable.apellido}
+                      </span>
+                    )}
                   </FormGroup>
                 </Col>
               </Row>
@@ -270,6 +299,9 @@ const EditProduct = props => {
                       defaultValue={responsable.cedula}
                       onChange={handleChange}
                     />
+                    {errors && errors.responsable.cedula && (
+                      <span className="error">{errors.responsable.cedula}</span>
+                    )}
                   </FormGroup>
                 </Col>
                 <Col>
@@ -285,13 +317,16 @@ const EditProduct = props => {
                       defaultValue={responsable.correo}
                       onChange={handleChange}
                     />
+                    {errors && errors.responsable.correo && (
+                      <span className="error">{errors.responsable.correo}</span>
+                    )}
                   </FormGroup>
                 </Col>
               </Row>
               <Row>
                 <Col>
                   <FormGroup>
-                    <Label for="responsable.nombre">
+                    <Label for="responsable.unidad">
                       Unidad del responsable
                     </Label>
 
@@ -307,6 +342,9 @@ const EditProduct = props => {
                         Centro de investigación
                       </option>
                     </select>
+                    {errors && errors.responsable.unidad && (
+                      <span className="error">{errors.responsable.unidad}</span>
+                    )}
                   </FormGroup>
                 </Col>
                 <Col>
@@ -327,6 +365,9 @@ const EditProduct = props => {
                       <option value="panama_oeste">Panamá Oeste</option>
                       <option value="veraguas">Veraguas</option>
                     </select>
+                    {errors && errors.responsable.sede && (
+                      <span className="error">{errors.responsable.sede}</span>
+                    )}
                   </FormGroup>
                 </Col>
               </Row>
@@ -334,9 +375,9 @@ const EditProduct = props => {
           </Row>
 
           <Row>
-            <Col md="6"></Col>
+            <Col></Col>
 
-            <Col md="6">
+            <Col>
               <Button
                 disabled={isInvalid}
                 color="success"

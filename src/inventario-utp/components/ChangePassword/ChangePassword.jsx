@@ -15,6 +15,7 @@ import { useDispatch } from "react-redux";
 import useForm from "../../Hooks/useForm";
 import validate from "../../utils/validate";
 import { change_password } from "../../redux/actions/authActions";
+import "./ChangePassword.scss";
 const ChangePassword = () => {
   const dispatch = useDispatch();
 
@@ -49,7 +50,7 @@ const ChangePassword = () => {
                   type="password"
                 />
                 {errors.passwordCurrent && (
-                  <span>{errors.passwordCurrent}</span>
+                  <span className="error">{errors.passwordCurrent}</span>
                 )}
               </FormGroup>
             </Col>
@@ -65,7 +66,9 @@ const ChangePassword = () => {
                   onChange={handleChange}
                   type="password"
                 />
-                {errors.password && <span>{errors.password}</span>}
+                {errors.password && (
+                  <span className="error">{errors.password}</span>
+                )}
               </FormGroup>
             </Col>
             <Col lg="6">
@@ -81,7 +84,7 @@ const ChangePassword = () => {
                   type="password"
                 />
                 {errors.passwordConfirm && (
-                  <span>{errors.passwordConfirm}</span>
+                  <span className="error">{errors.passwordConfirm}</span>
                 )}
               </FormGroup>
             </Col>

@@ -71,7 +71,7 @@ const AddUser = props => {
                       />
                     </InputGroup>
                     {errors.nombreUsuario && (
-                      <span>{errors.nombreUsuario}</span>
+                      <span className="error">{errors.nombreUsuario}</span>
                     )}
                   </FormGroup>
                 </Col>
@@ -92,7 +92,7 @@ const AddUser = props => {
                       />
                     </InputGroup>
                     {errors.apellidoUsuario && (
-                      <span>{errors.apellidoUsuario}</span>
+                      <span className="error">{errors.apellidoUsuario}</span>
                     )}
                   </FormGroup>
                 </Col>
@@ -114,7 +114,9 @@ const AddUser = props => {
                         onChange={handleChange}
                       />
                     </InputGroup>
-                    {errors.cedula && <span>{errors.cedula}</span>}
+                    {errors.cedula && (
+                      <span className="error">{errors.cedula}</span>
+                    )}
                   </FormGroup>
                 </Col>
                 <Col>
@@ -133,7 +135,9 @@ const AddUser = props => {
                         onChange={handleChange}
                       />
                     </InputGroup>
-                    {errors.correo && <span>{errors.correo}</span>}
+                    {errors.correo && (
+                      <span className="error">{errors.correo}</span>
+                    )}
                   </FormGroup>
                 </Col>
               </Row>
@@ -154,7 +158,9 @@ const AddUser = props => {
                         onChange={handleChange}
                       />
                     </InputGroup>
-                    {errors.password && <span>{errors.password}</span>}
+                    {errors.password && (
+                      <span className="error">{errors.password}</span>
+                    )}
                   </FormGroup>
                 </Col>
                 <Col>
@@ -174,7 +180,7 @@ const AddUser = props => {
                       />
                     </InputGroup>
                     {errors.passwordConfirm && (
-                      <span>{errors.passwordConfirm}</span>
+                      <span className="error">{errors.passwordConfirm}</span>
                     )}
                   </FormGroup>
                 </Col>
@@ -204,7 +210,9 @@ const AddUser = props => {
                         </option>
                       </select>
                     </InputGroup>
-                    {errors.facultad && <span>{errors.facultad}</span>}
+                    {errors.facultad && (
+                      <span className="error">{errors.facultad}</span>
+                    )}
                   </FormGroup>
                 </Col>
                 <Col>
@@ -226,7 +234,9 @@ const AddUser = props => {
                         <option value="veraguas">Veraguas</option>
                       </select>
                     </InputGroup>
-                    {errors.sede && <span>{errors.sede}</span>}
+                    {errors.sede && (
+                      <span className="error">{errors.sede}</span>
+                    )}
                   </FormGroup>
                 </Col>
               </Row>

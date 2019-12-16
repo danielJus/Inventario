@@ -14,6 +14,7 @@ import {
   Col,
   Container
 } from "reactstrap";
+import "./EditProfile.scss";
 
 const EditProfile = () => {
   const user = useSelector(({ auth }) => auth.user);
@@ -50,7 +51,9 @@ const EditProfile = () => {
                 onChange={handleChange}
                 defaultValue={user.nombreUsuario}
               />
-              {errors.nombreUsuario && <span>{errors.nombreUsuario}</span>}
+              {errors.nombreUsuario && (
+                <span className="error">{errors.nombreUsuario}</span>
+              )}
             </Col>
             <Col>
               <Label>Apellido</Label>
@@ -59,7 +62,9 @@ const EditProfile = () => {
                 onChange={handleChange}
                 defaultValue={user.apellidoUsuario}
               />
-              {errors.apellidoUsuario && <span>{errors.apellidoUsuario}</span>}
+              {errors.apellidoUsuario && (
+                <span className="error">{errors.apellidoUsuario}</span>
+              )}
             </Col>
           </Row>
           <Row>
@@ -70,7 +75,7 @@ const EditProfile = () => {
                 onChange={handleChange}
                 defaultValue={user.correo}
               />
-              {errors.correo && <span>{errors.correo}</span>}
+              {errors.correo && <span className="error">{errors.correo}</span>}
             </Col>
             <Col>
               <Label>Cédula</Label>
@@ -79,7 +84,7 @@ const EditProfile = () => {
                 onChange={handleChange}
                 defaultValue={user.cedula}
               />
-              {errors.cedula && <span>{errors.cedula}</span>}
+              {errors.cedula && <span className="error">{errors.cedula}</span>}
             </Col>
           </Row>
           <Row>
@@ -106,7 +111,9 @@ const EditProfile = () => {
                     </option>
                   </select>
                 </InputGroup>
-                {errors.facultad && <span>{errors.facultad}</span>}
+                {errors.facultad && (
+                  <span className="error">{errors.facultad}</span>
+                )}
               </FormGroup>
             </Col>
             <Col>
@@ -129,7 +136,7 @@ const EditProfile = () => {
                     <option value="veraguas">Veraguas</option>
                   </select>
                 </InputGroup>
-                {errors.sede && <span>{errors.sede}</span>}
+                {errors.sede && <span className="error">{errors.sede}</span>}
               </FormGroup>
             </Col>
           </Row>

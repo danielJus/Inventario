@@ -19,6 +19,7 @@ import {
 import useForm from "../../Hooks/useForm";
 import validate from "../../utils/validate";
 import { login } from "../../redux/actions/authActions";
+import "./Login.scss";
 
 const Login = props => {
   const dispatch = useDispatch();
@@ -76,7 +77,6 @@ const Login = props => {
                       value={values.password}
                     />
                   </InputGroup>
-                  {errors.password && <label>{errors.password}</label>}
                 </FormGroup>
                 <div className="custom-control custom-control-alternative custom-checkbox">
                   <input

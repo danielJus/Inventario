@@ -15,6 +15,7 @@ import {
 import validate from "../../utils/validate";
 import { useSelector } from "react-redux";
 import { forgot_password } from "../../redux/actions/authActions";
+import "./ForgotPassword.scss";
 const ForgotPassword = () => {
   const status = useSelector(({ auth }) => auth.forgot_password);
   const dispatch = useDispatch();
@@ -38,7 +39,9 @@ const ForgotPassword = () => {
               <FormGroup>
                 <Label>Correo electrónico</Label>
                 <Input name="correo" onChange={handleChange} />
-                {errors.correo && <span>{errors.correo}</span>}
+                {errors.correo && (
+                  <span className="error">{errors.correo}</span>
+                )}
               </FormGroup>
             </Col>
           </Row>

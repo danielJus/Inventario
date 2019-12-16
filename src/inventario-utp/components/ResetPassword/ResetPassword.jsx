@@ -18,6 +18,7 @@ import useForm from "../../Hooks/useForm";
 import validate from "../../utils/validate";
 import { useDispatch } from "react-redux";
 import { reset_password } from "../../redux/actions/authActions";
+import "./ResetPassword.scss";
 const ResetPassword = () => {
   const dispatch = useDispatch();
 
@@ -64,7 +65,9 @@ const ResetPassword = () => {
                       value={values.token}
                     />
                   </InputGroup>
-                  {errors.token && <label>{errors.token}</label>}
+                  {errors.token && (
+                    <span className="error">{errors.token}</span>
+                  )}
                 </FormGroup>
                 <FormGroup className="mb-3">
                   <InputGroup className="input-group-alternative">
@@ -81,7 +84,9 @@ const ResetPassword = () => {
                       value={values.password}
                     />
                   </InputGroup>
-                  {errors.password && <span>{errors.password}</span>}
+                  {errors.password && (
+                    <span className="error">{errors.password}</span>
+                  )}
                 </FormGroup>
                 <FormGroup>
                   <InputGroup className="input-group-alternative">
@@ -99,7 +104,7 @@ const ResetPassword = () => {
                     />
                   </InputGroup>
                   {errors.passwordConfirm && (
-                    <span>{errors.passwordConfirm}</span>
+                    <span className="error">{errors.passwordConfirm}</span>
                   )}
                 </FormGroup>
                 <div className="text-center">

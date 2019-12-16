@@ -17,10 +17,10 @@ import { useDispatch, useSelector } from "react-redux";
 import useForm from "../../Hooks/useForm";
 import validate from "../../utils/validate";
 import { request_product } from "../../redux/actions/productActions";
-
+import "./RequestProduct.scss";
 const RequestProduct = props => {
   const dispatch = useDispatch();
-  const { handleChange, handleSubmit, values, errors } = useForm(
+  const { handleChange, handleSubmit, values, errors, isInvalid } = useForm(
     submit,
     validate,
     {
@@ -110,21 +110,42 @@ const RequestProduct = props => {
                     <Col>
                       <Label>Nombre</Label>
                       <Input name="nombreSolicitante" onChange={handleChange} />
+                      {errors.nombreSolicitante && (
+                        <span className="error">
+                          {errors.nombreSolicitante}
+                        </span>
+                      )}
                     </Col>
                     <Col>
                       <Label>Apellido</Label>
                       <Input
+                        name="apellidoSolicitante"
                         apellido="apellidoSolicitante"
                         onChange={handleChange}
                       />
+                      {errors.apellidoSolicitante && (
+                        <span className="error">
+                          {errors.apellidoSolicitante}
+                        </span>
+                      )}
                     </Col>
                     <Col>
                       <Label>Cédula</Label>
                       <Input name="cedulaSolicitante" onChange={handleChange} />
+                      {errors.cedulaSolicitante && (
+                        <span className="error">
+                          {errors.cedulaSolicitante}
+                        </span>
+                      )}
                     </Col>
                     <Col>
                       <Label>Correo electrónico</Label>
                       <Input name="correoSolicitante" onChange={handleChange} />
+                      {errors.correoSolicitante && (
+                        <span className="error">
+                          {errors.correoSolicitante}
+                        </span>
+                      )}
                     </Col>
                   </Row>
                 )}
@@ -139,11 +160,15 @@ const RequestProduct = props => {
                       cols="30"
                       rows="10"
                     ></textarea>
+                    {errors.descripcion && (
+                      <span className="error">{errors.descripcion}</span>
+                    )}
                   </Col>
                 </Row>
                 <Row className="mt-5">
                   <Col>
                     <Button
+                      disabled={isInvalid}
                       color="success"
                       type="button"
                       onClick={handleSubmit}
