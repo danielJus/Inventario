@@ -5,8 +5,9 @@ import { Button, Table } from "reactstrap";
 import EditUser from "../EditUser/EditUser";
 import DeleteUser from "../DeleteUser/DeleteUser";
 
-const UserList = () => {
-  const users = useSelector(({ user }) => user.users);
+const UserList = props => {
+  const { users } = props;
+
   const [user, setUser] = useState("");
   const [modal, setModal] = useState(false);
   const [deleteModal, setDeleteModal] = useState(false);

@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
+
 import {
   Collapse,
   Navbar,
@@ -34,6 +35,9 @@ const Navigation = props => {
           <Nav className=" ml-auto d-flex justify-content-end" navbar>
             {user && user.rol === "coordinador" ? (
               <React.Fragment>
+                <LinkContainer to="/">
+                  <NavItem className="mx-4">Productos</NavItem>
+                </LinkContainer>
                 <LinkContainer to="/add-product">
                   <NavItem className="mx-4">Agregar Producto</NavItem>
                 </LinkContainer>
@@ -46,6 +50,9 @@ const Navigation = props => {
               </React.Fragment>
             ) : user && user.rol === "director" ? (
               <React.Fragment>
+                <LinkContainer to="/">
+                  <NavItem className="mx-4">Productos</NavItem>
+                </LinkContainer>
                 <LinkContainer to="/users">
                   <NavItem className="mx-4">Usuarios</NavItem>
                 </LinkContainer>

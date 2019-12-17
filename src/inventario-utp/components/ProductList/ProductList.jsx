@@ -6,8 +6,9 @@ import EditProduct from "../EditProduct/EditProduct";
 import DeleteProduct from "../DeleteProduct/DeleteProduct";
 import RequestProduct from "../RequestProduct/RequestProduct";
 
-const ProductList = () => {
-  const products = useSelector(({ products }) => products.products);
+const ProductList = props => {
+  const { products } = props;
+
   const user = useSelector(({ auth }) => auth.user);
   const [product, setProduct] = useState("");
 

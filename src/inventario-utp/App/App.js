@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import { useSelector } from "react-redux";
 import { Switch, Route, Redirect } from "react-router-dom";
 import Index from "../components/Index/Index";
@@ -13,14 +13,32 @@ import ForgotPassword from "../components/ForgotPassword/ForgotPassword";
 import { useDispatch } from "react-redux";
 import { fetch_products } from "../redux/actions/productActions";
 import { fetch_users } from "../redux/actions/userActions";
+import { Alert } from "reactstrap";
+import "./App.scss";
 
 const App = props => {
   const user = useSelector(({ auth }) => auth.user);
+
   const dispatch = useDispatch();
   fetch_products()(dispatch);
   if (user && user.rol === "director") {
     fetch_users()(dispatch);
   }
+
+  const [alert, setAlert] = useState(false);
+
+  const showAlerts = () => {
+    if (user) {
+      setAlert(true);
+      setTimeout(() => {
+        setAlert(false);
+      }, 2000);
+    }
+  };
+
+  useEffect(() => {
+    showAlerts();
+  }, [user]);
 
   return (
     <div>
@@ -28,12 +46,23 @@ const App = props => {
       <Switch>
         {user && user.rol === "coordinador" ? (
           <React.Fragment>
+            <Alert className="alert" color="success" isOpen={alert}>
+              <p className="text-center">
+                Bienvenido: {user && user.nombreUsuario}
+              </p>
+            </Alert>
             <Route exact path="/" render={props => <Index {...props} />} />
             <Route exact path="/profile" component={Profile} />
             <Route exact path="/add-product" component={AddProduct} />
           </React.Fragment>
         ) : user && user.rol === "director" ? (
           <React.Fragment>
+            <Alert className="alert" color="success" isOpen={alert}>
+              <p className="text-center">
+                Bienvenido: {user && user.nombreUsuario}
+              </p>
+            </Alert>
+
             <Route exact path="/" render={props => <Index {...props} />} />
             <Route exact path="/profile" component={Profile} />
             <Route exact path="/add-product" component={AddProduct} />

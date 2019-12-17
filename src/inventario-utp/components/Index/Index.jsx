@@ -1,40 +1,64 @@
-import React, { useState, useEffect } from "react";
-
-import { Card, CardHeader, Container, Row, Col, Alert } from "reactstrap";
+import React, { useState } from "react";
+import {
+  Container,
+  Card,
+  CardHeader,
+  FormGroup,
+  Row,
+  Form,
+  Input,
+  InputGroupAddon,
+  InputGroupText,
+  InputGroup,
+  Col
+} from "reactstrap";
 import "./Index.scss";
 import { useSelector } from "react-redux";
+import Header from "../../Header/Header";
 import ProductList from "../ProductList/ProductList";
 const Index = props => {
-  const user = useSelector(({ auth }) => auth.user);
-  console.log("user", user);
+  const [query, setQuery] = useState("");
+  const products = useSelector(({ products }) => products.products);
+  let userChoice = products.filter(
+    product =>
+      product.estado.includes(query) ||
+      product.nombre.toLowerCase().includes(query) ||
+      product.responsable.nombre.toLowerCase().includes(query) ||
+      product.facultad.includes(query) ||
+      product.sede.includes(query)
+  );
 
-  const [alert, setAlert] = useState(false);
-  const showAlerts = () => {
-    if (user) {
-      setAlert(true);
-      setTimeout(() => {
-        setAlert(false);
-      }, 3000);
-    }
-  };
-
-  useEffect(() => {
-    showAlerts();
-  }, []);
   return (
     <React.Fragment>
       <div>
         <Container className="mt-7" fluid>
+          <Header />
+          <Form>
+            <Row>
+              <Col>
+                <FormGroup className="mb-3">
+                  <InputGroup className="input-group-alternative">
+                    <InputGroupAddon addonType="prepend">
+                      <InputGroupText>
+                        <i className="ni ni-zoom-split-in" />
+                      </InputGroupText>
+                    </InputGroupAddon>
+                    <Input
+                      placeholder="Buscar..."
+                      type="text"
+                      name="query"
+                      value={query}
+                      onChange={e => setQuery(e.target.value)}
+                    />
+                  </InputGroup>
+                </FormGroup>
+              </Col>
+            </Row>
+          </Form>
           <Row></Row>
           <Row className="mt-5">
             <Col className="mb-5 mb-xl-0" xl="12">
               <Card className="shadow">
-                <Alert className="alert" color="success" isOpen={alert}>
-                  <p className="text-center">
-                    Bienvenido: {user && user.nombreUsuario}
-                  </p>
-                </Alert>
-
                 <CardHeader className="border-0">
                   <Row className="align-items-center">
                     <div className="col">
@@ -43,7 +67,7 @@ const Index = props => {
                   </Row>
                 </CardHeader>
 
-                <ProductList />
+                <ProductList products={query ? userChoice : products} />
               </Card>
             </Col>
           </Row>
