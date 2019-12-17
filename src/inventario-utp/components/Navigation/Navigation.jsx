@@ -7,9 +7,11 @@ import {
   NavbarToggler,
   NavbarBrand,
   Nav,
+  NavLink,
   NavItem
 } from "reactstrap";
-import { LinkContainer } from "react-router-bootstrap";
+import { Link } from "react-router-dom";
+
 import { logout } from "../../redux/actions/authActions";
 import { history } from "../../utils/history";
 
@@ -29,56 +31,78 @@ const Navigation = props => {
   return (
     <div>
       <Navbar color="primary" light expand="md">
-        <NavbarBrand href="/">Inventario UTP</NavbarBrand>
+        <NavbarBrand href="/">Inventario-utp</NavbarBrand>
         <NavbarToggler onClick={toggle} />
         <Collapse isOpen={isOpen} navbar>
           <Nav className=" ml-auto d-flex justify-content-end" navbar>
             {user && user.rol === "coordinador" ? (
               <React.Fragment>
-                <LinkContainer to="/products-info">
-                  <NavItem className="mx-4">Informcaión de productos</NavItem>
-                </LinkContainer>
-                <LinkContainer to="/">
-                  <NavItem className="mx-4">Productos</NavItem>
-                </LinkContainer>
-                <LinkContainer to="/add-product">
-                  <NavItem className="mx-4">Agregar Producto</NavItem>
-                </LinkContainer>
-                <LinkContainer to="/profile">
-                  <NavItem className="mx-4">Perfil</NavItem>
-                </LinkContainer>
+                <NavItem className="mx-4">
+                  <NavLink href="/products-info">
+                    Informcaión de productos
+                  </NavLink>
+                </NavItem>
+
+                <NavItem className="mx-4">
+                  <NavLink href="/">Productos</NavLink>{" "}
+                </NavItem>
+
+                <NavItem className="mx-4">
+                  {" "}
+                  <NavLink href="/add-product">Agregar</NavLink> Producto
+                </NavItem>
+
+                <NavItem className="mx-4">
+                  {" "}
+                  <NavLink href="/profile">Perfil</NavLink>{" "}
+                </NavItem>
+
                 <NavItem className="mx-4" onClick={handleLogout}>
-                  Cerrar sesión
+                  <NavLink href="/">Cerrar sesión</NavLink>{" "}
                 </NavItem>
               </React.Fragment>
             ) : user && user.rol === "director" ? (
               <React.Fragment>
-                <LinkContainer to="/products-info">
-                  <NavItem className="mx-4">Informcaión de productos</NavItem>
-                </LinkContainer>
-                <LinkContainer to="/">
-                  <NavItem className="mx-4">Productos</NavItem>
-                </LinkContainer>
-                <LinkContainer to="/users">
-                  <NavItem className="mx-4">Usuarios</NavItem>
-                </LinkContainer>
-                <LinkContainer to="/add-product">
-                  <NavItem className="mx-4">Agregar Producto</NavItem>
-                </LinkContainer>
-                <LinkContainer to="/add-user">
-                  <NavItem className="mx-4">Agregar Usuario</NavItem>
-                </LinkContainer>
-                <LinkContainer to="/profile">
-                  <NavItem className="mx-4">Perfil</NavItem>
-                </LinkContainer>
+                <NavItem className="mx-4">
+                  {" "}
+                  <NavLink href="/products-info">
+                    Informcaión de productos
+                  </NavLink>
+                </NavItem>
+
+                <NavItem className="mx-4">
+                  {" "}
+                  <NavLink href="/">Productos</NavLink>
+                </NavItem>
+
+                <NavItem className="mx-4">
+                  {" "}
+                  <NavLink href="/users">Usuarios</NavLink>
+                </NavItem>
+
+                <NavItem className="mx-4">
+                  {" "}
+                  <NavLink href="/add-product">Agregar Producto</NavLink>
+                </NavItem>
+
+                <NavItem className="mx-4">
+                  {" "}
+                  <NavLink href="/add-user">Agregar Usuario</NavLink>
+                </NavItem>
+
+                <NavItem className="mx-4">
+                  {" "}
+                  <NavLink href="/profile">Perfil</NavLink>
+                </NavItem>
                 <NavItem className="mx-4" onClick={handleLogout}>
-                  Cerrar sesión
+                  <NavLink href="/">Cerrar sesión</NavLink>{" "}
                 </NavItem>
               </React.Fragment>
             ) : (
-              <LinkContainer to="/login">
-                <NavItem>Iniciar Sesión</NavItem>
-              </LinkContainer>
+              <NavItem>
+                {" "}
+                <NavLink href="/login">Iniciar Sesión</NavLink>
+              </NavItem>
             )}
           </Nav>
         </Collapse>
