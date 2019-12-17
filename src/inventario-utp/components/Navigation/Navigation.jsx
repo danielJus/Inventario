@@ -35,6 +35,9 @@ const Navigation = props => {
           <Nav className=" ml-auto d-flex justify-content-end" navbar>
             {user && user.rol === "coordinador" ? (
               <React.Fragment>
+                <LinkContainer to="/products-info">
+                  <NavItem className="mx-4">Informcaión de productos</NavItem>
+                </LinkContainer>
                 <LinkContainer to="/">
                   <NavItem className="mx-4">Productos</NavItem>
                 </LinkContainer>
@@ -50,6 +53,9 @@ const Navigation = props => {
               </React.Fragment>
             ) : user && user.rol === "director" ? (
               <React.Fragment>
+                <LinkContainer to="/products-info">
+                  <NavItem className="mx-4">Informcaión de productos</NavItem>
+                </LinkContainer>
                 <LinkContainer to="/">
                   <NavItem className="mx-4">Productos</NavItem>
                 </LinkContainer>

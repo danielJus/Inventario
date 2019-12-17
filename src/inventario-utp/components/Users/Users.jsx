@@ -15,6 +15,7 @@ import {
 } from "reactstrap";
 import UserList from "../UserList/UserList";
 import { useSelector } from "react-redux";
+import UsersHeader from "./UsersHeader";
 
 const Users = () => {
   const [query, setQuery] = useState("");
@@ -32,7 +33,7 @@ const Users = () => {
   return (
     <div>
       <Container className="mt-7" fluid>
-        <Form>
+        <Form className="mt-4">
           <Row>
             <Col>
               <FormGroup className="mb-3">
@@ -61,7 +62,7 @@ const Users = () => {
               <CardHeader className="border-0">
                 <Row className="align-items-center">
                   <div className="col">
-                    <h3 className="mb-0">Usuarios</h3>
+                    <h3 className="mb-0">Usuarios : {users.length}</h3>
                   </div>
                 </Row>
               </CardHeader>

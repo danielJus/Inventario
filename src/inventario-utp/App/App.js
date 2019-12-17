@@ -14,6 +14,7 @@ import { useDispatch } from "react-redux";
 import { fetch_products } from "../redux/actions/productActions";
 import { fetch_users } from "../redux/actions/userActions";
 import { Alert } from "reactstrap";
+import ProductsInfo from "../components/ProductsInfo/ProductsInfo";
 import "./App.scss";
 
 const App = props => {
@@ -54,6 +55,7 @@ const App = props => {
             <Route exact path="/" render={props => <Index {...props} />} />
             <Route exact path="/profile" component={Profile} />
             <Route exact path="/add-product" component={AddProduct} />
+            <Route exact path="/products-info" component={ProductsInfo} />
           </React.Fragment>
         ) : user && user.rol === "director" ? (
           <React.Fragment>
@@ -68,6 +70,7 @@ const App = props => {
             <Route exact path="/add-product" component={AddProduct} />
             <Route exact path="/add-user" component={AddUser} />
             <Route exact path="/users" component={Users} />
+            <Route exact path="/products-info" component={ProductsInfo} />
           </React.Fragment>
         ) : (
           <React.Fragment>

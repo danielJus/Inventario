@@ -14,7 +14,7 @@ import {
 } from "reactstrap";
 import "./Index.scss";
 import { useSelector } from "react-redux";
-import Header from "../../Header/Header";
+import Header from "../Header/Header";
 import ProductList from "../ProductList/ProductList";
 const Index = props => {
   const [query, setQuery] = useState("");
@@ -33,28 +33,31 @@ const Index = props => {
       <div>
         <Container className="mt-7" fluid>
           <Header />
-          <Form>
-            <Row>
-              <Col>
-                <FormGroup className="mb-3">
-                  <InputGroup className="input-group-alternative">
-                    <InputGroupAddon addonType="prepend">
-                      <InputGroupText>
-                        <i className="ni ni-zoom-split-in" />
-                      </InputGroupText>
-                    </InputGroupAddon>
-                    <Input
-                      placeholder="Buscar..."
-                      type="text"
-                      name="query"
-                      value={query}
-                      onChange={e => setQuery(e.target.value)}
-                    />
-                  </InputGroup>
-                </FormGroup>
-              </Col>
-            </Row>
-          </Form>
+          <Container>
+            <Form className="mt-4">
+              <Row>
+                <Col>
+                  <FormGroup className="mb-3">
+                    <InputGroup className="input-group-alternative">
+                      <InputGroupAddon addonType="prepend">
+                        <InputGroupText>
+                          <i className="ni ni-zoom-split-in" />
+                        </InputGroupText>
+                      </InputGroupAddon>
+                      <Input
+                        placeholder="Buscar..."
+                        type="text"
+                        name="query"
+                        value={query}
+                        onChange={e => setQuery(e.target.value)}
+                      />
+                    </InputGroup>
+                  </FormGroup>
+                </Col>
+              </Row>
+            </Form>
+          </Container>
+
           <Row></Row>
           <Row className="mt-5">
             <Col className="mb-5 mb-xl-0" xl="12">
