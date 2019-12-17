@@ -4,6 +4,11 @@ import useForm from "../../Hooks/useForm";
 import validate from "../../utils/validate";
 import { create_product } from "../../redux/actions/productActions";
 import "./AddProduct.scss";
+import { FilePond, registerPlugin } from "react-filepond";
+import "filepond/dist/filepond.min.css";
+import FilePondPluginImageExifOrientation from "filepond-plugin-image-exif-orientation";
+import FilePondPluginImagePreview from "filepond-plugin-image-preview";
+import "filepond-plugin-image-preview/dist/filepond-plugin-image-preview.css";
 
 import {
   Button,
@@ -20,7 +25,7 @@ import {
   Col,
   Row
 } from "reactstrap";
-
+registerPlugin(FilePondPluginImageExifOrientation, FilePondPluginImagePreview);
 const AddProduct = () => {
   const dispatch = useDispatch();
   const [photo, setPhoto] = useState("");
@@ -252,20 +257,7 @@ const AddProduct = () => {
                   </Row>
                   <Row>
                     <Col>
-                      <FormGroup>
-                        <label htmlFor="iamgen">Imágen</label>
-                        <InputGroup className="input-group-alternative">
-                          <Input
-                            name="photo"
-                            type="file"
-                            accept="image/*"
-                            onChange={handlePhoto}
-                          />
-                        </InputGroup>
-                        {errors.photo && (
-                          <span className="error">{errors.photo}</span>
-                        )}
-                      </FormGroup>
+                      <FilePond allowMultiple={false} />
                     </Col>
                   </Row>
                 </Col>
@@ -411,3 +403,21 @@ const AddProduct = () => {
 };
 
 export default AddProduct;
+
+/*
+<FormGroup>
+                        <label htmlFor="iamgen">Imágen</label>
+                        <InputGroup className="input-group-alternative">
+                          <Input
+                            name="photo"
+                            type="file"
+                            accept="image/*"
+                            onChange={handlePhoto}
+                          />
+                        </InputGroup>
+                        {errors.photo && (
+                          <span className="error">{errors.photo}</span>
+                        )}
+                      </FormGroup>
+
+*/
