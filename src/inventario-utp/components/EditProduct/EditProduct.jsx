@@ -2,6 +2,11 @@ import React, { useState } from "react";
 import { useDispatch } from "react-redux";
 import useForm from "../../Hooks/useForm";
 import validate from "../../utils/validate";
+import { FilePond, registerPlugin } from "react-filepond";
+import "filepond/dist/filepond.min.css";
+import FilePondPluginImageExifOrientation from "filepond-plugin-image-exif-orientation";
+import FilePondPluginImagePreview from "filepond-plugin-image-preview";
+import "filepond-plugin-image-preview/dist/filepond-plugin-image-preview.css";
 
 import {
   Container,
@@ -18,6 +23,7 @@ import {
 } from "reactstrap";
 import { edit_product } from "../../redux/actions/productActions.js";
 import "./EditProduct.scss";
+registerPlugin(FilePondPluginImageExifOrientation, FilePondPluginImagePreview);
 
 const EditProduct = props => {
   //console.log("edit product", props.product);
@@ -58,10 +64,6 @@ const EditProduct = props => {
     responsable
   } = values;
 
-  const handlePhoto = e => {
-    const { files } = e.target;
-    setPhoto(files[0]);
-  };
   function submit() {
     const fd = new FormData();
     for (var key in values) {
@@ -72,7 +74,7 @@ const EditProduct = props => {
       }
     }
     if (photo) {
-      fd.append("photo", photo);
+      fd.append("photo", photo[0]);
     }
 
     edit_product(product._id, fd)(dispatch);
@@ -89,11 +91,11 @@ const EditProduct = props => {
                 src={require(`../../img/products/${product.photo}`)}
                 alt="..."
               />
-              <Input
-                type="file"
-                name="photo"
-                accept="image/*"
-                onChange={handlePhoto}
+              <FilePond
+                allowMultiple={false}
+                onupdatefiles={fileItems =>
+                  setPhoto(fileItems.map(fileItem => fileItem.file))
+                }
               />
             </Col>
             <Col>
