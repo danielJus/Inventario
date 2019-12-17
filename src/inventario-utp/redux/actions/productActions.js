@@ -76,6 +76,7 @@ export const edit_product = (id, product) => {
       .patch(`http://localhost:8000/api/v1/products/${id}`, product)
       .then(product => {
         dispatch(edit_product_success(product));
+        window.location.reload();
       })
       .catch(error => dispatch(edit_product_failure(error)));
   };
@@ -116,6 +117,7 @@ export const delete_product = id => {
       .delete(`http://localhost:8000/api/v1/products/${id}`)
       .then(product => {
         dispatch(delete_product_success(product));
+        window.location.reload();
       })
       .catch(error => dispatch(delete_product_failure(error)));
   };
@@ -128,6 +130,7 @@ export const request_product = (id, values) => {
       .post(`http://localhost:8000/api/v1/products/${id}`, values)
       .then(res => {
         dispatch(request_product_success(res.data.message));
+        window.location.reload();
       })
       .catch(error => dispatch(request_product_failure(error)));
   };

@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import { useSelector } from "react-redux";
 import {
   Container,
@@ -14,10 +14,50 @@ import {
   Col,
   Table,
   CardBody,
-  CardTitle
+  CardTitle,
+  Button
 } from "reactstrap";
+import EditProduct from "../EditProduct/EditProduct";
+import DeleteProduct from "../DeleteProduct/DeleteProduct";
+import RequestProduct from "../RequestProduct/RequestProduct";
+import Modal from "react-modal";
 const ProductsInfo = () => {
   const products = useSelector(({ products }) => products.products);
+
+  const user = useSelector(({ auth }) => auth.user);
+  const [product, setProduct] = useState("");
+
+  const [modal, setModal] = useState(false);
+  const [deleteModal, setDeleteModal] = useState(false);
+  const [requestModal, setRequestModal] = useState(false);
+
+  const toggleDeleteModal = data => {
+    setProduct(data);
+    setDeleteModal(!deleteModal);
+  };
+
+  const toggle = data => {
+    setProduct(data);
+    setModal(!modal);
+  };
+  const toggleRequestModal = data => {
+    setProduct(data);
+    setRequestModal(!modal);
+  };
+  const close = () => {
+    setModal(false);
+  };
+  const closeDeleteModal = () => {
+    setDeleteModal(false);
+  };
+
+  const closeRequestModal = () => {
+    setRequestModal(false);
+  };
+
+  useEffect(() => {
+    Modal.setAppElement("body");
+  }, [modal]);
   let costo = 0,
     productosUso = [],
     productosDisponibles = [],
@@ -71,7 +111,7 @@ const ProductsInfo = () => {
     (productosDisponibles.length / products.length) * 100;
   let costoPromedio = costo / products.length;
   return (
-    <div>
+    <React.Fragment>
       <Container>
         <Row>
           <Col lg="6" xl="3">
@@ -181,28 +221,159 @@ const ProductsInfo = () => {
         </Row>
 
         <Row>
-          <h3>Productos divididos por estado</h3>
+          <h3>Productos disponibles</h3>
           <Col>
             <Table>
               <thead>
                 <tr>
-                  <th>Disponibles</th>
-                  <th>En uso</th>
+                  <th scope="col">Nombre</th>
+                  <th scope="col">Imagen</th>
+                  <th scope="col">Estado</th>
+
+                  <th scope="col">Precio</th>
+                  <th scope="col">Cantidad</th>
+                  <th scope="col">Descripcion</th>
+                  <th scope="col">Responsable</th>
+                  <th scope="col">Facultad</th>
+                  <th scope="col">Sede</th>
+                  <th scope="col">Acciones</th>
                 </tr>
               </thead>
               <tbody>
+                {productosDisponibles.map((product, i) => (
+                  <tr key={i}>
+                    <td>{product.nombre}</td>
+                    <td>
+                      <img
+                        src={require(`../../img/products/${product.photo}`)}
+                        alt="..."
+                        style={{ width: "5rem" }}
+                      />
+                    </td>
+                    <td>{product.estado}</td>
+                    <td>{product.precio}</td>
+                    <td>{product.cantidad}</td>
+                    <td>{product.descripcion}</td>
+                    <td>{product.responsable.nombre}</td>
+                    <td>{product.facultad}</td>
+                    <td>{product.sede}</td>
+                    <td>
+                      <Button
+                        color="success"
+                        type="button"
+                        onClick={() => toggleRequestModal(product)}
+                      >
+                        Solicitar
+                      </Button>
+
+                      {user && (
+                        <React.Fragment>
+                          <Button
+                            color="primary"
+                            onClick={() => toggle(product)}
+                          >
+                            Editar
+                          </Button>
+
+                          <Button
+                            color="danger"
+                            onClick={() => toggleDeleteModal(product)}
+                          >
+                            Eliminar
+                          </Button>
+                        </React.Fragment>
+                      )}
+                    </td>
+                  </tr>
+                ))}
+              </tbody>
+            </Table>
+          </Col>
+        </Row>
+
+        <Row>
+          <h3>Productos disponibles</h3>
+          <Col>
+            <Table>
+              <thead>
                 <tr>
-                  <td>
-                    {productosDisponibles.map(producto => producto.nombre)}
-                  </td>
-                  <td> {productosUso.map(producto => producto.nombre)}</td>
+                  <th scope="col">Nombre</th>
+                  <th scope="col">Imagen</th>
+                  <th scope="col">Estado</th>
+
+                  <th scope="col">Precio</th>
+                  <th scope="col">Cantidad</th>
+                  <th scope="col">Descripcion</th>
+                  <th scope="col">Responsable</th>
+                  <th scope="col">Facultad</th>
+                  <th scope="col">Sede</th>
+                  <th scope="col">Acciones</th>
                 </tr>
+              </thead>
+              <tbody>
+                {productosUso.map((product, i) => (
+                  <tr key={i}>
+                    <td>{product.nombre}</td>
+                    <td>
+                      <img
+                        src={require(`../../img/products/${product.photo}`)}
+                        alt="..."
+                        style={{ width: "5rem" }}
+                      />
+                    </td>
+                    <td>{product.estado}</td>
+                    <td>{product.precio}</td>
+                    <td>{product.cantidad}</td>
+                    <td>{product.descripcion}</td>
+                    <td>{product.responsable.nombre}</td>
+                    <td>{product.facultad}</td>
+                    <td>{product.sede}</td>
+                    <td>
+                      <Button
+                        color="success"
+                        type="button"
+                        onClick={() => toggleRequestModal(product)}
+                      >
+                        Solicitar
+                      </Button>
+
+                      {user && (
+                        <React.Fragment>
+                          <Button
+                            color="primary"
+                            onClick={() => toggle(product)}
+                          >
+                            Editar
+                          </Button>
+
+                          <Button
+                            color="danger"
+                            onClick={() => toggleDeleteModal(product)}
+                          >
+                            Eliminar
+                          </Button>
+                        </React.Fragment>
+                      )}
+                    </td>
+                  </tr>
+                ))}
               </tbody>
             </Table>
           </Col>
         </Row>
       </Container>
-    </div>
+
+      <Modal isOpen={modal} onRequestClose={close}>
+        <EditProduct product={product} />
+      </Modal>
+
+      <Modal isOpen={deleteModal} onRequestClose={closeDeleteModal}>
+        <DeleteProduct product={product} />
+      </Modal>
+      <Modal isOpen={requestModal} onRequestClose={closeRequestModal}>
+        <RequestProduct product={product} />
+      </Modal>
+    </React.Fragment>
   );
 };
 

@@ -74,6 +74,7 @@ export const edit_user = (id, user) => {
       .patch(`http://localhost:8000/api/v1/users/${id}`, user)
       .then(user => {
         dispatch(edit_user_success(user));
+        window.location.reload();
       })
       .catch(error => dispatch(edit_user_failure(error)));
   };
@@ -100,6 +101,7 @@ export const delete_user = id => {
       .delete(`http://localhost:8000/api/v1/users/${id}`)
       .then(user => {
         dispatch(delete_user_success(user));
+        window.location.reload();
       })
       .catch(error => dispatch(delete_user_failure(error)));
   };

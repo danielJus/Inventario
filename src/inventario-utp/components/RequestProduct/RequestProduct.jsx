@@ -168,14 +168,13 @@ const RequestProduct = props => {
                 <Row className="mt-5">
                   <Col>
                     <Button
-                      disabled={isInvalid}
+                      disabled={user ? false : isInvalid}
                       color="success"
-                      type="button"
                       onClick={handleSubmit}
                     >
                       Enviar solicitud
                     </Button>
-                    <Button type="button">Cancelar</Button>
+                    <Button color="danger">Cancelar</Button>
                   </Col>
                 </Row>
               </Form>

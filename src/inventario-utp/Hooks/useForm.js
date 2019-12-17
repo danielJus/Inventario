@@ -84,8 +84,8 @@ const useForm = (
       if (errors) responsableErrorsArray = Object.values(errors.responsable);
       finalArray = productoArray.concat(responsableArray);
       finalErrorsArray = errorsArray.concat(responsableErrorsArray);
-      console.log("final array", finalArray);
-      console.log("final errors array", finalErrorsArray);
+      //console.log("final array", finalArray);
+      //console.log("final errors array", finalErrorsArray);
 
       if (
         finalArray.every(val => val !== "") &&

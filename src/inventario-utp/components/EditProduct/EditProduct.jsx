@@ -20,7 +20,7 @@ import { edit_product } from "../../redux/actions/productActions.js";
 import "./EditProduct.scss";
 
 const EditProduct = props => {
-  console.log("edit product", props.product);
+  //console.log("edit product", props.product);
   const dispatch = useDispatch();
   const [photo, setPhoto] = useState("");
   const { product } = props;
