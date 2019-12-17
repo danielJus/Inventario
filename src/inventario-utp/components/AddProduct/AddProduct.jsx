@@ -53,12 +53,8 @@ const AddProduct = () => {
   );
 
   //console.log("values", values.responsable.nombre);
-  const handlePhoto = e => {
-    const { files } = e.target;
-    //values.photo = files[0];
-    setPhoto(files[0]);
-  };
 
+  console.log("photo", photo[0]);
   function submit() {
     const fd = new FormData();
     for (var key in values) {
@@ -69,7 +65,7 @@ const AddProduct = () => {
       }
     }
 
-    fd.append("photo", photo);
+    fd.append("photo", photo[0]);
     create_product(fd)(dispatch);
 
     console.log("submit");
@@ -257,7 +253,12 @@ const AddProduct = () => {
                   </Row>
                   <Row>
                     <Col>
-                      <FilePond allowMultiple={false} />
+                      <FilePond
+                        allowMultiple={false}
+                        onupdatefiles={fileItems =>
+                          setPhoto(fileItems.map(fileItem => fileItem.file))
+                        }
+                      />
                     </Col>
                   </Row>
                 </Col>
