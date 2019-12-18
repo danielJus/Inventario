@@ -14,7 +14,7 @@ import { useDispatch } from "react-redux";
 import { fetch_products } from "../redux/actions/productActions";
 import { fetch_users } from "../redux/actions/userActions";
 import { Alert } from "reactstrap";
-import ProductsInfo from "../components/ProductsInfo/ProductsInfo";
+
 import "./App.scss";
 
 const App = props => {

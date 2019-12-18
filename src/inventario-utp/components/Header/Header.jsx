@@ -80,8 +80,8 @@ const Header = () => {
       <Container fluid>
         <div className="header-body">
           <Row>
-            <h3>Cantidad de productos por sede</h3>
             <Col>
+              <h3>Cantidad de productos por sede</h3>
               <Table>
                 <thead>
                   <tr>

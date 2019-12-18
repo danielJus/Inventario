@@ -10,6 +10,9 @@ import {
   Row,
   Col,
   Container,
+  Card,
+  CardBody,
+  CardTitle,
   Alert
 } from "reactstrap";
 import validate from "../../utils/validate";
@@ -36,23 +39,31 @@ const ForgotPassword = () => {
         <Form>
           <Row>
             <Col>
-              <FormGroup>
-                <Label>Correo electrónico</Label>
-                <Input name="correo" onChange={handleChange} />
-                {errors.correo && (
-                  <span className="error">{errors.correo}</span>
-                )}
-              </FormGroup>
+              <Card className="card">
+                <CardTitle>
+                  <h1 className=" mt-4 text-center">Recuperar contraseña</h1>
+                </CardTitle>
+                <CardBody>
+                  <FormGroup>
+                    <Label>Correo electrónico</Label>
+                    <Input name="correo" onChange={handleChange} />
+                    {errors.correo && (
+                      <span className="error">{errors.correo}</span>
+                    )}
+                  </FormGroup>
+
+                  <Button
+                    disabled={isInvalid}
+                    type="button"
+                    className="enviar"
+                    onClick={handleSubmit}
+                  >
+                    Enviar correo
+                  </Button>
+                </CardBody>
+              </Card>
             </Col>
           </Row>
-          <Button
-            disabled={isInvalid}
-            type="button"
-            color="primary"
-            onClick={handleSubmit}
-          >
-            Enviar correo
-          </Button>
 
           {status && status === true && (
             <Alert color="success">
