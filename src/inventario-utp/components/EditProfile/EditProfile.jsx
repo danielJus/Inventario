@@ -145,7 +145,7 @@ const EditProfile = () => {
               <Button
                 disabled={isInvalid}
                 type="button"
-                color="success"
+                className="guardar"
                 onClick={handleSubmit}
               >
                 Guardar cambios

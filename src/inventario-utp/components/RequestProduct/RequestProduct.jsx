@@ -168,8 +168,8 @@ const RequestProduct = props => {
                 <Row className="mt-5">
                   <Col>
                     <Button
+                      className="enviar"
                       disabled={user ? false : isInvalid}
-                      color="success"
                       onClick={handleSubmit}
                     >
                       Enviar solicitud

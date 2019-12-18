@@ -91,7 +91,7 @@ const ChangePassword = () => {
             <Col lg="12">
               <Button
                 disabled={isInvalid}
-                color="primary"
+                className="cambiar"
                 onClick={handleSubmit}
               >
                 Cambiar contraseña

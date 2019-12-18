@@ -382,7 +382,7 @@ const EditProduct = props => {
             <Col>
               <Button
                 disabled={isInvalid}
-                color="success"
+                className="guardar"
                 onClick={handleSubmit}
               >
                 Guardar cambios

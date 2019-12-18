@@ -44,12 +44,6 @@ const Navigation = props => {
             {user && user.rol === "coordinador" ? (
               <React.Fragment>
                 <NavItem className="mx-4">
-                  <NavLink href="/products-info">
-                    Información de productos
-                  </NavLink>
-                </NavItem>
-
-                <NavItem className="mx-4">
                   <NavLink href="/">Productos</NavLink>{" "}
                 </NavItem>
 
@@ -69,13 +63,6 @@ const Navigation = props => {
               </React.Fragment>
             ) : user && user.rol === "director" ? (
               <React.Fragment>
-                <NavItem className="mx-4">
-                  {" "}
-                  <NavLink href="/products-info">
-                    Información de productos
-                  </NavLink>
-                </NavItem>
-
                 <NavItem className="mx-4">
                   {" "}
                   <NavLink href="/">Productos</NavLink>

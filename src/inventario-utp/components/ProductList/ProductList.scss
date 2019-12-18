@@ -1,0 +1,35 @@
+.editar {
+  background-color: #003d72;
+  color: white;
+  &:hover {
+    color: white;
+    background-color: #003d72;
+    border-color: #003d72;
+  }
+  &:focus {
+    color: white;
+    background-color: #003d72;
+    border-color: #003d72;
+  }
+}
+
+.solicitar {
+  background-color: #e07638;
+  border-color: #e07638;
+  color: white;
+  &:hover {
+    color: white;
+    background-color: #e07638;
+    border-color: #e07638;
+  }
+  &:focus {
+    color: white;
+    background-color: #e07638;
+    border-color: #e07638;
+  }
+  &:active {
+    color: white;
+    background-color: #e07638;
+    border-color: #e07638;
+  }
+}

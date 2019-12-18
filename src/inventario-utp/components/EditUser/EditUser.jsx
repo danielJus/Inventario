@@ -210,8 +210,7 @@ const EditUser = props => {
             <Col>
               <Button
                 disabled={isInvalid}
-                className="mt-4"
-                color="success"
+                className="mt-4 guardar"
                 type="button"
                 onClick={handleSubmit}
               >

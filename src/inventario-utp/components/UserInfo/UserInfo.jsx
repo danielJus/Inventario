@@ -111,7 +111,7 @@ const UserInfo = props => {
             </Col>
             <Col lg="6">
               <div>
-                <Button type="button" onClick={toggle} color="success">
+                <Button type="button" onClick={toggle} className="editar">
                   Editar información
                 </Button>
               </div>

@@ -56,7 +56,7 @@ const UserList = props => {
               <td>{user.facultad}</td>
               <td>{user.sede}</td>
               <td>
-                <Button color="primary" onClick={() => toggle(user)}>
+                <Button className="editar" onClick={() => toggle(user)}>
                   Editar
                 </Button>
                 <Button color="danger" onClick={() => toggleDeleteModal(user)}>

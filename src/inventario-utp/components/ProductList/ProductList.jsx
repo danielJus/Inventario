@@ -5,6 +5,7 @@ import { Button, Table } from "reactstrap";
 import EditProduct from "../EditProduct/EditProduct";
 import DeleteProduct from "../DeleteProduct/DeleteProduct";
 import RequestProduct from "../RequestProduct/RequestProduct";
+import "./ProductList.scss";
 
 const ProductList = props => {
   const { products } = props;
@@ -81,7 +82,7 @@ const ProductList = props => {
               <td>{product.sede}</td>
               <td>
                 <Button
-                  color="success"
+                  className="solicitar"
                   type="button"
                   onClick={() => toggleRequestModal(product)}
                 >
@@ -90,7 +91,7 @@ const ProductList = props => {
 
                 {user && (
                   <React.Fragment>
-                    <Button color="primary" onClick={() => toggle(product)}>
+                    <Button className="editar" onClick={() => toggle(product)}>
                       Editar
                     </Button>
 

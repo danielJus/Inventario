@@ -3,3 +3,19 @@
   font-weight: 800;
   font-size: 0.9rem;
 }
+.guardar {
+  background-color: #003d72;
+  border-color: #003d72;
+  color: white;
+
+  &:focus {
+    color: white;
+    background-color: #003d72;
+    border-color: #003d72;
+  }
+  &:hover {
+    color: white;
+    background-color: #003d72;
+    border-color: #003d72;
+  }
+}
