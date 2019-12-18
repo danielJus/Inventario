@@ -76,7 +76,7 @@ const AddProduct = () => {
       <Col className="mx-auto d-flex justify-content-center" lg="12" md="12">
         <Card className="form-card bg-secondary shadow border-0">
           <CardHeader className="bg-transparent pb-5">
-            <h3 className="display-1">Agregar producto</h3>
+            <h1 className="display-1">Agregar producto</h1>
           </CardHeader>
           <CardBody className="px-lg-5 py-lg-5">
             <Form role="form">

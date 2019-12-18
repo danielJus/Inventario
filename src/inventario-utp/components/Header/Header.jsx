@@ -82,8 +82,8 @@ const Header = () => {
           <Row>
             <Col>
               <h3>Cantidad de productos por sede</h3>
-              <Table>
-                <thead>
+              <Table className="align-items-center table-flush" responsive>
+                <thead className="thead-light">
                   <tr>
                     <th scope="col">Azuero</th>
                     <th scope="col">Bocas del toro</th>
