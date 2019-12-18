@@ -13,6 +13,7 @@ $color-white: #f9f9f9;
     width: 35% !important;
   }
 }
+
 .nav-link > .btn {
   background: $color-orange;
   letter-spacing: 0;
@@ -31,8 +32,12 @@ $color-white: #f9f9f9;
 }
 
 .mx-4.nav-item {
-  background: $color-white;
+  color: $color-white;
   letter-spacing: 0;
   transition: 0.3s;
   border-radius: 10px;
+}
+
+.nav-link {
+  color: $color-white !important;
 }

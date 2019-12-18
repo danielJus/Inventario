@@ -7,7 +7,6 @@ import {
   FormGroup,
   Row,
   Form,
-  Input,
   InputGroupAddon,
   InputGroupText,
   InputGroup,
@@ -15,7 +14,7 @@ import {
 } from "reactstrap";
 import UserList from "../UserList/UserList";
 import { useSelector } from "react-redux";
-import UsersHeader from "./UsersHeader";
+import "./Users.scss";
 
 const Users = () => {
   const [query, setQuery] = useState("");
@@ -43,7 +42,8 @@ const Users = () => {
                       <i className="ni ni-zoom-split-in" />
                     </InputGroupText>
                   </InputGroupAddon>
-                  <Input
+                  <input
+                    className="form-control"
                     placeholder="Buscar..."
                     type="text"
                     name="query"
