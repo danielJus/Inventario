@@ -36,13 +36,13 @@ export default function validate(name, value, errors, deleteValue = "") {
     case "nombreUsuario":
       errors.nombreUsuario =
         !valid_string.test(value) || value.length < 2 || !value
-          ? "Nombre inválido"
+          ? "Nombre inválido, el nombre debe tener un mínimo de 2 letras"
           : "";
       break;
     case "apellidoUsuario":
       errors.apellidoUsuario =
         !valid_string.test(value) || value.length < 2 || !value
-          ? "Apellido inválido"
+          ? "Apellido inválido el apellido debe tener un mínimo de 2 letras"
           : "";
       break;
     case "cedula":
