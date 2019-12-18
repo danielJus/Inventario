@@ -1,3 +1,23 @@
-.alert{
-    opacity:1
+$color-blue: #003d72;
+$color-orange: #e07638;
+$color-blue-light: #337ab7;
+$color-orange-light: #db773e;
+$color-white: #f9f9f9;
+
+.alert {
+  opacity: 1;
+}
+.custom-control.custom-control-alternative.custom-checkbox > label > a {
+  color: $color-orange !important;
+}
+.my-4 {
+  background: $color-orange;
+  border: $color-orange;
+  letter-spacing: 0;
+  color: $color-white;
+  transition: 0.3s;
+  &:hover {
+    background: $color-orange-light;
+    box-shadow: 0px 0px 2px 1px;
+  }
 }

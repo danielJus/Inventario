@@ -47,11 +47,11 @@ const App = props => {
       <Switch>
         {user && user.rol === "coordinador" ? (
           <React.Fragment>
-            <Alert className="alert" color="success" isOpen={alert}>
+            {/*<Alert className="alert" color="success" isOpen={alert}>
               <p className="text-center">
                 Bienvenido: {user && user.nombreUsuario}
               </p>
-            </Alert>
+        </Alert>*/}
             <Route exact path="/" render={props => <Index {...props} />} />
             <Route exact path="/profile" component={Profile} />
             <Route exact path="/add-product" component={AddProduct} />
@@ -59,11 +59,11 @@ const App = props => {
           </React.Fragment>
         ) : user && user.rol === "director" ? (
           <React.Fragment>
-            <Alert className="alert" color="success" isOpen={alert}>
+            {/*<Alert className="alert" color="success" isOpen={alert}>
               <p className="text-center">
                 Bienvenido: {user && user.nombreUsuario}
               </p>
-            </Alert>
+        </Alert>*/}
 
             <Route exact path="/" render={props => <Index {...props} />} />
             <Route exact path="/profile" component={Profile} />

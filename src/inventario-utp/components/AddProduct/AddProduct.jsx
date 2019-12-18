@@ -87,7 +87,7 @@ const AddProduct = () => {
                     <InputGroup className="input-group-alternative mb-3">
                       <InputGroupAddon addonType="prepend">
                         <InputGroupText>
-                          <i className="ni ni-hat-3" />
+                          <i className="fas fa-book" />
                         </InputGroupText>
                       </InputGroupAddon>
                       <Input
@@ -209,7 +209,7 @@ const AddProduct = () => {
                         <InputGroup className="input-group-alternative mb-3">
                           <InputGroupAddon addonType="prepend">
                             <InputGroupText>
-                              <i className="ni ni-hat-3" />
+                              <i className="fas fa-dollar-sign" />
                             </InputGroupText>
                           </InputGroupAddon>
                           <Input
@@ -234,7 +234,7 @@ const AddProduct = () => {
                         <InputGroup className="input-group-alternative mb-3">
                           <InputGroupAddon addonType="prepend">
                             <InputGroupText>
-                              <i className="ni ni-hat-3" />
+                              <i className="fas fa-paperclip" />
                             </InputGroupText>
                           </InputGroupAddon>
                           <Input
@@ -264,7 +264,7 @@ const AddProduct = () => {
                 </Col>
               </Row>
 
-              <h3 className="display-4">Datos del responsable</h3>
+              <h3 className="display-4">Datos del Responsable</h3>
 
               <Row>
                 <Col>

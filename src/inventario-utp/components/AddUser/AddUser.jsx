@@ -59,7 +59,7 @@ const AddUser = props => {
                     <InputGroup className="input-group-alternative mb-3">
                       <InputGroupAddon addonType="prepend">
                         <InputGroupText>
-                          <i className="ni ni-hat-3" />
+                          <i className="fas fa-user" />
                         </InputGroupText>
                       </InputGroupAddon>
                       <Input
@@ -80,7 +80,7 @@ const AddUser = props => {
                     <InputGroup className="input-group-alternative mb-3">
                       <InputGroupAddon addonType="prepend">
                         <InputGroupText>
-                          <i className="ni ni-hat-3" />
+                          <i className="fas fa-user" />
                         </InputGroupText>
                       </InputGroupAddon>
                       <Input
@@ -103,7 +103,7 @@ const AddUser = props => {
                     <InputGroup className="input-group-alternative mb-3">
                       <InputGroupAddon addonType="prepend">
                         <InputGroupText>
-                          <i className="ni ni-hat-3" />
+                          <i className="fas fa-id-card" />
                         </InputGroupText>
                       </InputGroupAddon>
                       <Input
@@ -124,7 +124,7 @@ const AddUser = props => {
                     <InputGroup className="input-group-alternative mb-3">
                       <InputGroupAddon addonType="prepend">
                         <InputGroupText>
-                          <i className="ni ni-email-83" />
+                          <i className="fas fa-at" />
                         </InputGroupText>
                       </InputGroupAddon>
                       <Input
@@ -147,7 +147,7 @@ const AddUser = props => {
                     <InputGroup className="input-group-alternative mb-3">
                       <InputGroupAddon addonType="prepend">
                         <InputGroupText>
-                          <i className="ni ni-email-83" />
+                          <i className="fas fa-key" />
                         </InputGroupText>
                       </InputGroupAddon>
                       <Input
@@ -168,7 +168,7 @@ const AddUser = props => {
                     <InputGroup className="input-group-alternative mb-3">
                       <InputGroupAddon addonType="prepend">
                         <InputGroupText>
-                          <i className="ni ni-email-83" />
+                          <i className="fas fa-key" />
                         </InputGroupText>
                       </InputGroupAddon>
                       <Input
@@ -249,7 +249,7 @@ const AddUser = props => {
                   type="button"
                   onClick={handleSubmit}
                 >
-                  Agregar usuario
+                  Agregar Usuario
                 </Button>
               </div>
             </Form>

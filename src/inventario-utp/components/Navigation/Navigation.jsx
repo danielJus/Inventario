@@ -11,6 +11,7 @@ import {
   NavItem
 } from "reactstrap";
 import { Link } from "react-router-dom";
+import "./Navigation.scss";
 
 import { logout } from "../../redux/actions/authActions";
 import { history } from "../../utils/history";
@@ -31,7 +32,12 @@ const Navigation = props => {
   return (
     <div>
       <Navbar color="primary" light expand="md">
-        <NavbarBrand href="/">Inventario-utp</NavbarBrand>
+        <NavbarBrand href="/">
+          <img
+            src="http://www.edensoftt.com/aportes/imagenes/logo.png"
+            alt="Inventario UTP"
+          />
+        </NavbarBrand>
         <NavbarToggler onClick={toggle} />
         <Collapse isOpen={isOpen} navbar>
           <Nav className=" ml-auto d-flex justify-content-end" navbar>
@@ -39,7 +45,7 @@ const Navigation = props => {
               <React.Fragment>
                 <NavItem className="mx-4">
                   <NavLink href="/products-info">
-                    Informcaión de productos
+                    Información de productos
                   </NavLink>
                 </NavItem>
 
@@ -66,7 +72,7 @@ const Navigation = props => {
                 <NavItem className="mx-4">
                   {" "}
                   <NavLink href="/products-info">
-                    Informcaión de productos
+                    Información de productos
                   </NavLink>
                 </NavItem>
 
@@ -101,7 +107,9 @@ const Navigation = props => {
             ) : (
               <NavItem>
                 {" "}
-                <NavLink href="/login">Iniciar Sesión</NavLink>
+                <NavLink href="/login">
+                  <button className="btn">Iniciar Sesión</button>
+                </NavLink>
               </NavItem>
             )}
           </Nav>

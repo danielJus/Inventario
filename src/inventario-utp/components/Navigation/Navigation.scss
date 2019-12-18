@@ -1,0 +1,38 @@
+$color-blue: #003d72;
+$color-orange: #e07638;
+$color-blue-light: #337ab7;
+$color-orange-light: #db773e;
+$color-white: #f9f9f9;
+
+.navbar {
+  border-radius: 0px;
+}
+.navbar-brand {
+  height: auto !important;
+  > img {
+    width: 35% !important;
+  }
+}
+.nav-link > .btn {
+  background: $color-orange;
+  letter-spacing: 0;
+  color: $color-white;
+  transition: 0.3s;
+  &:hover {
+    background: $color-orange-light;
+    box-shadow: 0px 0px 2px 1px;
+  }
+}
+.bg-primary,
+.bg-yellow,
+.bg-danger,
+.bg-info {
+  background-color: $color-blue !important;
+}
+
+.mx-4.nav-item {
+  background: $color-white;
+  letter-spacing: 0;
+  transition: 0.3s;
+  border-radius: 10px;
+}
