@@ -54,7 +54,7 @@ const ResetPassword = () => {
                   <InputGroup className="input-group-alternative">
                     <InputGroupAddon addonType="prepend">
                       <InputGroupText>
-                        <i className="ni ni-email-83" />
+                        <i className="ni ni-lock-circle-open" />
                       </InputGroupText>
                     </InputGroupAddon>
                     <Input
@@ -73,7 +73,7 @@ const ResetPassword = () => {
                   <InputGroup className="input-group-alternative">
                     <InputGroupAddon addonType="prepend">
                       <InputGroupText>
-                        <i className="ni ni-email-83" />
+                        <i className="ni ni-lock-circle-open" />
                       </InputGroupText>
                     </InputGroupAddon>
                     <Input
@@ -110,8 +110,7 @@ const ResetPassword = () => {
                 <div className="text-center">
                   <Button
                     disabled={isInvalid}
-                    className="my-4"
-                    color="primary"
+                    className="my-4 guardar"
                     type="button"
                     onClick={handleSubmit}
                   >
