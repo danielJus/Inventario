@@ -170,7 +170,7 @@ const RequestProduct = props => {
                     <Button
                       className="enviar"
                       disabled={user ? false : isInvalid}
-                      onClick={handleSubmit}
+                      onClick={submit}
                     >
                       Enviar solicitud
                     </Button>

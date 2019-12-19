@@ -47,24 +47,30 @@ const UserList = props => {
           </tr>
         </thead>
         <tbody>
-          {users.map((user, i) => (
-            <tr key={user._id}>
-              <td>{user.nombreUsuario}</td>
-              <td>{user.apellidoUsuario}</td>
-              <td>{user.cedula}</td>
-              <td>{user.correo}</td>
-              <td>{user.facultad}</td>
-              <td>{user.sede}</td>
-              <td>
-                <Button className="editar" onClick={() => toggle(user)}>
-                  Editar
-                </Button>
-                <Button color="danger" onClick={() => toggleDeleteModal(user)}>
-                  Eliminar
-                </Button>
-              </td>
-            </tr>
-          ))}
+          {users
+            .slice()
+            .reverse()
+            .map((user, i) => (
+              <tr key={user._id}>
+                <td>{user.nombreUsuario}</td>
+                <td>{user.apellidoUsuario}</td>
+                <td>{user.cedula}</td>
+                <td>{user.correo}</td>
+                <td>{user.facultad}</td>
+                <td>{user.sede}</td>
+                <td>
+                  <Button className="editar" onClick={() => toggle(user)}>
+                    Editar
+                  </Button>
+                  <Button
+                    color="danger"
+                    onClick={() => toggleDeleteModal(user)}
+                  >
+                    Eliminar
+                  </Button>
+                </td>
+              </tr>
+            ))}
         </tbody>
       </Table>
       <Modal isOpen={modal} onRequestClose={close}>

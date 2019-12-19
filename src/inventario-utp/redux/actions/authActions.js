@@ -132,6 +132,7 @@ export const reset_password = (token, passwords) => {
       )
       .then(res => {
         dispatch(reset_password_success(res.data.status));
+        history.push("/login");
       })
       .catch(error => {
         dispatch(reset_password_failure(error.message));

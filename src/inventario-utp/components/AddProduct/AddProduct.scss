@@ -11,3 +11,20 @@
 .custom-select {
   border: 0px;
 }
+
+.agregar {
+  background-color: #e07638;
+  border-color: #e07638;
+  color: white;
+
+  &:focus {
+    color: white;
+    background-color: #e07638;
+    border-color: #e07638;
+  }
+  &:hover {
+    color: white;
+    background-color: #e07638;
+    border-color: #e07638;
+  }
+}

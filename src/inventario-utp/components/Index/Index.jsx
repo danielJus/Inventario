@@ -46,6 +46,7 @@ const Index = props => {
                       </InputGroupAddon>
                       <Input
                         placeholder="Buscar..."
+                        className="search"
                         type="text"
                         name="query"
                         value={query}

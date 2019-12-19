@@ -32,15 +32,6 @@ const Header = () => {
     } else if (products[i].estado === "disponible") {
       productosDisponibles.push(products[i]);
     }
-  }
-
-  for (let i = 0; i < products.length; i++) {
-    costo += products[i].precio;
-    if (products[i].estado === "en_uso") {
-      productosUso.push(products[i]);
-    } else if (products[i].estado === "disponible") {
-      productosDisponibles.push(products[i]);
-    }
 
     if (products[i].sede === "azuero") {
       azuero++;
@@ -176,7 +167,7 @@ const Header = () => {
                     </div>
                     <Col className="col-auto">
                       <div className="icon icon-shape bg-yellow text-white rounded-circle shadow">
-                        <i className="fas fa-users" />
+                        <i class="fas fa-ban"></i>
                       </div>
                     </Col>
                   </Row>
@@ -222,12 +213,12 @@ const Header = () => {
                         Porcentaje de productos en uso
                       </CardTitle>
                       <span className="h2 font-weight-bold mb-0">
-                        {porcentajeUso.toFixed(2)}
+                        {parseInt(porcentajeUso)}
                       </span>
                     </div>
                     <Col className="col-auto">
                       <div className="icon icon-shape bg-danger text-white rounded-circle shadow">
-                        <i className="fas fa-chart-bar" />
+                        <i class="fas fa-percentage"></i>
                       </div>
                     </Col>
                   </Row>
@@ -247,12 +238,12 @@ const Header = () => {
                         Porcentaje de productos disponibles
                       </CardTitle>
                       <span className="h2 font-weight-bold mb-0">
-                        {porcentajeDisponible.toFixed(2)}
+                        {parseInt(porcentajeDisponible)}
                       </span>
                     </div>
                     <Col className="col-auto">
                       <div className="icon icon-shape bg-primary text-white rounded-circle shadow">
-                        <i className="fas fa-chart-pie" />
+                        <i class="fas fa-percentage"></i>
                       </div>
                     </Col>
                   </Row>
@@ -277,7 +268,7 @@ const Header = () => {
                     </div>
                     <Col className="col-auto">
                       <div className="icon icon-shape bg-yellow text-white rounded-circle shadow">
-                        <i className="fas fa-users" />
+                        <i className="fas fa-dollar-sign" />
                       </div>
                     </Col>
                   </Row>

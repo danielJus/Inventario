@@ -63,49 +63,55 @@ const ProductList = props => {
           </tr>
         </thead>
         <tbody>
-          {products.map((product, i) => (
-            <tr key={i}>
-              <td>{product.nombre}</td>
-              <td>
-                <img
-                  src={require(`../../img/products/${product.photo}`)}
-                  alt="..."
-                  style={{ width: "5rem" }}
-                />
-              </td>
-              <td>{product.estado}</td>
-              <td>{product.precio}</td>
-              <td>{product.cantidad}</td>
-              <td>{product.descripcion}</td>
-              <td>{product.responsable.nombre}</td>
-              <td>{product.facultad}</td>
-              <td>{product.sede}</td>
-              <td>
-                <Button
-                  className="solicitar"
-                  type="button"
-                  onClick={() => toggleRequestModal(product)}
-                >
-                  Solicitar
-                </Button>
+          {products
+            .slice()
+            .reverse()
+            .map((product, i) => (
+              <tr key={i}>
+                <td>{product.nombre}</td>
+                <td>
+                  <img
+                    src={require(`../../img/products/${product.photo}`)}
+                    alt="..."
+                    style={{ width: "5rem" }}
+                  />
+                </td>
+                <td>{product.estado}</td>
+                <td>{product.precio}</td>
+                <td>{product.cantidad}</td>
+                <td>{product.descripcion}</td>
+                <td>{product.responsable.nombre}</td>
+                <td>{product.facultad}</td>
+                <td>{product.sede}</td>
+                <td>
+                  <Button
+                    className="solicitar"
+                    type="button"
+                    onClick={() => toggleRequestModal(product)}
+                  >
+                    Solicitar
+                  </Button>
 
-                {user && (
-                  <React.Fragment>
-                    <Button className="editar" onClick={() => toggle(product)}>
-                      Editar
-                    </Button>
+                  {user && (
+                    <React.Fragment>
+                      <Button
+                        className="editar"
+                        onClick={() => toggle(product)}
+                      >
+                        Editar
+                      </Button>
 
-                    <Button
-                      color="danger"
-                      onClick={() => toggleDeleteModal(product)}
-                    >
-                      Eliminar
-                    </Button>
-                  </React.Fragment>
-                )}
-              </td>
-            </tr>
-          ))}
+                      <Button
+                        color="danger"
+                        onClick={() => toggleDeleteModal(product)}
+                      >
+                        Eliminar
+                      </Button>
+                    </React.Fragment>
+                  )}
+                </td>
+              </tr>
+            ))}
         </tbody>
       </Table>
 

@@ -244,8 +244,7 @@ const AddUser = props => {
               <div className="text-center">
                 <Button
                   disabled={isInvalid}
-                  className="mt-4"
-                  color="primary"
+                  className="mt-4 agregar"
                   type="button"
                   onClick={handleSubmit}
                 >

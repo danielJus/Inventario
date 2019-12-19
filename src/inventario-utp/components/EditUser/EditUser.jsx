@@ -217,7 +217,7 @@ const EditUser = props => {
                 Guardar Cambios
               </Button>
 
-              <Button className="mt-4" color="danger" type="button">
+              <Button className="mt-4" color="danger">
                 Cancelar
               </Button>
             </Col>
