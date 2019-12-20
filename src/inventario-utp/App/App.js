@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React from "react";
 import { useSelector } from "react-redux";
 import { Switch, Route, Redirect } from "react-router-dom";
 import Index from "../components/Index/Index";
@@ -13,7 +13,6 @@ import ForgotPassword from "../components/ForgotPassword/ForgotPassword";
 import { useDispatch } from "react-redux";
 import { fetch_products } from "../redux/actions/productActions";
 import { fetch_users } from "../redux/actions/userActions";
-import { Alert } from "reactstrap";
 
 import "./App.scss";
 
@@ -25,21 +24,6 @@ const App = props => {
   if (user && user.rol === "director") {
     fetch_users()(dispatch);
   }
-
-  const [alert, setAlert] = useState(false);
-
-  const showAlerts = () => {
-    if (user) {
-      setAlert(true);
-      setTimeout(() => {
-        setAlert(false);
-      }, 2000);
-    }
-  };
-
-  useEffect(() => {
-    showAlerts();
-  }, [user]);
 
   return (
     <div>

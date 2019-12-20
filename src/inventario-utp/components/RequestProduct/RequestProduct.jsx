@@ -1,8 +1,6 @@
 import React from "react";
 import {
   Button,
-  FormGroup,
-  InputGroup,
   CardHeader,
   Label,
   Form,
@@ -20,7 +18,7 @@ import { request_product } from "../../redux/actions/productActions";
 import "./RequestProduct.scss";
 const RequestProduct = props => {
   const dispatch = useDispatch();
-  const { handleChange, handleSubmit, values, errors, isInvalid } = useForm(
+  const { handleChange, values, errors, isInvalid } = useForm(
     submit,
     validate,
     {

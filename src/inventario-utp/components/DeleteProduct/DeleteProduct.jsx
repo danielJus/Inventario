@@ -18,7 +18,7 @@ const DeleteProduct = props => {
   const dispatch = useDispatch();
   let none = null;
 
-  const { handleChange, handleSubmit, values, errors, isInvalid } = useForm(
+  const { handleChange, handleSubmit, values, isInvalid } = useForm(
     submit,
     validate,
     { productoBorrar: "" },

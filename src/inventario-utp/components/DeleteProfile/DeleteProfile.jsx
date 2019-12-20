@@ -1,5 +1,5 @@
 import React from "react";
-import { useSelector, useDispatch } from "react-redux";
+import { useDispatch } from "react-redux";
 import { delete_user } from "../../redux/actions/userActions";
 import { logout } from "../../redux/actions/authActions";
 import {

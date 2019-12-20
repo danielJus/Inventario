@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { useSelector } from "react-redux";
+
 import Modal from "react-modal";
 import { Button, Table } from "reactstrap";
 import EditUser from "../EditUser/EditUser";

@@ -10,7 +10,7 @@ import {
   NavLink,
   NavItem
 } from "reactstrap";
-import { Link } from "react-router-dom";
+
 import "./Navigation.scss";
 
 import { logout } from "../../redux/actions/authActions";
